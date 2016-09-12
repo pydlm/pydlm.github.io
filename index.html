@@ -1,0 +1,1691 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PyDLM &#8212; PyDLM 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PyDLM 0.1.0 documentation" href="#" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="#">PyDLM 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1><a class="reference external" href="https://github.com/wwrechard/PyDLM">PyDLM</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to <a class="reference external" href="https://github.com/wwrechard/PyDLM">PyDLM</a>, a flexible,
+user-friendly and rich functionality
+time series modeling library for python. This package implementes the
+Bayesian dynamic linear model (Harrison and West, 1999) for time
+series data analysis. Modeling and fitting is simple and easy with <cite>pydlm</cite>.
+Complex models can be constructed via simple operations:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#import dlm and its modeling components</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">autoReg</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#randomly generate data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#construct the base</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#adding model components</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span> <span class="c1">#add a second-order trend (linear trending)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;day7&#39;</span><span class="p">)</span> <span class="c1">#add a 7 day seasonality</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">autoReg</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span> <span class="c1">#add a 3 step auto regression</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#show the added components</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#delete unwanted component</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Users can then analyze the data with the constructed model:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#fit forward filter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#fit backward smoother</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitBackwardSmoother</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and plot the results easily:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot the results</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot only the filtered results</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;smoothed plot&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot in one figure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;multiple plots&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If users are unsatisfied with the model results, they can simply reconstruct the model and refit:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><cite>pydlm</cite> supports missing observations:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span> <span class="c1">#fit() will fit both forward filter and backward smoother</span>
+</pre></div>
+</div>
+<p>It also includes the discounting factor, which can be used to control how rapid the model should adapt to the new data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;trend&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># get the filtered and smoothed results</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filteredObs</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smoothedObs</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getSmoothedObs</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For online updates:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">([])</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+<span class="gp">... </span>    <span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
+<span class="gp">... </span>    <span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filteredObs</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>For now you can get the latest and greatest from <a class="reference external" href="https://github.com/wwrechard/PyDLM">github</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone git@github.com:wwrechard/PyDLM.git PyDLM
+$ cd PyDLM
+$ sudo python setup.py install
+</pre></div>
+</div>
+<p>In the future (after adding the multivariate case), the package will
+be up on <cite>PyPI</cite>.</p>
+<p><code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code> depends on the following modules,</p>
+<ul class="simple">
+<li><code class="xref py py-mod docutils literal"><span class="pre">numpy</span></code>     (for core functionality)</li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">Sphinx</span></code>    (for generating documentation)</li>
+<li><code class="xref py py-mod docutils literal"><span class="pre">unittest</span></code>  (for tests)</li>
+</ul>
+</div>
+<div class="section" id="dynamic-linear-models-user-manual">
+<h2>Dynamic linear models &#8212; user manual<a class="headerlink" href="#dynamic-linear-models-user-manual" title="Permalink to this headline">¶</a></h2>
+<p>This package implements the Bayesian dynamic linear model (DLM, Harrison
+and West, 1999) for time series analysis.
+The DLM is built upon two layers. The first layer is
+the fitting algorithm. DLM adopts a modified Kalman filter with a
+unique discounting technique from
+Harrison and West (1999). Like the usual Kalman filter, it accepts a
+transition matrix, a measurement matrix, an observation, a latent
+state, an innovation and an error covariance matrix and return the
+updated state and error covariance. These quantities will all be
+supplied internally &#8211; users are free from any annoying
+calculations. Different from the usual Kalman filter, the modified
+Kalman filter does not require the tuning of the two parameters: the
+error covariance matrix and the observational variance, so the model
+fitting is extremely efficient (could be up to 1000 times faster than
+the EM algorithm), more details will be provided in the section of the
+discounting technique.</p>
+<p>The second layer of DLM is itsmodeling feature. Nicely summarized in
+Harrison and West (1999), most common models can be expressed in
+one unified form &#8211; canonical form, which is closely related to the
+Jordan decomposition. Thanks to this keen observation, the DLM can
+easily incorporate most modeling components and turn them into the
+corresponding transition matrices and other quantities to be supplied
+to the Kalman filter. Examples are trend, seasonality, holidays,
+control variables and auto-regressive, which could appear
+simultaneously in one model. Due to this nice property, users of this
+package can construct models simply by &#8220;adding&#8221; some component into
+the model as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The modeling process is simple.</p>
+<p>The purpose of the modeling is to better understand the time series
+data and for to forecast into the future. So the key output from the
+model are the filtered time series, smoothed time series and one-step
+ahead prediction. We will cover this topic later in this section.</p>
+<p>The advantage of <cite>pydlm</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li>flexibility in constructing complicated models</li>
+<li>Extremely efficient model fitting with the discounting technique</li>
+<li>user-specific adjustment on the adaptive property of the model</li>
+</ul>
+</div></blockquote>
+<p>The disadvantage of <cite>pydlm</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li>only for Gaussian noise</li>
+</ul>
+</div></blockquote>
+<div class="section" id="modeling">
+<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h3>
+<p>As discussed in the beginning, the modeling process is very simple
+with <cite>pydlm</cite>, most modeling functions are integrated in the class
+<a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>. Following is an example for constructing a dlm with
+linear trend, 7-day seasonality and another control variable:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">control</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mf">2.6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
+<span class="go">range(100)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">+</span>
+<span class="go">dyanmic(control)</span>
+</pre></div>
+</div>
+<p>The imput <code class="xref py py-attr docutils literal"><span class="pre">data</span></code> must an 1d array or a list, since the current
+<a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> only supports one dimensional time series. Supporting for
+multivariate time series will be built upon this one dimensional class
+and added in the future.</p>
+<p>Now the variable <cite>myDLM</cite> contains the data and the modeling
+information. It will construct the corresponding transition,
+measurement, innovation, latent states and error covariance matrix
+once model fitting is called. Modify an existing model is also
+simple. User can brows the existing components of the model by:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>It will show all the existing components and their corresponding
+names. Name can be specified when the component is added to the <cite>dlm</cite>,
+for example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;day4&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can also easily delete the unwanted component by using <cite>delete</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;day4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modeling-components">
+<h3>Modeling components<a class="headerlink" href="#modeling-components" title="Permalink to this headline">¶</a></h3>
+<p>There are four model components provided with this
+package: trend, seasonality, dynamic and the auto-regression.</p>
+<div class="section" id="trend">
+<h4>Trend<a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> class is a model component for trending
+behavior. The data might be increasing linearly or quadraticly, which
+can all be captured by <a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a>. The degree argument specifics
+the shape of the trend and the discounting factor will be explained
+later in next section:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="seasonality">
+<h4>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> class models the periodic behavior of the
+data. Compared to the sine or cosine periodic curves,
+<a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> in this packages is more flexible, since it can
+turn into any shapes, much broader than the triangular families:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weekPeriod</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;week&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the package, we implements the seasonality component in a
+<cite>form-free</cite> way (Harrison and West, 1999) to avoid the identifiability
+issue. The states of one seasonality component are always summed up to
+zero, so that it will not tangle with the <a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> component.</p>
+</div>
+<div class="section" id="dynamic">
+<h4>Dynamic<a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> class offers the modeling ability to add any additional
+observed time series as a controlled variable to the current one. For
+example, when studying the stock price, the &#8216;SP500&#8217; index could be a
+good indicator for the modeling stock. A dynamic component need the
+user to supply the necessary information of the control variable over
+time:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">SP500</span> <span class="o">=</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="n">SP500Index</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span>
+<span class="go">&#39;SP500&#39;)</span>
+</pre></div>
+</div>
+<p>The input <code class="xref py py-attr docutils literal"><span class="pre">features</span></code> for <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> should be a list of
+lists, since multi-dimension features are allowed. Following is one
+simple example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Features</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="auto-regression">
+<h4>Auto-regression<a class="headerlink" href="#auto-regression" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a> class constructs the auto-regressive component on
+the model, i.e., the direct linear or non-linear dependency between
+the current observation and the previous days. User needs to specify
+the number of days of the dependency:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AR3</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These four classes of model components offer abundant modeling
+possiblities of the Bayesian dynamic linear model. Users can construct
+very complicated models using these components, such as hourly, weekly or
+monthly periodicy and holiday indicator and many other features.</p>
+</div>
+</div>
+<div class="section" id="model-fitting">
+<h3>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h3>
+<p>Entailed before, the fitting of the dlm is fulfilled by a modified
+Kalman filter. Once the user finished constructing the model by adding
+different components. the <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> will compute all the necessary
+quantities internally for using Kalman filter. So users can simply
+call <a class="reference internal" href="#pydlm.dlm.fitForwardFilter" title="pydlm.dlm.fitForwardFilter"><code class="xref py py-func docutils literal"><span class="pre">dlm.fitForwardFilter()</span></code></a>, <a class="reference internal" href="#pydlm.dlm.fitBackwardSmoother" title="pydlm.dlm.fitBackwardSmoother"><code class="xref py py-func docutils literal"><span class="pre">dlm.fitBackwardSmoother()</span></code></a> or
+even simply <a class="reference internal" href="#pydlm.dlm.fit" title="pydlm.dlm.fit"><code class="xref py py-func docutils literal"><span class="pre">dlm.fit()</span></code></a> to fit both forward filter and backward
+smoother:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitBackwardSmoother</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="#pydlm.dlm.fitForwardFilter" title="pydlm.dlm.fitForwardFilter"><code class="xref py py-func docutils literal"><span class="pre">dlm.fitForwardFilter()</span></code></a> is implemented in an online
+manner. It keeps an internal count on the filtered dates and once new
+data comes in, it only filters the new data without touching the
+existing results. In addition, this function also allows a rolling
+window fitting on the data, i.e., there will be a moving window and
+for each date, the kalman filter will only use the data within the
+window to filter the observation. This is equivalent to that the model
+only remembers a fixed length of dates:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">(</span><span class="n">useRollingWindow</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">windowLength</span>
+<span class="go">= 30)</span>
+</pre></div>
+</div>
+<p>For <code class="xref py py-func docutils literal"><span class="pre">dlm.backwardSmoother()</span></code>, it has to use the whole time series
+to smooth the latent states once new data comes in. The smoothing
+provides a good retrospective analysis on our past decision of the
+data. For example, we might initially believe the time series is
+stable, while that could be a random behavior within a volatile time
+series, and the user learn this from the smoother.</p>
+<p>Once the model fitting is completed, users can fetch the filtered or
+smoothed results from <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getSmoothedObs</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredVar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> recomputes a wide variety of model quantities that
+can be extracted by the user. For example, user can get the filtered
+states and covariance by typing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredState</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredCov</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This can be specified into individual component. For example, assume the
+model contains a <a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> component with a name of <cite>trend1</cite>, we
+can extract the corresponding latent state only for <cite>trend1</cite> as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredState</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredCov</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>One can also get the confidence interval on the filtered time series:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredInterval</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are also corresponding methods for smoothed and predicted
+results. For more detail, please refer to the class documentation.</p>
+</div>
+<div class="section" id="model-amending">
+<h3>Model amending<a class="headerlink" href="#model-amending" title="Permalink to this headline">¶</a></h3>
+<p>The user can still add, delete, modify data even when the model has
+been constructed.</p>
+<div class="section" id="adding-new-data">
+<h4>Adding new data<a class="headerlink" href="#adding-new-data" title="Permalink to this headline">¶</a></h4>
+<p>For adding more data, user can opt to
+<a class="reference internal" href="#pydlm.dlm.append" title="pydlm.dlm.append"><code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">newData</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newData</span><span class="p">,</span> <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;main&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the model contains <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> component, the corresponding
+features need to be updated as well:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">newSP500</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2000</span><span class="p">],</span> <span class="p">[</span><span class="mi">2100</span><span class="p">],</span> <span class="p">[</span><span class="mi">2200</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">newSP500</span><span class="p">,</span> <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;SP500&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then the user can rerun the forward filter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The package will continue running the forward filter on the three new
+data ponts.</p>
+</div>
+<div class="section" id="deleting-existing-data">
+<h4>Deleting existing data<a class="headerlink" href="#deleting-existing-data" title="Permalink to this headline">¶</a></h4>
+<p>To delete any existing data, user can simply use the <a class="reference internal" href="#pydlm.dlm.popout" title="pydlm.dlm.popout"><code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code></a>
+function from <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> on a specific date, for example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">popout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Different from <a class="reference internal" href="#pydlm.dlm.append" title="pydlm.dlm.append"><code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code></a>, <a class="reference internal" href="#pydlm.dlm.popout" title="pydlm.dlm.popout"><code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code></a> will be executed
+automatically for all components, so the user does not need to conduct
+the deletion mannually for each component. After the deletion, the
+forward filter needs to be rerun following the deleted date:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Again, the package will automatically recognize the date and fit only
+the necessary period of time.</p>
+</div>
+<div class="section" id="ignoring-a-date">
+<h4>Ignoring a date<a class="headerlink" href="#ignoring-a-date" title="Permalink to this headline">¶</a></h4>
+<p>Ignoring is very similar to deleting. The only difference is the time
+counts. Because deleting will delete the data entirely, the time
+counts will therefore reduce by 1. By contrast, ignoring will treat
+the specific date as missing data, so the time count will not
+change. This difference is important when preriodicy is
+concerned. Changing of time counts will have high impacts on
+<a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> components.</p>
+<p><a class="reference internal" href="#pydlm.dlm.ignore" title="pydlm.dlm.ignore"><code class="xref py py-func docutils literal"><span class="pre">dlm.ignore()</span></code></a> simply set the data of a specific date to be None:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ignore</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-data">
+<h4>modify data<a class="headerlink" href="#modify-data" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> also provides user the ability to modify the data on a
+specific date and a specific component. This function enables possible
+future extension to interactive anomaly detection and data debugging:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">alter</span><span class="p">(</span><span class="n">date</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;main&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="model-plotting">
+<h3>Model plotting<a class="headerlink" href="#model-plotting" title="Permalink to this headline">¶</a></h3>
+<p>This package offers rich ploting options for illustrating the
+results. User can simply call <a class="reference internal" href="#pydlm.dlm.plot" title="pydlm.dlm.plot"><code class="xref py py-func docutils literal"><span class="pre">dlm.plot()</span></code></a> to directly plot the
+results once the models are fitted:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>User can choose which results to plot via <a class="reference internal" href="#pydlm.dlm.turnOn" title="pydlm.dlm.turnOn"><code class="xref py py-func docutils literal"><span class="pre">dlm.turnOn()</span></code></a> and
+<a class="reference internal" href="#pydlm.dlm.turnOff" title="pydlm.dlm.turnOff"><code class="xref py py-func docutils literal"><span class="pre">dlm.turnOff()</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOn</span><span class="p">(</span><span class="s1">&#39;filtered plot&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict plot&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;smoothed plot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>User can also choose whether to plot the confidence interval and
+whether plot the results in one figure or separate figures. The
+default is to plot the confidence interval and in separate plots. To
+change that:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;confidence&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;multiple plots&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The quantile of the confidence interval can be set via
+<a class="reference internal" href="#pydlm.dlm.setConfidence" title="pydlm.dlm.setConfidence"><code class="xref py py-func docutils literal"><span class="pre">dlm.setConfidence()</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">setConfidence</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The default colors for the plots are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>original data: black</li>
+<li>filtered results: blue</li>
+<li>one-step ahead prediction: green</li>
+<li>smoothed results: red</li>
+</ul>
+</div></blockquote>
+<p>User can change the color setting via <a class="reference internal" href="#pydlm.dlm.setColor" title="pydlm.dlm.setColor"><code class="xref py py-func docutils literal"><span class="pre">dlm.setColor()</span></code></a>. The color
+space is the same as the <cite>matplotlib</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s1">&#39;filtered plot&#39;</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If user decide to go back to the original setting, they can use
+<a class="reference internal" href="#pydlm.dlm.resetPlotOptions" title="pydlm.dlm.resetPlotOptions"><code class="xref py py-func docutils literal"><span class="pre">dlm.resetPlotOptions()</span></code></a> to reset all the plot option:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">resetPlotOptions</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="advanced-settings">
+<h3>Advanced Settings<a class="headerlink" href="#advanced-settings" title="Permalink to this headline">¶</a></h3>
+<p>This part of settings closely relate to the algorithm behavior and
+offers some advanced features, some of which are still under
+developing. Currently embedded is the <a class="reference internal" href="#pydlm.dlm.stableMode" title="pydlm.dlm.stableMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code></a> function,
+which help increase the numerical stability of the <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> when
+discounting factor is used. Details about discounting factor will be
+covered in next section.</p>
+<p>In the future, following functionalities are planned to be added:
+feature selection among dynamic components, factor models for high
+dimensional latent states.</p>
+</div>
+</div>
+<div class="section" id="the-discouting-factor">
+<h2>The discouting factor<a class="headerlink" href="#the-discouting-factor" title="Permalink to this headline">¶</a></h2>
+<p>The discounting factor is a technique introduced in Harrison and
+West (1999) to avoid estimating the two tuning parameters in the usual
+kalman filter. The basic idea is as follows.</p>
+<p>Kalman filter assumes the same innovation for every step,
+which is both hard to estimate and unnecessary. When we think of the
+role of an innovation matrix, it is just to dilute the past
+information and provide more uncertainty when new data comes in. Thus,
+why not let the innovation depends on the posterior covariance of
+the current state, for example, let the innovation be 1% of the
+current posterior variance?</p>
+<p>More precisely, suppose the prior distribution of the latent state
+today is N(0, 1). After observed today&#8217;s data, the posterior
+distribution of the latent state becomes N(0, 0.8). Now to forecast
+into tomorrow, we would like to use today&#8217;s posterior to be the tomorrow&#8217;s
+prior distribution, with innovation added. So it is natural to relate
+the innovation to the current posterior distribution. For instance, we
+would like the innovation to be 1% of the current posterior, which
+will be N(0, 0.08), resulting in a prior for tomorrow as N(0, 0.88).</p>
+<p>Another way to understand the discounting factor is to think of the
+information pass through. When the innovation (noise) are added, the
+information of the past are diluted. Therefore, discounting factor
+stands for the percentage of how much information will be passed
+towards future. In the previous example, only 99% information is
+passed to the new next day.</p>
+<p>It is obvious that if 100% of information are carried over
+to the future, the fitted model will be very stable, as the new data
+is just a tiny portion compared to the existing information. The chain
+will not moved much even an extreme point appears. By contrast, when
+the discounting factor is small, say, only 90% information are passed
+through every day, then any new data will account for 10% of the
+performance of the time series for a given date, thus the model will
+adapt to any new data or change point fairly rapid.</p>
+<p>To set the discounting factor is simple in <cite>pydlm</cite>. Discounting
+factors are assigned within each component, i.e., different components
+can have different discounting factors:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span>
+<span class="go">discount = 0.99)</span>
+</pre></div>
+</div>
+<p>One big caveat for using discounting factor is its numerical
+instability. The original kalman filter already suffers from the
+numerical issue due to the matrix multiplication and
+subtraction. Discounting factor adds another layer to that by multiply
+a scalar which is greater than 1. Usually, for models with big
+discounting factor, say 0.99, its performance is close to the usual
+kalman filter. However, for models with small discounting factor such
+as 0.8, the numerical performance would be a nightmare. This is easy
+to understand, as every step we are losing 20% information which could
+means one-digit loss or so. Therefore, the fitting usually dies after around 50
+steps fitting.</p>
+<p>To amelioerate this issue, I come up with this <cite>renewal strategy</cite>. Notice that for
+a model with a discounting factor of 0.8, fitting the whole time
+series is meaningless. For data that is 40-day old, its impact on the
+current state is less than 0.1%. Thus, if we disgard the whole time
+series except for the last 40 days, the latent states will at most be
+affected by 0.1%. This motives the following strategy: For small
+discounting model, we set a acceptable threshold, say 0.1%, to compute
+the corresponding renewal length. In this case, the renewal length is
+about 40 days. In the actual model fitting, we then refit the model state
+using only the past 40 days after every 40 steps. Following is a
+simple illutration.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>day1 - day39</td>
+<td>regular kalman filter</td>
+</tr>
+<tr class="row-even"><td>day40</td>
+<td>refit using  day1 - day39</td>
+</tr>
+<tr class="row-odd"><td>day41 - day79</td>
+<td>regular kalman filter</td>
+</tr>
+<tr class="row-even"><td>day80</td>
+<td>refit using day41 - day79</td>
+</tr>
+</tbody>
+</table>
+<p>With this <cite>renewal strategy</cite>, the longest length the discounting model
+needs to fit is limited by the twice of the renewal length and thus
+suppress the numerical issue.</p>
+</div>
+<div class="section" id="class-reference">
+<h2>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dlm">
+<h3><a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a><a class="headerlink" href="#dlm" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pydlm.dlm">
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dlm</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main class of the dynamic linear model.</p>
+<p>This is the main class of the Bayeisan dynamic linear model.
+It provides the modeling, filtering, forecasting and smoothing function of a dlm.
+The dlm use the &#64;builder to construct the &#64;baseModel based on user supplied
+&#64;components and then run &#64;kalmanFilter to filter the result.</p>
+<p class="rubric">Example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># randomly generate fake data on 1000 days</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># construct the dlm of a linear trend and a 7-day seasonality</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDlm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># filter the result</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDlm</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># extract the filtered result</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDlm</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="pydlm.dlm.data">
+<code class="descname">data</code><a class="headerlink" href="#pydlm.dlm.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>a list of doubles of the raw time series data.
+It could be either the python&#8217;s built-in list of doubles or numpy 1d array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new modeling component to the dlm.</p>
+<p>Currently support: trend, seasonality, autoregression and dynamic component.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>component</strong> &#8211; <p>the modeling component, could be either one of the following:</p>
+<p>trend, seasonality, dynamic, autoReg.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dlm object with added component.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.alter">
+<code class="descname">alter</code><span class="sig-paren">(</span><em>date</em>, <em>data</em>, <em>component='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.alter" title="Permalink to this definition">¶</a></dt>
+<dd><p>To alter the data for a specific date and a specific component.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>date</strong> &#8211; the date of the altering data</li>
+<li><strong>data</strong> &#8211; the new data</li>
+<li><strong>component</strong> &#8211; <p>the component for which the new data need to be supplied to.</p>
+<p>&#8216;main&#8217;: the main time series data</p>
+<p>other component name: other component feature data</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>data</em>, <em>component='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append the new data to the main data or the components (new feature data)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> &#8211; the new data</li>
+<li><strong>component</strong> &#8211; <p>the name of which the new data to be added to.</p>
+<p>&#8216;main&#8217;: the main time series data</p>
+<p>other omponent name: add new feature data to other component.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete model component by its name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the name of the component.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>An easy caller for fitting both the forward filter and backward smoother.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.fitBackwardSmoother">
+<code class="descname">fitBackwardSmoother</code><span class="sig-paren">(</span><em>backLength=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fitBackwardSmoother" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit backward smoothing on the data. Starting from the last observed date.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>backLength</strong> &#8211; integer, indicating how many days the backward smoother</li>
+<li><strong>go, starting from the last date.</strong> (<em>should</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.fitForwardFilter">
+<code class="descname">fitForwardFilter</code><span class="sig-paren">(</span><em>useRollingWindow=False</em>, <em>windowLength=3</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fitForwardFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit forward filter on the available data.</p>
+<p>User can choose use rolling windowFront
+or not. If user choose not to use the rolling window, then the filtering
+will be based on all the previous data. If rolling window is used, then the
+filtering for a particular date will only consider previous dates that are
+within the rolling window length.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>useRollingWindow</strong> &#8211; indicate whether rolling window should be used.</li>
+<li><strong>windowLength</strong> &#8211; the length of the rolling window if used.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getAll">
+<code class="descname">getAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>get all the _result class which contains all results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The &#64;result object containing all computed results.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getFilteredCov">
+<code class="descname">getFilteredCov</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredCov" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the filtered error covariance.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the filtered state covariance.
+Default to be &#8216;all&#8217;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the filtered latent covariance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getFilteredInterval">
+<code class="descname">getFilteredInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the filtered confidence interval.</p>
+<p>If the filtered dates are not
+(0, self.n - 1), then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> &#8211; The confidence level.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple with the first element being a list of upper bounds
+and the second being a list of the lower bounds.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getFilteredObs">
+<code class="descname">getFilteredObs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the filtered observations.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the filtered time series observations</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getFilteredObsVar">
+<code class="descname">getFilteredObsVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredObsVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the filtered observation variance.</p>
+<p>If the filtered dates are not (0, self.n - 1), then a warning will prompt stating
+the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the filtered time series variances.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getFilteredState">
+<code class="descname">getFilteredState</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredState" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the filtered states.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the component name for which to get the filtered results.
+Default to &#8216;all&#8217;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the filtered latent states.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getPredictedInterval">
+<code class="descname">getPredictedInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the predicted confidence interval.</p>
+<p>If the predicted dates are not
+(0, self.n - 1), then a warning will prompt stating the actual predicted dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> &#8211; The confidence level.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple with the first element being a list of upper bounds
+and the second being a list of the lower bounds.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getPredictedObs">
+<code class="descname">getPredictedObs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the predicted observations.</p>
+<p>An array of numbers.
+a[k] shows the prediction on that the date k given all the data up to k - 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of one-day ahead predictions.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getPredictedObsVar">
+<code class="descname">getPredictedObsVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedObsVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the predicted variance.</p>
+<p>An array of numbers. a[k] shows the prediction on
+that the date k given all the data up to k - 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of one-day ahead prediction variances.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getSmoothedCov">
+<code class="descname">getSmoothedCov</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedCov" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the smoothed covariance.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the smoothed state covariance.
+Default to be &#8216;all&#8217;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the smoothed latent covariance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getSmoothedInterval">
+<code class="descname">getSmoothedInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the smoothed confidence interval.</p>
+<p>If the filtered dates are not
+(0, self.n - 1), then a warning will prompt stating the actual smoothed dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> &#8211; The confidence level.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple with the first element being a list of upper bounds
+and the second being a list of the lower bounds.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getSmoothedObs">
+<code class="descname">getSmoothedObs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the smoothed observations.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the smoothed time series observations.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getSmoothedObsVar">
+<code class="descname">getSmoothedObsVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedObsVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the smoothed variance.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the smoothed time series variances.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getSmoothedState">
+<code class="descname">getSmoothedState</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedState" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the smoothed latent states.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the component for which to get the smoothed results.
+Default to &#8216;all&#8217;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the smoothed latent states.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.ignore">
+<code class="descname">ignore</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.ignore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ignore the data for a specific day. treat it as missing data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the date to ignore.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.ls">
+<code class="descname">ls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.ls" title="Permalink to this definition">¶</a></dt>
+<dd><p>List out all existing components</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main plot function. The dlmPlot and the matplotlib will only be loaded
+when necessary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.popout">
+<code class="descname">popout</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.popout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop out the data for a given date</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the index indicates which date to be popped out.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>date=None</em>, <em>days=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict based on the current data for a specific future days</p>
+<p>The predict result is based on all the data before date and predict the
+observation at date + days.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>date</strong> &#8211; the index when the prediction starts. Default to the last day.</li>
+<li><strong>days</strong> &#8211; number of days ahead to predict</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple. (Predicted observation, variance of the predicted observation)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.resetPlotOptions">
+<code class="descname">resetPlotOptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.resetPlotOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the plotting option for the dlm class</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.setColor">
+<code class="descname">setColor</code><span class="sig-paren">(</span><em>switch</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.setColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;set&#8221; Operation for the dlm plotting colors</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>switch</strong> &#8211; key word. Controls over filtered/smoothed/predicted results,</li>
+<li><strong>color</strong> &#8211; the color for the corresponding keyword.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.setConfidence">
+<code class="descname">setConfidence</code><span class="sig-paren">(</span><em>p=0.95</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.setConfidence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the confidence interval for the plot</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.showOptions">
+<code class="descname">showOptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.showOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out all the option values</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.stableMode">
+<code class="descname">stableMode</code><span class="sig-paren">(</span><em>use=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.stableMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on the stable mode, i.e., using the renewal strategy.</p>
+<p>Indicate whether the renew strategy should be used to add numerical
+stability. When the filter goes over certain steps,
+the information contribution of the previous data has decayed to minimum.
+In the stable mode, We then ignore those days and refit the time series
+starting from current - renewTerm, where renewTerm is computed according
+to the discount. Thus, the effective sample size of the dlm is twice
+renewTerm. When discount = 1, there will be no renewTerm, since all the
+information will be passed along.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.turnOff">
+<code class="descname">turnOff</code><span class="sig-paren">(</span><em>switch</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.turnOff" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;turn off&#8221; Operation for the dlm plotting options.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>switch</strong> &#8211; <p>The key word to switch off.</p>
+<p>&#8216;filtered plot&#8217;, &#8216;filter&#8217; to not plot filtered results</p>
+<p>&#8216;smoothed plot&#8217;, &#8216;smooth&#8217; to not plot smoothed results</p>
+<p>&#8216;predict plot&#8217;, &#8216;predict&#8217;, to not plot one-step ahead results</p>
+<p>&#8216;confidence interval&#8217;, &#8216;confierence&#8217;, &#8216;CI&#8217; to not plot CI&#8217;s</p>
+<p>&#8216;data points&#8217;, &#8216;data&#8217;, &#8216;data point&#8217; to not plot original data</p>
+<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to not plot results in separate figures</p>
+<p>&#8216;fitted dots&#8217;, &#8216;fitted&#8217; to not plot fitted results with dots</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.turnOn">
+<code class="descname">turnOn</code><span class="sig-paren">(</span><em>switch</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.turnOn" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;turn on&#8221; Operation for the dlm plotting options.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>switch</strong> &#8211; <p>The key word to switch on.</p>
+<p>&#8216;filtered plot&#8217;, &#8216;filter&#8217; to plot filtered results</p>
+<p>&#8216;smoothed plot&#8217;, &#8216;smooth&#8217; to plot smoothed results</p>
+<p>&#8216;predict plot&#8217;, &#8216;predict&#8217;, to plot one-step ahead results</p>
+<p>&#8216;confidence interval&#8217;, &#8216;confierence&#8217;, &#8216;CI&#8217; to plot CI&#8217;s</p>
+<p>&#8216;data points&#8217;, &#8216;data&#8217;, &#8216;data point&#8217; to plot original data</p>
+<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to plot results in separate figures</p>
+<p>&#8216;fitted dots&#8217;, &#8216;fitted&#8217; to plot fitted results with dots</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pydlm.trend">
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=1</em>, <em>discount=0.99</em>, <em>name='trend'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
+<dd><p>The trend component that features the polynomial trending,
+providing one building block for the dynamic linear model.
+It decribes a latent polynomial trending in the time series data.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a constant trend</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Const&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the ctrend to have covariance with diagonals are 2 and state 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createCovPrior</span><span class="p">(</span><span class="n">cov</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createMeanPrior</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="pydlm.trend.d">
+<code class="descname">d</code><a class="headerlink" href="#pydlm.trend.d" title="Permalink to this definition">¶</a></dt>
+<dd><p>the degree of the polynomial trend</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.trend.componentType">
+<code class="descname">componentType</code><a class="headerlink" href="#pydlm.trend.componentType" title="Permalink to this definition">¶</a></dt>
+<dd><p>the type of the component, in this case, &#8216;trend&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.trend.name">
+<code class="descname">name</code><a class="headerlink" href="#pydlm.trend.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the name of the trend component, to be supplied by user
+used in modeling and result extraction</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.trend.discount">
+<code class="descname">discount</code><a class="headerlink" href="#pydlm.trend.discount" title="Permalink to this definition">¶</a></dt>
+<dd><p>the discount factor for this component. Details please refer
+to the &#64;kalmanFilter</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.trend.evaluation">
+<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.trend.evaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>the evaluation matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.trend.transition">
+<code class="descname">transition</code><a class="headerlink" href="#pydlm.trend.transition" title="Permalink to this definition">¶</a></dt>
+<dd><p>the transition matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.trend.covPrior">
+<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.trend.covPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the covariance matrix of the latent states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.trend.meanPrior">
+<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.trend.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the latent states</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.trend.checkDimensions">
+<code class="descname">checkDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.checkDimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>if user supplies their own covPrior and meanPrior, this can
+be used to check if the dimension matches</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.trend.createCovPrior">
+<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the prior covariance matrix for the latent states.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.trend.createEvaluation">
+<code class="descname">createEvaluation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createEvaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the evaluation matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.trend.createMeanPrior">
+<code class="descname">createMeanPrior</code><span class="sig-paren">(</span><em>mean=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createMeanPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the prior latent state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.trend.createTransition">
+<code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createTransition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the transition matrix</p>
+<p>According Hurrison and West (1999), the transition matrix of trend takes
+a form of</p>
+<p>[[1 1 1 1],</p>
+<p>[0 1 1 1],</p>
+<p>[0 0 1 1],</p>
+<p>[0 0 0 1]]</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3><a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pydlm.seasonality">
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
+<dd><p>The seasonality component that features the periodicity behavior,
+providing one building block for the dynamic linear model.
+It decribes a latent seasonality trending in the time series data. The user
+can use this class to construct any periodicy component to the model, for
+instance, the hourly, weekly or monthly behavior. Different from the Fourier
+series, the seasonality components are nonparametric, i.e., there is no sin
+or cos relationship between each state. They can be arbitrarily valued.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a 7-day seasonality:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;weekly&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the ctrend to have covariance with diagonals are 2 and state 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createCovPrior</span><span class="p">(</span><span class="n">cov</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createMeanPrior</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">freeForm</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="pydlm.seasonality.d">
+<code class="descname">d</code><a class="headerlink" href="#pydlm.seasonality.d" title="Permalink to this definition">¶</a></dt>
+<dd><p>the period of the seasonality</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.seasonality.componentType">
+<code class="descname">componentType</code><a class="headerlink" href="#pydlm.seasonality.componentType" title="Permalink to this definition">¶</a></dt>
+<dd><p>the type of the component, in this case, &#8216;seasonality&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.seasonality.name">
+<code class="descname">name</code><a class="headerlink" href="#pydlm.seasonality.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the name of the seasonality component, to be supplied by user
+used in modeling and result extraction</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.seasonality.discount">
+<code class="descname">discount</code><a class="headerlink" href="#pydlm.seasonality.discount" title="Permalink to this definition">¶</a></dt>
+<dd><p>the discount factor for this component. Details please refer
+to the &#64;kalmanFilter</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.seasonality.evaluation">
+<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.seasonality.evaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>the evaluation matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.seasonality.transition">
+<code class="descname">transition</code><a class="headerlink" href="#pydlm.seasonality.transition" title="Permalink to this definition">¶</a></dt>
+<dd><p>the transition matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.seasonality.covPrior">
+<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.seasonality.covPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the covariance matrix of the latent states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.seasonality.meanPrior">
+<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.seasonality.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the latent states</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.seasonality.checkDimensions">
+<code class="descname">checkDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.checkDimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>if user supplies their own covPrior and meanPrior, this can
+be used to check if the dimension matches</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.seasonality.createCovPrior">
+<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the prior covariance matrix for the latent states.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.seasonality.createEvaluation">
+<code class="descname">createEvaluation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createEvaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the evaluation matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.seasonality.createMeanPrior">
+<code class="descname">createMeanPrior</code><span class="sig-paren">(</span><em>mean=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createMeanPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the prior latent state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.seasonality.createTransition">
+<code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createTransition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the transition matrix.</p>
+<p>According to Hurrison and West (1999), the transition matrix of seasonality
+takes a form of</p>
+<p>[[0 1 0 0],</p>
+<p>[0 0 1 0],</p>
+<p>[0 0 0 1],</p>
+<p>[1 0 0 0]]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.seasonality.freeForm">
+<code class="descname">freeForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.freeForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>The technique used in Hurrison and West (1999). After calling this method,
+The latent states sum up to 0 and the covariance matrix is degenerate to have
+rank d - 1, so that the sum of the latent states will never change when the
+system evolves</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3><a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pydlm.dynamic">
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dynamic</code><span class="sig-paren">(</span><em>features=None</em>, <em>discount=0.99</em>, <em>name='dynamic'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dynamic component that allows user to add controlled variables,
+providing one building block for the dynamic linear model.
+It decribes a dynamic component in the time series data. It basically allows
+user to supply covariate or controlled variable into the dlm,
+and the coefficients of the features will be trained as the latent states.
+Examples are holiday indicators, other observed variables and so on.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a dynamic component:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the ctrend to have covariance with diagonals are 2 and state 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createCovPrior</span><span class="p">(</span><span class="n">cov</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createMeanPrior</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="pydlm.dynamic.d">
+<code class="descname">d</code><a class="headerlink" href="#pydlm.dynamic.d" title="Permalink to this definition">¶</a></dt>
+<dd><p>the dimension of the features (number of latent states)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.n">
+<code class="descname">n</code><a class="headerlink" href="#pydlm.dynamic.n" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of observation</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.componentType">
+<code class="descname">componentType</code><a class="headerlink" href="#pydlm.dynamic.componentType" title="Permalink to this definition">¶</a></dt>
+<dd><p>the type of the component, in this case, &#8216;dynamic&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.name">
+<code class="descname">name</code><a class="headerlink" href="#pydlm.dynamic.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the name of the trend component, to be supplied by user
+used in modeling and result extraction</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.discount">
+<code class="descname">discount</code><a class="headerlink" href="#pydlm.dynamic.discount" title="Permalink to this definition">¶</a></dt>
+<dd><p>the discount factor for this component. Details please refer
+to the &#64;kalmanFilter</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.evaluation">
+<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.dynamic.evaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>the evaluation matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.transition">
+<code class="descname">transition</code><a class="headerlink" href="#pydlm.dynamic.transition" title="Permalink to this definition">¶</a></dt>
+<dd><p>the transition matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.covPrior">
+<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.dynamic.covPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the covariance matrix of the latent states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.dynamic.meanPrior">
+<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.dynamic.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the latent states</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.appendNewData">
+<code class="descname">appendNewData</code><span class="sig-paren">(</span><em>newData</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.appendNewData" title="Permalink to this definition">¶</a></dt>
+<dd><p>For updating feature matrix when new data is added.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>newData</strong> &#8211; is a list of list. The inner list is the feature vector. The outer
+list may contain multiple feature vectors.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.checkDimensions">
+<code class="descname">checkDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.checkDimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>if user supplies their own covPrior and meanPrior, this can
+be used to check if the dimension matches</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.createCovPrior">
+<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=None</em>, <em>scale=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the prior covariance matrix for the latent states</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.createEvaluation">
+<code class="descname">createEvaluation</code><span class="sig-paren">(</span><em>step</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createEvaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The evaluation matrix for the dynamic component change over time.
+It equals to the value of the features or the controlled variables at a
+given date</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.createMeanPrior">
+<code class="descname">createMeanPrior</code><span class="sig-paren">(</span><em>mean=None</em>, <em>scale=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createMeanPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the prior latent state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.createTransition">
+<code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createTransition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the transition matrix.</p>
+<p>For the dynamic component, the transition matrix is just the identity matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.popout">
+<code class="descname">popout</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.popout" title="Permalink to this definition">¶</a></dt>
+<dd><p>For deleting the feature data of a specific date.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the index of which to be deleted.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dynamic.updateEvaluation">
+<code class="descname">updateEvaluation</code><span class="sig-paren">(</span><em>step</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.updateEvaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>update the evaluation matrix to a specific date
+This function is used when fitting the forward filter and backward smoother
+in need of updating the correct evaluation matrix</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="autoreg">
+<h3><a class="reference internal" href="#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pydlm.autoReg">
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>degree=2</em>, <em>data=None</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
+<dd><p>The autoReg class alows user to add an autoregressive component to the dlm.
+This code implements the autoregressive component as a sub-class of dynamic.
+Different from the dynamic component, the features in the autoReg is generated
+from the data, and updated according to the data. All other features are similar
+to &#64;dynamic.</p>
+<dl class="attribute">
+<dt id="pydlm.autoReg.degree">
+<code class="descname">degree</code><a class="headerlink" href="#pydlm.autoReg.degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>the degree of autoregressive, i.e., how many days to look back</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.autoReg.data">
+<code class="descname">data</code><a class="headerlink" href="#pydlm.autoReg.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>the time series data used for constructing the autoregressive features</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">discount factor</code></dt>
+<dd><p>the discounting factor</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.autoReg.name">
+<code class="descname">name</code><a class="headerlink" href="#pydlm.autoReg.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the name of the component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.autoReg.padding">
+<code class="descname">padding</code><a class="headerlink" href="#pydlm.autoReg.padding" title="Permalink to this definition">¶</a></dt>
+<dd><p>either 0 or None. The number to be padded for the first degree days,
+as no previous data is observed to form the feature matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.autoReg.appendNewData">
+<code class="descname">appendNewData</code><span class="sig-paren">(</span><em>newData</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.appendNewData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append new data to the existing features. Overriding the same method in
+&#64;dynamic</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>newData</strong> &#8211; a list of new data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.autoReg.checkDataLength">
+<code class="descname">checkDataLength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.checkDataLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the degree is less than the time series length</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.autoReg.createFeatureMatrix">
+<code class="descname">createFeatureMatrix</code><span class="sig-paren">(</span><em>degree</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createFeatureMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the feature matrix based on the supplied data and the degree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>degree</strong> &#8211; the auto-regressive dependency length.</li>
+<li><strong>data</strong> &#8211; the raw time series data of the model.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.autoReg.popout">
+<code class="descname">popout</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.popout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop out the data of a specific date and rewrite the correct feature matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the index of which to be deleted.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PyDLM</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#dynamic-linear-models-user-manual">Dynamic linear models &#8212; user manual</a><ul>
+<li><a class="reference internal" href="#modeling">Modeling</a></li>
+<li><a class="reference internal" href="#modeling-components">Modeling components</a><ul>
+<li><a class="reference internal" href="#trend">Trend</a></li>
+<li><a class="reference internal" href="#seasonality">Seasonality</a></li>
+<li><a class="reference internal" href="#dynamic">Dynamic</a></li>
+<li><a class="reference internal" href="#auto-regression">Auto-regression</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-fitting">Model fitting</a></li>
+<li><a class="reference internal" href="#model-amending">Model amending</a><ul>
+<li><a class="reference internal" href="#adding-new-data">Adding new data</a></li>
+<li><a class="reference internal" href="#deleting-existing-data">Deleting existing data</a></li>
+<li><a class="reference internal" href="#ignoring-a-date">Ignoring a date</a></li>
+<li><a class="reference internal" href="#modify-data">modify data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-plotting">Model plotting</a></li>
+<li><a class="reference internal" href="#advanced-settings">Advanced Settings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-discouting-factor">The discouting factor</a></li>
+<li><a class="reference internal" href="#class-reference">Class Reference</a><ul>
+<li><a class="reference internal" href="#dlm"><code class="docutils literal"><span class="pre">dlm</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal"><span class="pre">trend</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal"><span class="pre">seasonality</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal"><span class="pre">dynamic</span></code></a></li>
+<li><a class="reference internal" href="#autoreg"><code class="docutils literal"><span class="pre">autoReg</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="#">PyDLM 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Xiangyu Wang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+    </div>
+  </body>
+</html>
