@@ -69,7 +69,7 @@ Complex models can be constructed via simple operations:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#adding model components</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span> <span class="c1">#add a second-order trend (linear trending)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;day7&#39;</span><span class="p">)</span> <span class="c1">#add a 7 day seasonality</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">autoReg</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span> <span class="c1">#add a 3 step auto regression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">autoReg</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span> <span class="c1">#add a 3 step auto regression</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#show the added components</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
@@ -100,6 +100,7 @@ Complex models can be constructed via simple operations:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>..image:</p>
 <p>If users are unsatisfied with the model results, they can simply reconstruct the model and refit:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
@@ -297,7 +298,7 @@ simple example:</p>
 the model, i.e., the direct linear or non-linear dependency between
 the current observation and the previous days. User needs to specify
 the number of days of the dependency:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AR3</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AR3</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>These four classes of model components offer abundant modeling
