@@ -536,6 +536,8 @@ can have different discounting factors:</p>
 <span class="go">discount = 0.99)</span>
 </pre></div>
 </div>
+<div class="section" id="numerical-stability-and-the-renewal-strategy">
+<h3>Numerical stability and the renewal strategy<a class="headerlink" href="#numerical-stability-and-the-renewal-strategy" title="Permalink to this headline">¶</a></h3>
 <p>One big caveat for using discounting factor is its numerical
 instability. The original kalman filter already suffers from the
 numerical issue due to the matrix multiplication and
@@ -581,6 +583,7 @@ simple illutration.</p>
 <p>With this <cite>renewal strategy</cite>, the longest length the discounting model
 needs to fit is limited by the twice of the renewal length and thus
 suppress the numerical issue.</p>
+</div>
 </div>
 <div class="section" id="class-reference">
 <h2>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
@@ -1647,7 +1650,10 @@ as no previous data is observed to form the feature matrix</p>
 <li><a class="reference internal" href="#advanced-settings">Advanced Settings</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-discouting-factor">The discouting factor</a></li>
+<li><a class="reference internal" href="#the-discouting-factor">The discouting factor</a><ul>
+<li><a class="reference internal" href="#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#class-reference">Class Reference</a><ul>
 <li><a class="reference internal" href="#dlm"><code class="docutils literal"><span class="pre">dlm</span></code></a></li>
 <li><a class="reference internal" href="#id3"><code class="docutils literal"><span class="pre">trend</span></code></a></li>
