@@ -84,7 +84,7 @@ the model as:</p>
 data and for to forecast into the future. So the key output from the
 model are the filtered time series, smoothed time series and one-step
 ahead prediction. We will cover this topic later in this section.</p>
-<p>The advantage of <cite>pydlm</cite>:</p>
+<p>The advantage of <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
 <li>flexibility in constructing complicated models</li>
@@ -92,7 +92,7 @@ ahead prediction. We will cover this topic later in this section.</p>
 <li>user-specific adjustment on the adaptive property of the model</li>
 </ul>
 </div></blockquote>
-<p>The disadvantage of <cite>pydlm</cite>:</p>
+<p>The disadvantage of <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
 <li>only for Gaussian noise</li>
@@ -101,7 +101,7 @@ ahead prediction. We will cover this topic later in this section.</p>
 <div class="section" id="modeling">
 <h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h1>
 <p>As discussed in the beginning, the modeling process is very simple
-with <cite>pydlm</cite>, most modeling functions are integrated in the class
+with <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>, most modeling functions are integrated in the class
 <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>. Following is an example for constructing a dlm with
 linear trend, 7-day seasonality and another control variable:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span>

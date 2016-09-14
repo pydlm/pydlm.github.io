@@ -55,7 +55,7 @@
 user-friendly and rich functionality
 time series modeling library for python. This package implementes the
 Bayesian dynamic linear model (Harrison and West, 1999) for time
-series data analysis. Modeling and fitting is simple and easy with <cite>pydlm</cite>.
+series data analysis. Modeling and fitting is simple and easy with <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>.
 Complex models can be constructed via simple operations:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#import dlm and its modeling components</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">autoReg</span>
@@ -100,7 +100,6 @@ Complex models can be constructed via simple operations:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>..image:</p>
 <p>If users are unsatisfied with the model results, they can simply reconstruct the model and refit:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
@@ -139,14 +138,16 @@ Complex models can be constructed via simple operations:</p>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>For now you can get the latest and greatest from <a class="reference external" href="https://github.com/wwrechard/PyDLM">github</a>:</p>
+<p>You can now get the package from <cite>PyPI</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install pydlm
+</pre></div>
+</div>
+<p>You can also get the latest from <a class="reference external" href="https://github.com/wwrechard/PyDLM">github</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone git@github.com:wwrechard/PyDLM.git PyDLM
 $ cd PyDLM
 $ sudo python setup.py install
 </pre></div>
 </div>
-<p>In the future (after adding the multivariate case), the package will
-be up on <cite>PyPI</cite>.</p>
 <p><code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code> depends on the following modules,</p>
 <ul class="simple">
 <li><code class="xref py py-mod docutils literal"><span class="pre">numpy</span></code>      (for core functionality)</li>
@@ -192,7 +193,7 @@ the model as:</p>
 data and for to forecast into the future. So the key output from the
 model are the filtered time series, smoothed time series and one-step
 ahead prediction. We will cover this topic later in this section.</p>
-<p>The advantage of <cite>pydlm</cite>:</p>
+<p>The advantage of <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
 <li>flexibility in constructing complicated models</li>
@@ -200,7 +201,7 @@ ahead prediction. We will cover this topic later in this section.</p>
 <li>user-specific adjustment on the adaptive property of the model</li>
 </ul>
 </div></blockquote>
-<p>The disadvantage of <cite>pydlm</cite>:</p>
+<p>The disadvantage of <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
 <li>only for Gaussian noise</li>
@@ -209,7 +210,7 @@ ahead prediction. We will cover this topic later in this section.</p>
 <div class="section" id="modeling">
 <h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h3>
 <p>As discussed in the beginning, the modeling process is very simple
-with <cite>pydlm</cite>, most modeling functions are integrated in the class
+with <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>, most modeling functions are integrated in the class
 <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>. Following is an example for constructing a dlm with
 linear trend, 7-day seasonality and another control variable:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span>
