@@ -56,7 +56,8 @@
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dlm</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm" title="Permalink to this definition">¶</a></dt>
 <dd><p>The main class of the dynamic linear model.</p>
 <p>This is the main class of the Bayeisan dynamic linear model.
-It provides the modeling, filtering, forecasting and smoothing function of a dlm.
+It provides the modeling, filtering, forecasting and smoothing
+function of a dlm.
 The dlm use the &#64;builder to construct the &#64;baseModel based on user supplied
 &#64;components and then run &#64;kalmanFilter to filter the result.</p>
 <p class="rubric">Example</p>
@@ -75,19 +76,22 @@ The dlm use the &#64;builder to construct the &#64;baseModel based on user suppl
 <dt id="pydlm.dlm.data">
 <code class="descname">data</code><a class="headerlink" href="#pydlm.dlm.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>a list of doubles of the raw time series data.
-It could be either the python&#8217;s built-in list of doubles or numpy 1d array.</p>
+It could be either the python&#8217;s built-in list of
+doubles or numpy 1d array.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydlm.dlm.add">
 <code class="descname">add</code><span class="sig-paren">(</span><em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add new modeling component to the dlm.</p>
-<p>Currently support: trend, seasonality, autoregression and dynamic component.</p>
+<p>Currently support: trend, seasonality, autoregression
+and dynamic component.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>component</strong> &#8211; <p>the modeling component, could be either one of the following:</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>component</strong> &#8211; <p>the modeling component, could be either one
+of the following:</p>
 <p>trend, seasonality, dynamic, autoReg.</p>
 </td>
 </tr>
@@ -108,7 +112,8 @@ It could be either the python&#8217;s built-in list of doubles or numpy 1d array
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>date</strong> &#8211; the date of the altering data</li>
 <li><strong>data</strong> &#8211; the new data</li>
-<li><strong>component</strong> &#8211; <p>the component for which the new data need to be supplied to.</p>
+<li><strong>component</strong> &#8211; <p>the component for which the new data need to be
+supplied to.</p>
 <p>&#8216;main&#8217;: the main time series data</p>
 <p>other component name: other component feature data</p>
 </li>
@@ -131,7 +136,8 @@ It could be either the python&#8217;s built-in list of doubles or numpy 1d array
 <li><strong>data</strong> &#8211; the new data</li>
 <li><strong>component</strong> &#8211; <p>the name of which the new data to be added to.</p>
 <p>&#8216;main&#8217;: the main time series data</p>
-<p>other omponent name: add new feature data to other component.</p>
+<p>other omponent name: add new feature data to other
+component.</p>
 </li>
 </ul>
 </td>
@@ -183,9 +189,10 @@ It could be either the python&#8217;s built-in list of doubles or numpy 1d array
 <code class="descname">fitForwardFilter</code><span class="sig-paren">(</span><em>useRollingWindow=False</em>, <em>windowLength=3</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fitForwardFilter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit forward filter on the available data.</p>
 <p>User can choose use rolling windowFront
-or not. If user choose not to use the rolling window, then the filtering
-will be based on all the previous data. If rolling window is used, then the
-filtering for a particular date will only consider previous dates that are
+or not. If user choose not to use the rolling window,
+then the filtering will be based on all the previous data.
+If rolling window is used, then the filtering for a particular
+date will only consider previous dates that are
 within the rolling window length.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -225,10 +232,11 @@ then a warning will prompt stating the actual filtered dates.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the filtered state covariance.
-Default to be &#8216;all&#8217;.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the filtered state
+covariance. Default to be &#8216;all&#8217;.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the filtered latent covariance.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the filtered latent
+covariance.</td>
 </tr>
 </tbody>
 </table>
@@ -239,7 +247,8 @@ Default to be &#8216;all&#8217;.</td>
 <code class="descname">getFilteredInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredInterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the filtered confidence interval.</p>
 <p>If the filtered dates are not
-(0, self.n - 1), then a warning will prompt stating the actual filtered dates.</p>
+(0, self.n - 1), then a warning will prompt stating the actual
+filtered dates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -273,7 +282,8 @@ then a warning will prompt stating the actual filtered dates.</p>
 <dt id="pydlm.dlm.getFilteredObsVar">
 <code class="descname">getFilteredObsVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredObsVar" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the filtered observation variance.</p>
-<p>If the filtered dates are not (0, self.n - 1), then a warning will prompt stating
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating
 the actual filtered dates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -309,7 +319,8 @@ Default to &#8216;all&#8217;.</td>
 <code class="descname">getPredictedInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedInterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the predicted confidence interval.</p>
 <p>If the predicted dates are not
-(0, self.n - 1), then a warning will prompt stating the actual predicted dates.</p>
+(0, self.n - 1), then a warning will prompt stating the actual
+predicted dates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -328,7 +339,8 @@ and the second being a list of the lower bounds.</td>
 <code class="descname">getPredictedObs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedObs" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the predicted observations.</p>
 <p>An array of numbers.
-a[k] shows the prediction on that the date k given all the data up to k - 1.</p>
+a[k] shows the prediction on that the date k given all the data
+up to k - 1.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -365,10 +377,11 @@ then a warning will prompt stating the actual filtered dates.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the smoothed state covariance.
-Default to be &#8216;all&#8217;.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the smoothed state
+covariance. Default to be &#8216;all&#8217;.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the smoothed latent covariance.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the smoothed latent
+covariance.</td>
 </tr>
 </tbody>
 </table>
@@ -379,7 +392,8 @@ Default to be &#8216;all&#8217;.</td>
 <code class="descname">getSmoothedInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedInterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the smoothed confidence interval.</p>
 <p>If the filtered dates are not
-(0, self.n - 1), then a warning will prompt stating the actual smoothed dates.</p>
+(0, self.n - 1), then a warning will prompt stating the
+actual smoothed dates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -496,12 +510,14 @@ observation at date + days.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>date</strong> &#8211; the index when the prediction starts. Default to the last day.</li>
-<li><strong>days</strong> &#8211; number of days ahead to predict</li>
+<li><strong>date</strong> &#8211; the index when the prediction starts. Default to the
+last day.</li>
+<li><strong>days</strong> &#8211; number of days forward to predict</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple. (Predicted observation, variance of the predicted observation)</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple. (Predicted observation, variance of the predicted
+observation)</p>
 </td>
 </tr>
 </tbody>
@@ -523,7 +539,8 @@ observation at date + days.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>switch</strong> &#8211; key word. Controls over filtered/smoothed/predicted results,</li>
+<li><strong>switch</strong> &#8211; key word. Controls over
+filtered/smoothed/predicted results,</li>
 <li><strong>color</strong> &#8211; the color for the corresponding keyword.</li>
 </ul>
 </td>
@@ -539,6 +556,12 @@ observation at date + days.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="pydlm.dlm.setIntervalType">
+<code class="descname">setIntervalType</code><span class="sig-paren">(</span><em>intervalType</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.setIntervalType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the confidence interval type</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pydlm.dlm.showOptions">
 <code class="descname">showOptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.showOptions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print out all the option values</p>
@@ -550,12 +573,13 @@ observation at date + days.</p>
 <dd><p>Turn on the stable mode, i.e., using the renewal strategy.</p>
 <p>Indicate whether the renew strategy should be used to add numerical
 stability. When the filter goes over certain steps,
-the information contribution of the previous data has decayed to minimum.
-In the stable mode, We then ignore those days and refit the time series
-starting from current - renewTerm, where renewTerm is computed according
-to the discount. Thus, the effective sample size of the dlm is twice
-renewTerm. When discount = 1, there will be no renewTerm, since all the
-information will be passed along.</p>
+the information contribution of the previous data has decayed
+to minimum. In the stable mode, We then ignore those days and
+refit the time series starting from current - renewTerm, where
+renewTerm is computed according to the discount. Thus,
+the effective sample size of the dlm is twice
+renewTerm. When discount = 1, there will be no renewTerm,
+since all the information will be passed along.</p>
 </dd></dl>
 
 <dl class="method">
@@ -569,11 +593,16 @@ information will be passed along.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>switch</strong> &#8211; <p>The key word to switch off.</p>
 <p>&#8216;filtered plot&#8217;, &#8216;filter&#8217; to not plot filtered results</p>
 <p>&#8216;smoothed plot&#8217;, &#8216;smooth&#8217; to not plot smoothed results</p>
-<p>&#8216;predict plot&#8217;, &#8216;predict&#8217;, to not plot one-step ahead results</p>
-<p>&#8216;confidence interval&#8217;, &#8216;confierence&#8217;, &#8216;CI&#8217; to not plot CI&#8217;s</p>
-<p>&#8216;data points&#8217;, &#8216;data&#8217;, &#8216;data point&#8217; to not plot original data</p>
-<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to not plot results in separate figures</p>
-<p>&#8216;fitted dots&#8217;, &#8216;fitted&#8217; to not plot fitted results with dots</p>
+<p>&#8216;predict plot&#8217;, &#8216;predict&#8217;, to not plot one-step ahead
+results</p>
+<p>&#8216;confidence interval&#8217;, &#8216;confierence&#8217;, &#8216;CI&#8217;
+to not plot CI&#8217;s</p>
+<p>&#8216;data points&#8217;, &#8216;data&#8217;, &#8216;data point&#8217; to not
+plot original data</p>
+<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to not plot results
+in separate figures</p>
+<p>&#8216;fitted dots&#8217;, &#8216;fitted&#8217; to not plot fitted
+results with dots</p>
 </td>
 </tr>
 </tbody>
@@ -594,7 +623,8 @@ information will be passed along.</p>
 <p>&#8216;predict plot&#8217;, &#8216;predict&#8217;, to plot one-step ahead results</p>
 <p>&#8216;confidence interval&#8217;, &#8216;confierence&#8217;, &#8216;CI&#8217; to plot CI&#8217;s</p>
 <p>&#8216;data points&#8217;, &#8216;data&#8217;, &#8216;data point&#8217; to plot original data</p>
-<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to plot results in separate figures</p>
+<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to plot results in separate
+figures</p>
 <p>&#8216;fitted dots&#8217;, &#8216;fitted&#8217; to plot fitted results with dots</p>
 </td>
 </tr>
@@ -985,12 +1015,12 @@ in need of updating the correct evaluation matrix</p>
 <h1><a class="reference internal" href="index.html#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.autoReg">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>degree=2</em>, <em>data=None</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>data=None</em>, <em>degree=2</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
 <dd><p>The autoReg class alows user to add an autoregressive component to the dlm.
-This code implements the autoregressive component as a sub-class of dynamic.
-Different from the dynamic component, the features in the autoReg is generated
-from the data, and updated according to the data. All other features are similar
-to &#64;dynamic.</p>
+This code implements the autoregressive component as a sub-class of
+dynamic. Different from the dynamic component, the features in the
+autoReg is generated from the data, and updated according to the data.
+All other features are similar to &#64;dynamic.</p>
 <dl class="attribute">
 <dt id="pydlm.autoReg.degree">
 <code class="descname">degree</code><a class="headerlink" href="#pydlm.autoReg.degree" title="Permalink to this definition">¶</a></dt>
@@ -1000,7 +1030,8 @@ to &#64;dynamic.</p>
 <dl class="attribute">
 <dt id="pydlm.autoReg.data">
 <code class="descname">data</code><a class="headerlink" href="#pydlm.autoReg.data" title="Permalink to this definition">¶</a></dt>
-<dd><p>the time series data used for constructing the autoregressive features</p>
+<dd><p>the time series data used for constructing the autoregressive
+features</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1018,8 +1049,9 @@ to &#64;dynamic.</p>
 <dl class="attribute">
 <dt id="pydlm.autoReg.padding">
 <code class="descname">padding</code><a class="headerlink" href="#pydlm.autoReg.padding" title="Permalink to this definition">¶</a></dt>
-<dd><p>either 0 or None. The number to be padded for the first degree days,
-as no previous data is observed to form the feature matrix</p>
+<dd><p>either 0 or None. The number to be padded for the first degree
+days, as no previous data is observed to form the feature
+matrix</p>
 </dd></dl>
 
 <dl class="method">
