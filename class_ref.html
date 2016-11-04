@@ -60,8 +60,9 @@ It provides the modeling, filtering, forecasting and smoothing
 function of a dlm.
 The dlm use the &#64;builder to construct the &#64;baseModel based on user supplied
 &#64;components and then run &#64;kalmanFilter to filter the result.</p>
-<p class="rubric">Example</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># randomly generate fake data on 1000 days</span>
+<dl class="docutils">
+<dt>Example 1:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># randomly generate fake data on 1000 days</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># construct the dlm of a linear trend and a 7-day seasonality</span>
@@ -72,6 +73,18 @@ The dlm use the &#64;builder to construct the &#64;baseModel based on user suppl
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDlm</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
 </pre></div>
 </div>
+</dd>
+<dt>Example 2 (fit a linear regression):</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">+</span>
+<span class="go">                dynamic(features=[[i] for i in range(100)], 1, name=&#39;b&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coef_a</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getSmoothedState</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coef_b</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getSmoothedState</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="pydlm.dlm.data">
 <code class="descname">data</code><a class="headerlink" href="#pydlm.dlm.data" title="Permalink to this definition">¶</a></dt>
@@ -141,6 +154,26 @@ component.</p>
 </li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.continuePredict">
+<code class="descname">continuePredict</code><span class="sig-paren">(</span><em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.continuePredict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Continue prediction after the one-day ahead predict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>featureDict</strong> &#8211; the feature set for the dynamic components, stored
+in a for of {&#8220;component name&#8221;: feature}. If the set
+was not supplied, then the algo will re-use the old
+feature. For days beyond the data, the featureDict
+for every dynamic component must be provided.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tupe. (predicted observation, variance)</td>
 </tr>
 </tbody>
 </table>
@@ -501,8 +534,9 @@ when necessary.</p>
 
 <dl class="method">
 <dt id="pydlm.dlm.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>date=None</em>, <em>days=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Predict based on the current data for a specific future days</p>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>One day ahead predict based on the current data for a specific future
+days.</p>
 <p>The predict result is based on all the data before date and predict the
 observation at date + days.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -510,9 +544,13 @@ observation at date + days.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>date</strong> &#8211; the index when the prediction starts. Default to the
+<li><strong>date</strong> &#8211; the index when the prediction based on. Default to the
 last day.</li>
-<li><strong>days</strong> &#8211; number of days forward to predict</li>
+<li><strong>featureDict</strong> &#8211; the feature set for the dynamic Components, in a form
+of {&#8220;component_name&#8221;: feature}. If the featureDict is not
+supplied, then the algo reuse those stored in the dynamic
+components. For dates beyond the last day, featureDict must
+be supplied.</li>
 </ul>
 </td>
 </tr>
@@ -1054,6 +1092,33 @@ days, as no previous data is observed to form the feature
 matrix</p>
 </dd></dl>
 
+<dl class="docutils">
+<dt>(TODO: change the implementation of autoReg, so that the component uses</dt>
+<dd>filteredObs as the feature instead of the observed data. To do this, we
+might need pass the dlm as a parameter to autoReg, so that autoReg can
+fetch the filtered observation on the fly)</dd>
+</dl>
+<dl class="method">
+<dt id="pydlm.autoReg.alter">
+<code class="descname">alter</code><span class="sig-paren">(</span><em>date</em>, <em>dataPoint</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.alter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Alter the data of a particular date, and change the corresponding</dt>
+<dd>feature matrix.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>date</strong> &#8211; The date to be modified.</li>
+<li><strong>dataPoint</strong> &#8211; The new dataPoint to be filled in.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="pydlm.autoReg.appendNewData">
 <code class="descname">appendNewData</code><span class="sig-paren">(</span><em>newData</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.appendNewData" title="Permalink to this definition">¶</a></dt>
@@ -1091,6 +1156,12 @@ matrix</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.autoReg.hasMissingData">
+<code class="descname">hasMissingData</code><span class="sig-paren">(</span><em>aList</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.hasMissingData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the list contains None</p>
 </dd></dl>
 
 <dl class="method">

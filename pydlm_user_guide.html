@@ -198,6 +198,17 @@ possiblities of the Bayesian dynamic linear model. Users can construct
 very complicated models using these components, such as hourly, weekly or
 monthly periodicy and holiday indicator and many other features.</p>
 </div>
+<div class="section" id="long-seasonality">
+<h2>Long-seasonality<a class="headerlink" href="#long-seasonality" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code> class is a complement class for
+<a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a>. It allows constructing seasonality component that
+does not change every step. For example, the time unit is day, but
+client wants to add a monthly seasonality, then <code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code> is
+the correct choice.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">monthly</span> <span class="o">=</span> <span class="n">longSeason</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">stay</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="model-fitting">
 <h1>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h1>
@@ -401,6 +412,7 @@ dimensional latent states.</p>
 <li><a class="reference internal" href="#seasonality">Seasonality</a></li>
 <li><a class="reference internal" href="#dynamic">Dynamic</a></li>
 <li><a class="reference internal" href="#auto-regression">Auto-regression</a></li>
+<li><a class="reference internal" href="#long-seasonality">Long-seasonality</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#model-fitting">Model fitting</a></li>

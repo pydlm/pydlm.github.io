@@ -120,7 +120,7 @@ In the package, we implements the seasonality component in a
 `form-free` way (Harrison and West, 1999) to avoid the identifiability
 issue. The states of one seasonality component are always summed up to
 zero, so that it will not tangle with the :class:`trend` component.
-  
+
 Dynamic
 -------
 The :class:`dynamic` class offers the modeling ability to add any additional
@@ -154,6 +154,15 @@ possiblities of the Bayesian dynamic linear model. Users can construct
 very complicated models using these components, such as hourly, weekly or
 monthly periodicy and holiday indicator and many other features.
 
+Long-seasonality
+----------------
+The :class:`longSeason` class is a complement class for
+:class:`seasonality`. It allows constructing seasonality component that
+does not change every step. For example, the time unit is day, but
+client wants to add a monthly seasonality, then :class:`longSeason` is
+the correct choice.
+
+  >>> monthly = longSeason(period=12, stay=30, data=data, name='monthly')
 
 Model fitting
 =============
@@ -273,7 +282,7 @@ concerned. Changing of time counts will have high impacts on
 :class:`seasonality` components.
 
 :func:`dlm.ignore` simply set the data of a specific date to be None::
-	
+
   >>> myDLM.ignore(2)
 
 modify data
