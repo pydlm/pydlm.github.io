@@ -279,15 +279,15 @@ can do:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># prepare the new feature</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">newData1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># one-day ahead prediction from the last day</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">mydlm</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">newData</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">mydlm</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">newData1</span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># continue predicting for next day</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">newData2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData2</span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># continue predicting for the third day</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">newData3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -540,10 +540,11 @@ documentation.</p>
 <a class="reference internal" href="#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a>. <a class="reference internal" href="#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> is a one-day ahead
 prediction function based on a user given date and feature set:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># predict next date after the time series</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <cite>featureDict</cite> argument is a dictionary contains the feature
+<p>The function returns a tuple of predicted mean and predicted variance.
+The <cite>featureDict</cite> argument is a dictionary contains the feature
 information for <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> component. Suppose the model contains
 one dynamic component nameed <cite>SP500</cite>, then the featureDict takes the
 following Form:</p>
@@ -554,7 +555,7 @@ following Form:</p>
 then the algorithm will automatically fetch from the old data about
 the feature value of all the dynamic component:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># predict a day in the middle</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">myDLM</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">myDLM</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The algorithm will use the feature on the date of <cite>myDLM.n - 9</cite> in
@@ -568,11 +569,11 @@ after using <a class="reference internal" href="#pydlm.dlm.predict" title="pydlm
 <span class="gp">&gt;&gt;&gt; </span><span class="n">feature3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[[</span><span class="mi">1990</span><span class="p">]]}</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># one-day ahead prediction after the last day</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">myDLM</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">feature1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">myDLM</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">feature1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># we continue to two-day ahead prediction after the last day</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">feature2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">feature2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># we continue to three-day ahead prediction after the last day</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">feature3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">feature3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a> can only be used after <a class="reference internal" href="#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a>
