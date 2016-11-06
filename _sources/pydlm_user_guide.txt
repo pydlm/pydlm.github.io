@@ -250,7 +250,7 @@ documentation.
 Model prediction
 ================
 :class:`dlm` provides two predict functions: :func:`dlm.predict` and
-:func:`dlm.continuePredict`. :func:`dlm.predict` is a one-day ahead
+:func:`dlm.continuePredict`. The :func:`dlm.predict` is a one-day ahead
 prediction function based on a user given date and feature set::
 
   >>> # predict next date after the time series
