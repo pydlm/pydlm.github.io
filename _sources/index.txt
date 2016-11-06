@@ -51,15 +51,15 @@ and plot the results easily::
   >>> myDLM.turnOff('multiple plots')
   >>> myDLM.plot()
 
-User can also plot the latent states for the component::
-
-  >>> # plot the latent states of the trend
-  >>> myDLM.plot(name='lineTrend')
-
-or plot the mean of a component (the time series value that attributed to
-this component)::
+User can also plot the mean of a component (the time series value that
+attributed to this component)::
 
   >>> # plot the component mean
+  >>> myDLM.plot(name='lineTrend')
+
+and also the latent states for a given component::
+
+  >>> # plot the latent states of the trend
   >>> myDLM.plotCoef(name='ar3')
 
 If users are unsatisfied with the model results, they can simply reconstruct the model and refit::
