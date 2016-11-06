@@ -27,7 +27,7 @@ Complex models can be constructed via simple operations::
   >>> myDLM.ls()
   >>>
   >>> #delete unwanted component
-  >>> myDLM.delete('ar3')
+  >>> myDLM.delete('7day')
   >>> myDLM.ls()
 
 Users can then analyze the data with the constructed model::
