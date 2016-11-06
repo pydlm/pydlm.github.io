@@ -52,10 +52,10 @@ change when more data come in::
 and we have
 
 .. figure:: ./img/example_plot_a.png
-    :width: 45%
+    :width: 50%
     :align: left
 .. figure:: ./img/example_plot_b.png
-    :width: 45%
+    :width: 50%
     :align: right
 
 We see that the latent state of `b` quickly shift from 0, which is our
