@@ -119,7 +119,23 @@ interval explodes and then narrows down as more data is added.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coef_b_var</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentCov</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We can then use <cite>coef_a</cite> and <cite>coef_b</cite> for further analysis.</p>
+<p>We can then use <cite>coef_a</cite> and <cite>coef_b</cite> for further analysis. If we
+want to predict the future observation based on the current data, we
+can do:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># prepare the new feature</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newData1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># one-day ahead prediction from the last day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">mydlm</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">newData</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># continue predicting for next day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newData2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData2</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># continue predicting for the third day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newData3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData3</span><span class="p">)</span>
+</pre></div>
+</div>
 
 
           </div>

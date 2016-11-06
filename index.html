@@ -273,7 +273,23 @@ interval explodes and then narrows down as more data is added.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coef_b_var</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentCov</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We can then use <cite>coef_a</cite> and <cite>coef_b</cite> for further analysis.</p>
+<p>We can then use <cite>coef_a</cite> and <cite>coef_b</cite> for further analysis. If we
+want to predict the future observation based on the current data, we
+can do:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># prepare the new feature</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newData1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># one-day ahead prediction from the last day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">mydlm</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">newData</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># continue predicting for next day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newData2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData2</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># continue predicting for the third day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newData3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData3</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="dynamic-linear-models-user-manual">
 <h2>Dynamic linear models &#8212; user manual<a class="headerlink" href="#dynamic-linear-models-user-manual" title="Permalink to this headline">¶</a></h2>
@@ -517,6 +533,52 @@ can extract the corresponding latent state only for <cite>trend1</cite> as:</p>
 <p>There are also corresponding methods for smoothed and predicted
 results. For more detail, please refer to the <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> class
 documentation.</p>
+</div>
+<div class="section" id="model-prediction">
+<h3>Model prediction<a class="headerlink" href="#model-prediction" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> provides two predict functions: <a class="reference internal" href="#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> and
+<a class="reference internal" href="#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a>. <a class="reference internal" href="#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> is a one-day ahead
+prediction function based on a user given date and feature set:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># predict next date after the time series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>featureDict</cite> argument is a dictionary contains the feature
+information for <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> component. Suppose the model contains
+one dynamic component nameed <cite>SP500</cite>, then the featureDict takes the
+following Form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">featureDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[[</span><span class="mi">2090</span><span class="p">]]}</span>
+</pre></div>
+</div>
+<p>If the <cite>featureDict</cite> is not supplied but the date is not the last day,
+then the algorithm will automatically fetch from the old data about
+the feature value of all the dynamic component:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># predict a day in the middle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">myDLM</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The algorithm will use the feature on the date of <cite>myDLM.n - 9</cite> in
+<cite>featureDict</cite>. If date is the last day but the featureDict is not
+provided, then an error will be raised.</p>
+<p>If the user is interested beyond one-day ahead prediction, they can
+use <a class="reference internal" href="#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a> for multiple-day ahead prediction,
+after using <a class="reference internal" href="#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feature1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[[</span><span class="mi">2090</span><span class="p">]]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feature2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[[</span><span class="mi">2010</span><span class="p">]]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feature3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[[</span><span class="mi">1990</span><span class="p">]]}</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># one-day ahead prediction after the last day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">myDLM</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">feature1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># we continue to two-day ahead prediction after the last day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">feature2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># we continue to three-day ahead prediction after the last day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">feature3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a> can only be used after <a class="reference internal" href="#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a>
+for multiple-day prediction. The <cite>featureDict</cite> can also be ignored if
+the prediction is requested on dates before the last day and the
+features on the predict day can be found from the old data.</p>
 </div>
 <div class="section" id="model-amending">
 <h3>Model amending<a class="headerlink" href="#model-amending" title="Permalink to this headline">¶</a></h3>
@@ -1989,6 +2051,7 @@ in need of updating the correct evaluation matrix</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#model-fitting">Model fitting</a></li>
+<li><a class="reference internal" href="#model-prediction">Model prediction</a></li>
 <li><a class="reference internal" href="#model-amending">Model amending</a><ul>
 <li><a class="reference internal" href="#adding-new-data">Adding new data</a></li>
 <li><a class="reference internal" href="#deleting-existing-data">Deleting existing data</a></li>
