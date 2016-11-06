@@ -51,6 +51,13 @@ and plot the results easily::
   >>> myDLM.turnOff('multiple plots')
   >>> myDLM.plot()
 
+.. image:: ./img/intro_plot_all.png
+	   :width: 33%
+.. image:: ./img/intro_plot_2.png
+	   :width: 33%
+.. image:: ./img/intro_plot_in_1.png
+	   :width: 33%
+
 User can also plot the mean of a component (the time series value that
 attributed to this component)::
 
