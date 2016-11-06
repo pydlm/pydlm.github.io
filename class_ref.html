@@ -75,12 +75,13 @@ The dlm use the &#64;builder to construct the &#64;baseModel based on user suppl
 </div>
 </dd>
 <dt>Example 2 (fit a linear regression):</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dynamic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="go">                dynamic(features=[[i] for i in range(100)], 1, name=&#39;b&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">coef_a</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getSmoothedState</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">coef_b</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getSmoothedState</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coef_a</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coef_b</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -163,6 +164,15 @@ component.</p>
 <dt id="pydlm.dlm.continuePredict">
 <code class="descname">continuePredict</code><span class="sig-paren">(</span><em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.continuePredict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Continue prediction after the one-day ahead predict.</p>
+<p>If users want to have a multiple day prediction, they can opt to use
+continuePredict after predict with new features contained in
+featureDict. For example,</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># predict 3 days after the last day</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_day1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_day2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_day3</span><span class="p">)</span>
+</pre></div>
+</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -256,29 +266,9 @@ within the rolling window length.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pydlm.dlm.getFilteredCov">
-<code class="descname">getFilteredCov</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredCov" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the filtered error covariance.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the filtered state
-covariance. Default to be &#8216;all&#8217;.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the filtered latent
-covariance.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getFilteredInterval">
-<code class="descname">getFilteredInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the filtered confidence interval.</p>
+<dt id="pydlm.dlm.getInterval">
+<code class="descname">getInterval</code><span class="sig-paren">(</span><em>p=0.95</em>, <em>filterType='forwardFilter'</em>, <em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the confidence interval for data or component.</p>
 <p>If the filtered dates are not
 (0, self.n - 1), then a warning will prompt stating the actual
 filtered dates.</p>
@@ -286,35 +276,117 @@ filtered dates.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> &#8211; The confidence level.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>p</strong> &#8211; The confidence level.</li>
+<li><strong>filterType</strong> &#8211; the type of CI to be returned. Could be
+&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
+Default to &#8216;forwardFilter&#8217;.</li>
+<li><strong>name</strong> &#8211; the component to get CI. When name = &#8216;main&#8217;, then it
+returns the confidence interval for the time series. When
+name = some component&#8217;s name, then it returns the confidence
+interval for that component. Default to &#8216;main&#8217;.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple with the first element being a list of upper bounds
-and the second being a list of the lower bounds.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple with the first element being a list of upper bounds
+and the second being a list of the lower bounds.</p>
+</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="pydlm.dlm.getFilteredObs">
-<code class="descname">getFilteredObs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredObs" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the filtered observations.</p>
+<dt id="pydlm.dlm.getLatentCov">
+<code class="descname">getLatentCov</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getLatentCov" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the error covariance for different components and
+filters.</p>
 <p>If the filtered dates are not (0, self.n - 1),
 then a warning will prompt stating the actual filtered dates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the filtered time series observations</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filterType</strong> &#8211; the type of latent covariance to be returned. Could be
+&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
+Default to &#8216;forwardFilter&#8217;.</li>
+<li><strong>name</strong> &#8211; the component to get latent cov. When name = &#8216;all&#8217;, then it
+returns the latent covariance for the time series. When
+name = some component&#8217;s name, then it returns the latent
+covariance for that component. Default to &#8216;all&#8217;.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of numpy matrices, standing for the filtered latent
+covariance.</p>
+</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="pydlm.dlm.getFilteredObsVar">
-<code class="descname">getFilteredObsVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredObsVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the filtered observation variance.</p>
+<dt id="pydlm.dlm.getLatentState">
+<code class="descname">getLatentState</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getLatentState" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the latent states for different components and filters.</p>
+<p>If the filtered dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filterType</strong> &#8211; the type of latent states to be returned. Could be
+&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
+Default to &#8216;forwardFilter&#8217;.</li>
+<li><strong>name</strong> &#8211; the component to get latent state. When name = &#8216;all&#8217;, then it
+returns the latent states for the time series. When
+name = some component&#8217;s name, then it returns the latent
+states for that component. Default to &#8216;all&#8217;.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of lists, standing for the latent states given
+the different choices.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getMean">
+<code class="descname">getMean</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getMean" title="Permalink to this definition">¶</a></dt>
+<dd><p>get mean for data or component.</p>
+<p>If the working dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filterType</strong> &#8211; the type of mean to be returned. Could be
+&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
+Default to &#8216;forwardFilter&#8217;.</li>
+<li><strong>name</strong> &#8211; the component to get mean. When name = &#8216;main&#8217;, then it
+returns the filtered mean for the time series. When
+name = some component&#8217;s name, then it returns the filtered
+mean for that component. Default to &#8216;main&#8217;.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of the time series observations based on the choice</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getVar">
+<code class="descname">getVar</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the variance for data or component.</p>
 <p>If the filtered dates are not (0, self.n - 1),
 then a warning will prompt stating
 the actual filtered dates.</p>
@@ -322,170 +394,19 @@ the actual filtered dates.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the filtered time series variances.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filterType</strong> &#8211; the type of variance to be returned. Could be
+&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
+Default to &#8216;forwardFilter&#8217;.</li>
+<li><strong>name</strong> &#8211; the component to get variance. When name = &#8216;main&#8217;, then it
+returns the filtered variance for the time series. When
+name = some component&#8217;s name, then it returns the filtered
+variance for that component. Default to &#8216;main&#8217;.</li>
+</ul>
+</td>
 </tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getFilteredState">
-<code class="descname">getFilteredState</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getFilteredState" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the filtered states.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the component name for which to get the filtered results.
-Default to &#8216;all&#8217;.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the filtered latent states.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getPredictedInterval">
-<code class="descname">getPredictedInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the predicted confidence interval.</p>
-<p>If the predicted dates are not
-(0, self.n - 1), then a warning will prompt stating the actual
-predicted dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> &#8211; The confidence level.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple with the first element being a list of upper bounds
-and the second being a list of the lower bounds.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getPredictedObs">
-<code class="descname">getPredictedObs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedObs" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the predicted observations.</p>
-<p>An array of numbers.
-a[k] shows the prediction on that the date k given all the data
-up to k - 1.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of one-day ahead predictions.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getPredictedObsVar">
-<code class="descname">getPredictedObsVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getPredictedObsVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the predicted variance.</p>
-<p>An array of numbers. a[k] shows the prediction on
-that the date k given all the data up to k - 1.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of one-day ahead prediction variances.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getSmoothedCov">
-<code class="descname">getSmoothedCov</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedCov" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the smoothed covariance.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the componnet name for which to ge the smoothed state
-covariance. Default to be &#8216;all&#8217;.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the smoothed latent
-covariance.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getSmoothedInterval">
-<code class="descname">getSmoothedInterval</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the smoothed confidence interval.</p>
-<p>If the filtered dates are not
-(0, self.n - 1), then a warning will prompt stating the
-actual smoothed dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> &#8211; The confidence level.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple with the first element being a list of upper bounds
-and the second being a list of the lower bounds.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getSmoothedObs">
-<code class="descname">getSmoothedObs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedObs" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the smoothed observations.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the smoothed time series observations.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getSmoothedObsVar">
-<code class="descname">getSmoothedObsVar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedObsVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the smoothed variance.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of the smoothed time series variances.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getSmoothedState">
-<code class="descname">getSmoothedState</code><span class="sig-paren">(</span><em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getSmoothedState" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the smoothed latent states.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the component for which to get the smoothed results.
-Default to &#8216;all&#8217;.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of numpy matrices, standing for the smoothed latent states.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of the filtered variances based on the choice.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -513,9 +434,46 @@ Default to &#8216;all&#8217;.</td>
 
 <dl class="method">
 <dt id="pydlm.dlm.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot</code><span class="sig-paren">(</span><em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>The main plot function. The dlmPlot and the matplotlib will only be loaded
 when necessary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; component to plot. Default to &#8216;main&#8217;, in which we plot the
+filtered time series. If a component name is given
+It plots the mean of the component, i.e., the observed value
+that attributes to that particular component, which equals to
+evaluation * latent states for that particular component.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.plotCoef">
+<code class="descname">plotCoef</code><span class="sig-paren">(</span><em>name</em>, <em>dimensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plotCoef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot function for the latent states (coefficents of dynamic
+component).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; the name of the component to plot.
+It plots the latent states for the component. If dimension of
+the given component is too high, we truncate
+to the first five. Or the user can supply the ideal
+dimensions for plot in the dimensions parameter.</li>
+<li><strong>dimensions</strong> &#8211; dimensions will be used
+as the indexes to plot within that component latent
+states.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
