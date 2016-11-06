@@ -52,9 +52,9 @@ change when more data come in::
 and we have
 
 .. figure:: ./img/example_plot_a.png
-    :width:: 40%
+    :width: 40%
 .. figure:: ./img/example_plot_b.png
-    :width:: 40%
+    :width: 40%
 
 We see that the latent state of `b` quickly shift from 0, which is our
 initial guess on the parameter to around 3.0 and the confidence
