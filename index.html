@@ -100,6 +100,7 @@ Complex models can be constructed via simple operations:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>The three images show</p>
 <a class="reference internal image-reference" href="_images/intro_plot_all.png"><img alt="_images/intro_plot_all.png" src="_images/intro_plot_all.png" style="width: 33%;" /></a>
 <a class="reference internal image-reference" href="_images/intro_plot_wo_smooth.png"><img alt="_images/intro_plot_wo_smooth.png" src="_images/intro_plot_wo_smooth.png" style="width: 33%;" /></a>
 <a class="reference internal image-reference" href="_images/intro_plot_in_1.png"><img alt="_images/intro_plot_in_1.png" src="_images/intro_plot_in_1.png" style="width: 33%;" /></a>
@@ -116,6 +117,9 @@ attributed to this component):</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>which result in</p>
+<a class="reference internal image-reference" href="./img/intro_comp_mean.png"><img alt="./img/intro_comp_mean.png" src="./img/intro_comp_mean.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/intro_plot_state.png"><img alt="_images/intro_plot_state.png" src="_images/intro_plot_state.png" style="width: 49%;" /></a>
 <p>If users are unsatisfied with the model results, they can simply reconstruct the model and refit:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
@@ -141,6 +145,9 @@ attributed to this component):</p>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
+<p>The two different settings give different adaptiveness</p>
+<a class="reference internal image-reference" href="_images/intro_discount_1.png"><img alt="_images/intro_discount_1.png" src="_images/intro_discount_1.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/intro_discount_09.png"><img alt="_images/intro_discount_09.png" src="_images/intro_discount_09.png" style="width: 49%;" /></a>
 <p>The filtered results and latent states can be retrieved easily:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># get the filtered and smoothed results</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filteredMean</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
