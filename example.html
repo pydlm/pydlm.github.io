@@ -82,7 +82,7 @@ gradually shift overtime. Then we fit the model:</p>
 </pre></div>
 </div>
 <p>After some information printed by the system, we are done (yeah! :p)
-and we can fetch and examine our results. We can
+and we can fetch and examine our results. We
 first visualize the fitted results and see how well the model fits the
 data:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -105,7 +105,7 @@ change when more data is added:</p>
 <a class="reference internal image-reference" href="_images/example_plot_b.png"><img alt="_images/example_plot_b.png" src="_images/example_plot_b.png" style="width: 49%;" /></a>
 <p>We see that the latent state of <cite>b</cite> quickly shift from 0 (which is our
 initial guess on the parameter) to around 3.0 and the confidence
-interval explode and then narrow down as more data comes.</p>
+interval explodes and then narrows down as more data is added.</p>
 <p>Once we are happy about the result, we can fetch the results::</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># get the smoothed results</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">smoothedResult</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
