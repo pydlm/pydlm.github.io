@@ -50,7 +50,7 @@
           <div class="body" role="main">
             
   <p>In this section, we give a simple example on linear regression to
-illustrate how to use the <cite>pydlm</cite> for analyzing the data. The data is
+illustrate how to use the <cite>pydlm</cite> for analyzing data. The data is
 generated via the following process:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
@@ -71,19 +71,20 @@ model:</p>
 </pre></div>
 </div>
 <p>In the model, we add two components <a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> and
-<a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a>. The trend <cite>a</cite> is one kind of systematical components
+<a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a>. The trend <cite>a</cite> is one of the systematical components
 that can be used to characterize the intrisic property of a time
-series, and trend is particularly suitable in our case. The dynamic
+series, and trend is particularly suitable for our case. The dynamic
 component <cite>b</cite> is modeling the regression component. We specify its
 discounting factor to be 1.0 means that we believe <cite>b</cite> should be a
-constant, while for <cite>a</cite> we use 0.98 as we believe baseline can be
+constant. For <cite>a</cite> we use 0.98 as we believe baseline can be
 gradually shift overtime. Then we fit the model:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>After some information printed by the system, we are done in model
-fitting (yeah! :p) and we can fetch and examine our results. We can
-first visualize the fitted results and see how well we fit the data:</p>
+<p>After some information printed by the system, we are done (yeah! :p)
+and we can fetch and examine our results. We can
+first visualize the fitted results and see how well the model fits the
+data:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -91,8 +92,9 @@ first visualize the fitted results and see how well we fit the data:</p>
 <div class="figure">
 <img alt="_images/example_plot_all.png" src="_images/example_plot_all.png" />
 </div>
-<p>We can also plot the two coefficients <cite>a</cite> and <cite>b</cite> and see how they
-change when more data come in:</p>
+<p>It looks pretty nice for the one-day ahead prediction accuracy.
+We can also plot the two coefficients <cite>a</cite> and <cite>b</cite> and see how they
+change when more data is added:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
@@ -101,8 +103,8 @@ change when more data come in:</p>
 <p>and we have</p>
 <a class="reference internal image-reference" href="_images/example_plot_a.png"><img alt="_images/example_plot_a.png" src="_images/example_plot_a.png" style="width: 49%;" /></a>
 <a class="reference internal image-reference" href="_images/example_plot_b.png"><img alt="_images/example_plot_b.png" src="_images/example_plot_b.png" style="width: 49%;" /></a>
-<p>We see that the latent state of <cite>b</cite> quickly shift from 0, which is our
-initial guess on the parameter to around 3.0 and the confidence
+<p>We see that the latent state of <cite>b</cite> quickly shift from 0 (which is our
+initial guess on the parameter) to around 3.0 and the confidence
 interval explode and then narrow down as more data comes.</p>
 <p>Once we are happy about the result, we can fetch the results::</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># get the smoothed results</span>

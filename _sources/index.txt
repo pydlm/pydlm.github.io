@@ -63,14 +63,14 @@ The three images show
 User can also plot the mean of a component (the time series value that
 attributed to this component)::
 
-  >>> # plot the component mean
+  >>> # plot the component mean of 'lineTrend'
   >>> myDLM.turnOn('smoothed plot')
   >>> myDLM.turnOff('predict')
   >>> myDLM.plot(name='lineTrend')
 
 and also the latent states for a given component::
 
-  >>> # plot the latent states of the trend
+  >>> # plot the latent states of the 'ar3'
   >>> myDLM.plotCoef(name='ar3')
 
 which result in
@@ -92,7 +92,7 @@ If users are unsatisfied with the model results, they can simply reconstruct the
   >>> myDLM = dlm(data) + trend(2)
   >>> myDLM.fit() #fit() will fit both forward filter and backward smoother
 
-It also includes the discounting factor, which can be used to control how rapid the model should adapt to the new data::
+It also includes the discounting factor, which can be used to control how rapidly the model should adapt to the new data::
 
   >>> data = [0] * 100 + [3] * 100
   >>> myDLM = dlm(data) + trend(2, discount = 1.0)
