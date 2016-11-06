@@ -55,6 +55,8 @@ User can also plot the mean of a component (the time series value that
 attributed to this component)::
 
   >>> # plot the component mean
+  >>> myDLM.turnOn('smoothed plot')
+  >>> myDLM.turnOff('predict')
   >>> myDLM.plot(name='lineTrend')
 
 and also the latent states for a given component::
