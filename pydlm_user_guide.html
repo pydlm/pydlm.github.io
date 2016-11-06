@@ -193,21 +193,25 @@ the number of days of the dependency:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AR3</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>These four classes of model components offer abundant modeling
-possiblities of the Bayesian dynamic linear model. Users can construct
-very complicated models using these components, such as hourly, weekly or
-monthly periodicy and holiday indicator and many other features.</p>
+<p>In this example, the latent stats for Auto-regression are aligned in a
+way of [today - 3, today - 2, today - 1]. So when fetching the
+coefficients from the latent states, this will be the correct order to
+read the coefficients.</p>
 </div>
 <div class="section" id="long-seasonality">
 <h2>Long-seasonality<a class="headerlink" href="#long-seasonality" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code> class is a complement class for
+<p>The <a class="reference internal" href="index.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> class is a complement class for
 <a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a>. It allows constructing seasonality component that
 does not change every step. For example, the time unit is day, but
-client wants to add a monthly seasonality, then <code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code> is
+client wants to add a monthly seasonality, then <a class="reference internal" href="index.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> is
 the correct choice.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">monthly</span> <span class="o">=</span> <span class="n">longSeason</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">stay</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>These four classes of model components offer abundant modeling
+possiblities of the Bayesian dynamic linear model. Users can construct
+very complicated models using these components, such as hourly, weekly or
+monthly periodicy and holiday indicator and many other features.</p>
 </div>
 </div>
 <div class="section" id="model-fitting">

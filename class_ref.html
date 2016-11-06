@@ -1017,6 +1017,16 @@ This code implements the autoregressive component as a sub-class of
 dynamic. Different from the dynamic component, the features in the
 autoReg is generated from the data, and updated according to the data.
 All other features are similar to &#64;dynamic.</p>
+<p>The latent states of autoReg are aligned in the order of
+[today - degree, today - degree + 1, ..., today - 2, today - 1]. Thus,
+when fetching the latents from autoReg component, use this order to
+correctly align the coefficients.</p>
+<dl class="docutils">
+<dt>(TODO: change the implementation of autoReg, so that the component uses</dt>
+<dd>filteredObs as the feature instead of the observed data. To do this, we
+might need pass the dlm as a parameter to autoReg, so that autoReg can
+fetch the filtered observation on the fly)</dd>
+</dl>
 <dl class="attribute">
 <dt id="pydlm.autoReg.degree">
 <code class="descname">degree</code><a class="headerlink" href="#pydlm.autoReg.degree" title="Permalink to this definition">¶</a></dt>
@@ -1050,12 +1060,6 @@ days, as no previous data is observed to form the feature
 matrix</p>
 </dd></dl>
 
-<dl class="docutils">
-<dt>(TODO: change the implementation of autoReg, so that the component uses</dt>
-<dd>filteredObs as the feature instead of the observed data. To do this, we
-might need pass the dlm as a parameter to autoReg, so that autoReg can
-fetch the filtered observation on the fly)</dd>
-</dl>
 <dl class="method">
 <dt id="pydlm.autoReg.alter">
 <code class="descname">alter</code><span class="sig-paren">(</span><em>date</em>, <em>dataPoint</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.alter" title="Permalink to this definition">¶</a></dt>
