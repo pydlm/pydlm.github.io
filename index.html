@@ -224,8 +224,10 @@ first visualize the fitted results and see how well we fit the data:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The result shows
-.. image:: img/example_plot_all.png</p>
+<p>The result shows</p>
+<div class="figure">
+<img alt="_images/example_plot_all.png" src="_images/example_plot_all.png" />
+</div>
 <p>We can also plot the two coefficients <cite>a</cite> and <cite>b</cite> and see how they
 change when more data come in:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
@@ -233,11 +235,13 @@ change when more data come in:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>and we have
-.. image:: img/example_plot_a.png</p>
-<blockquote>
-<div>:width:: 40%</div></blockquote>
-<img alt="img/example_plot_b.png:width::40%" src="img/example_plot_b.png:width::40%" />
+<p>and we have</p>
+<div class="figure">
+<img alt="./img/example_plot_a.png:width::40%" src="./img/example_plot_a.png:width::40%" />
+</div>
+<div class="figure">
+<img alt="./img/example_plot_b.png:width::40%" src="./img/example_plot_b.png:width::40%" />
+</div>
 <p>We see that the latent state of <cite>b</cite> quickly shift from 0, which is our
 initial guess on the parameter to around 3.0 and the confidence
 interval explode and then narrow down as more data comes.</p>

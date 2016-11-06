@@ -39,7 +39,8 @@ first visualize the fitted results and see how well we fit the data::
   >>> mydlm.plot()
 
 The result shows
-.. image:: img/example_plot_all.png
+
+.. figure:: ./img/example_plot_all.png
 
 We can also plot the two coefficients `a` and `b` and see how they
 change when more data come in::
@@ -49,10 +50,11 @@ change when more data come in::
   >>> mydlm.plotCoef(name='b')
 
 and we have
-.. image:: img/example_plot_a.png
-	   :width:: 40%
-.. image:: img/example_plot_b.png
-	   :width:: 40%
+
+.. figure:: ./img/example_plot_a.png
+    :width:: 40%
+.. figure:: ./img/example_plot_b.png
+    :width:: 40%
 
 We see that the latent state of `b` quickly shift from 0, which is our
 initial guess on the parameter to around 3.0 and the confidence
