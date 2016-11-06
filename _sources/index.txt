@@ -16,7 +16,7 @@ Complex models can be constructed via simple operations::
   >>> data = [0] * 100 + [3] * 100
   >>>
   >>> #construct the base
-  >>> myDLM = dlm(mydata)
+  >>> myDLM = dlm(data)
   >>>
   >>> #adding model components
   >>> myDLM = myDLM + trend(2, name='lineTrend') # add a second-order trend (linear trending)
