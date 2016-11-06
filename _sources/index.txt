@@ -16,12 +16,12 @@ Complex models can be constructed via simple operations::
   >>> data = [0] * 100 + [3] * 100
   >>>
   >>> #construct the base
-  >>> myDLM = dlm(data)
+  >>> myDLM = dlm(mydata)
   >>>
   >>> #adding model components
-  >>> myDLM = myDLM + trend(2, name = 'lineTrend') # add a second-order trend (linear trending)
-  >>> myDLM = myDLM + seasonality(7, name = '7day') # add a 7 day seasonality
-  >>> myDLM = myDLM + autoReg(3, data = data, name = 'ar3') # add a 3 step auto regression
+  >>> myDLM = myDLM + trend(2, name='lineTrend') # add a second-order trend (linear trending)
+  >>> myDLM = myDLM + seasonality(7, name='7day') # add a 7 day seasonality
+  >>> myDLM = myDLM + autoReg(degree=3, data=data, name='ar3') # add a 3 step auto regression
   >>>
   >>> #show the added components
   >>> myDLM.ls()

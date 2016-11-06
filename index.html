@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>PyDLM &#8212; PyDLM 0.1.0 documentation</title>
+    <title>PyDLM &#8212; PyDLM 0.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PyDLM 0.1.0 documentation" href="#" />
+    <link rel="top" title="PyDLM 0.1.1 documentation" href="#" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -40,7 +40,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="#">PyDLM 0.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PyDLM 0.1.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -64,12 +64,12 @@ Complex models can be constructed via simple operations:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#construct the base</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">mydata</span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#adding model components</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span> <span class="c1"># add a second-order trend (linear trending)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;7day&#39;</span><span class="p">)</span> <span class="c1"># add a 7 day seasonality</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">autoReg</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ar3&#39;</span><span class="p">)</span> <span class="c1"># add a 3 step auto regression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span> <span class="c1"># add a second-order trend (linear trending)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;7day&#39;</span><span class="p">)</span> <span class="c1"># add a 7 day seasonality</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span> <span class="c1"># add a 3 step auto regression</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#show the added components</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
@@ -1892,7 +1892,7 @@ fetch the filtered observation on the fly)</dd>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="#">PyDLM 0.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PyDLM 0.1.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
