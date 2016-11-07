@@ -7,7 +7,7 @@ generated via the following process::
   >>> import numpy as np
   >>> n = 100
   >>> a = 1.0 + np.random.normal(0, 5, n) # the intercept
-  >>> x = np.random.normal(0, 2, n) # the control variable
+  >>> x = [[np.random.normal(0, 2)] for i in range(n)] # the control variable
   >>> b = 3.0 # the coefficient
   >>> y = a + b * x
 
@@ -19,7 +19,7 @@ model::
   >>> from pydlm import dlm, trend, dynamic
   >>> mydlm = dlm(y)
   >>> mydlm = mydlm + trend(degree=1, discount=0.98, name='a')
-  >>> mydlm = mydlm + dynamic(features=[[i] for i in x], discount=1, name='b')
+  >>> mydlm = mydlm + dynamic(features=x, discount=1, name='b')
 
 In the model, we add two components :class:`trend` and
 :class:`dynamic`. The trend `a` is one of the systematical components
