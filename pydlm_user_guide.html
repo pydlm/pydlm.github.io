@@ -103,7 +103,7 @@ ahead prediction. We will cover this topic later in this section.</p>
 <p>As discussed in the beginning, the modeling process is very simple
 with <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>, most modeling functions are integrated in the class
 <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>. Following is an example for constructing a dlm with
-linear trend, 7-day seasonality and another control variable:</p>
+linear trend, 7-day seasonality and control variables:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">autoReg</span><span class="p">,</span> <span class="n">longSeason</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">SP500Index</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2000</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[[</span><span class="mi">2010</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
@@ -113,6 +113,10 @@ linear trend, 7-day seasonality and another control variable:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;week&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">SP500Index</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SP500&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">page</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;page&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>User can also use <code class="xref py py-func docutils literal"><span class="pre">add()</span></code> method to add new component:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend2&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The imput <code class="xref py py-attr docutils literal"><span class="pre">data</span></code> must be an 1d array or a list, since the current
@@ -135,7 +139,8 @@ for example:</p>
 </pre></div>
 </div>
 <p>We can also easily delete the unwanted component by using <cite>delete</cite>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;day4&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;trend2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;day4&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
