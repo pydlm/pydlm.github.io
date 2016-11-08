@@ -79,14 +79,14 @@ discounting factor to be 1.0 means that we believe <cite>b</cite> should be a
 constant. For <cite>a</cite> we use 0.98 as we believe baseline can be
 gradually shift overtime. The <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> only accepts 2-d list
 for feature arugment (since the control variable could be
-multi-dimensional), we thus change <cite>x</cite> to 2d list. In addition, we
-believe these two processes <cite>a</cite> and <cite>b</cite> should evolve independently,
-and thus we set:</p>
+multi-dimensional), and we thus change <cite>x</cite> to 2d list. In addition, we
+believe these two processes <cite>a</cite> and <cite>b</cite> evolve independently and thus
+set:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This can also be set to &#8216;dependent&#8217;, depending on the use case and the
-need. Then we fit the model:</p>
+<p>This can also be set to &#8216;dependent&#8217; depending on the use case and the
+needs. We then fit the model by typing:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
