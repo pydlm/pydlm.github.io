@@ -227,15 +227,14 @@ model:</p>
 <p>In the model, we add two components <a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> and
 <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a>. The trend <cite>a</cite> is one of the systematical components
 that can be used to characterize the intrisic property of a time
-series, and trend is particularly suitable for our case. The dynamic
-component <cite>b</cite> is modeling the regression component. We specify its
-discounting factor to be 1.0 means that we believe <cite>b</cite> should be a
-constant. For <cite>a</cite> we use 0.98 as we believe baseline can be
-gradually shift overtime. The <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> only accepts 2-d list
-for feature arugment (since the control variable could be
-multi-dimensional), and we thus change <cite>x</cite> to 2d list. In addition, we
-believe these two processes <cite>a</cite> and <cite>b</cite> evolve independently and thus
-set:</p>
+series, and trend is particularly suitable for our case. It has a
+discount factor of 0.98 as we believe the baseline can gradually shift
+overtime. The dynamic component <cite>b</cite> is modeling the regression
+component. We specify its discounting factor to be 1.0 since we
+believe <cite>b</cite> should be a constant. The <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> class only accepts 2-d
+list for feature arugment (since the control variable could be
+multi-dimensional). Thus, we change <cite>x</cite> to 2d list. In addition, we
+believe these two processes <cite>a</cite> and <cite>b</cite> evolve independently and set:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
