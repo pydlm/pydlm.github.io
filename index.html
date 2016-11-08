@@ -233,7 +233,14 @@ discounting factor to be 1.0 means that we believe <cite>b</cite> should be a
 constant. For <cite>a</cite> we use 0.98 as we believe baseline can be
 gradually shift overtime. The <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> only accepts 2-d list
 for feature arugment (since the control variable could be
-multi-dimensional), we thus change <cite>x</cite> to 2d list. Then we fit the model:</p>
+multi-dimensional), we thus change <cite>x</cite> to 2d list. In addition, we
+believe these two processes <cite>a</cite> and <cite>b</cite> should evolve independently,
+and thus we set:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This can also be set to &#8216;dependent&#8217;, depending on the use case and the
+need. Then we fit the model:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -725,10 +732,30 @@ space is the same as the <cite>matplotlib</cite>:</p>
 <h3>Advanced Settings<a class="headerlink" href="#advanced-settings" title="Permalink to this headline">¶</a></h3>
 <p>This part of settings closely relate to the algorithm behavior and
 offers some advanced features, some of which are still under
-developing. Currently embedded is the <a class="reference internal" href="#pydlm.dlm.stableMode" title="pydlm.dlm.stableMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code></a> function,
-which help increase the numerical stability of the <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> when
-discounting factor is used. Details about discounting factor will be
-covered in next section.</p>
+development. Currently implemented is the <a class="reference internal" href="#pydlm.dlm.stableMode" title="pydlm.dlm.stableMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code></a>
+function and the <a class="reference internal" href="#pydlm.dlm.evolveMode" title="pydlm.dlm.evolveMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.evolveMode()</span></code></a>. The <a class="reference internal" href="#pydlm.dlm.stableMode" title="pydlm.dlm.stableMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code></a> is
+turned on by default, and you can turn it off by:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">stableModel</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This mode helps increasing the numerical stability of the <a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>
+when small discounting factor is used. Details about discounting
+factor will be covered in next section. The <a class="reference internal" href="#pydlm.dlm.evolveMode" title="pydlm.dlm.evolveMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.evolveMode()</span></code></a> is
+used to control how different components evolve over time. See
+Harrison and West (1999, Page 202). They could
+evolve independently, which is equivalent to assume the innovation
+matrix is a block-diagonal matrix. The default assumption is
+&#8216;dependent&#8217; and to change to &#8216;independent&#8217;, we can simply type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The difference between &#8216;independent&#8217; and &#8216;dependent&#8217; is best explained
+when there are multiple components with different discounting factor
+and one of them is One. In the &#8216;dependent&#8217; mode, the smoothed latent
+states of the component with discount factor 1 will be a value
+fluctuating around a constant, while in the &#8216;independent&#8217; mode, it
+will be an exact constant. User can choose which to use depending on
+their own use case.</p>
 <p>In the future, following functionalities are planned to be added:
 feature selection among dynamic components, factor models for high
 dimensional latent states.</p>
@@ -977,6 +1004,25 @@ for every dynamic component must be provided.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the name of the component.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.evolveMode">
+<code class="descname">evolveMode</code><span class="sig-paren">(</span><em>evoType='dependent'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.evolveMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control whether different component evolve indpendently. If true,
+then the innovation will only be added on each component but not the
+correlation between the components, so that for component with discount
+equals to 1, the smoothed results will always be constant.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>evoType</strong> &#8211; If set to &#8216;independent&#8217;, then each component will evolve
+independently. If set to &#8216;dependent&#8217;, then the components
+will proceed jointly. Default to &#8216;dependent&#8217; (faster)</td>
 </tr>
 </tbody>
 </table>

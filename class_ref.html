@@ -204,6 +204,25 @@ for every dynamic component must be provided.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="pydlm.dlm.evolveMode">
+<code class="descname">evolveMode</code><span class="sig-paren">(</span><em>evoType='dependent'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.evolveMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control whether different component evolve indpendently. If true,
+then the innovation will only be added on each component but not the
+correlation between the components, so that for component with discount
+equals to 1, the smoothed results will always be constant.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>evoType</strong> &#8211; If set to &#8216;independent&#8217;, then each component will evolve
+independently. If set to &#8216;dependent&#8217;, then the components
+will proceed jointly. Default to &#8216;dependent&#8217; (faster)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pydlm.dlm.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>An easy caller for fitting both the forward filter and backward smoother.</p>
