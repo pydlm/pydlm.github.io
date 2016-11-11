@@ -86,11 +86,18 @@ believe these two processes <cite>a</cite> and <cite>b</cite> evolve independent
 </pre></div>
 </div>
 <p>This can also be set to &#8216;dependent&#8217; if the computation efficiency is a
-concern. We then fit the model by typing:</p>
+concern. The default prior on the covariance of each component is a
+diagonal matrix with 1e7 on the diagonal, this can be changed when
+building the component (more details please refer to the user manual).
+The prior on the observational noise (default to 1.0) can be set by:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">noisePrior</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We then fit the model by typing:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>After some information printed on the screen, we are done (yeah! :p)
+<p>After some information printed on the screen, we are done (yah! :p)
 and we can fetch and examine our results. We
 first visualize the fitted results and see how well the model fits the
 data:</p>
