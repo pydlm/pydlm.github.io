@@ -216,7 +216,10 @@ equals to 1, the smoothed results will always be constant.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>evoType</strong> &#8211; If set to &#8216;independent&#8217;, then each component will evolve
 independently. If set to &#8216;dependent&#8217;, then the components
-will proceed jointly. Default to &#8216;dependent&#8217; (faster)</td>
+will proceed jointly. Default to &#8216;independent&#8217;. Switch to
+&#8216;dependent&#8217; if efficiency is a concern.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a dlm object (for chaining purpose)</td>
 </tr>
 </tbody>
 </table>
@@ -452,6 +455,22 @@ variance for that component. Default to &#8216;main&#8217;.</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="pydlm.dlm.noisePrior">
+<code class="descname">noisePrior</code><span class="sig-paren">(</span><em>prior=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.noisePrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>To set the prior for the observational noise.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prior</strong> &#8211; the prior of the observational noise. Default to 1.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dlm object (for chaining purpose)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pydlm.dlm.plot">
 <code class="descname">plot</code><span class="sig-paren">(</span><em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>The main plot function. The dlmPlot and the matplotlib will only be loaded
@@ -654,10 +673,25 @@ figures</p>
 <h1><a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a><a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.trend">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=1</em>, <em>discount=0.99</em>, <em>name='trend'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=1</em>, <em>discount=0.99</em>, <em>name='trend'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
 <dd><p>The trend component that features the polynomial trending,
 providing one building block for the dynamic linear model.
 It decribes a latent polynomial trending in the time series data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>degree</strong> &#8211; the degree of the polynomial</li>
+<li><strong>discount</strong> &#8211; the discount factor</li>
+<li><strong>name</strong> &#8211; the name of the trend component</li>
+<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a constant trend</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Const&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
@@ -725,7 +759,7 @@ be used to check if the dimension matches</p>
 
 <dl class="method">
 <dt id="pydlm.trend.createCovPrior">
-<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createCovPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the prior covariance matrix for the latent states.</p>
 </dd></dl>
 
@@ -760,7 +794,7 @@ a form of</p>
 <h1><a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.seasonality">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
 <dd><p>The seasonality component that features the periodicity behavior,
 providing one building block for the dynamic linear model.
 It decribes a latent seasonality trending in the time series data. The user
@@ -768,6 +802,21 @@ can use this class to construct any periodicy component to the model, for
 instance, the hourly, weekly or monthly behavior. Different from the Fourier
 series, the seasonality components are nonparametric, i.e., there is no sin
 or cos relationship between each state. They can be arbitrarily valued.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>period</strong> &#8211; the period of the</li>
+<li><strong>discount</strong> &#8211; the discount factor</li>
+<li><strong>name</strong> &#8211; the name of the trend component</li>
+<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a 7-day seasonality:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;weekly&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
@@ -836,7 +885,7 @@ be used to check if the dimension matches</p>
 
 <dl class="method">
 <dt id="pydlm.seasonality.createCovPrior">
-<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createCovPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the prior covariance matrix for the latent states.</p>
 </dd></dl>
 
@@ -880,13 +929,28 @@ system evolves</p>
 <h1><a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a><a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.dynamic">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dynamic</code><span class="sig-paren">(</span><em>features=None</em>, <em>discount=0.99</em>, <em>name='dynamic'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dynamic</code><span class="sig-paren">(</span><em>features=None</em>, <em>discount=0.99</em>, <em>name='dynamic'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic" title="Permalink to this definition">¶</a></dt>
 <dd><p>The dynamic component that allows user to add controlled variables,
 providing one building block for the dynamic linear model.
 It decribes a dynamic component in the time series data. It basically allows
 user to supply covariate or controlled variable into the dlm,
 and the coefficients of the features will be trained as the latent states.
 Examples are holiday indicators, other observed variables and so on.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>features</strong> &#8211; the feature matrix of the dynamic component</li>
+<li><strong>discount</strong> &#8211; the discount factor</li>
+<li><strong>name</strong> &#8211; the name of the dynamic component</li>
+<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a dynamic component:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
@@ -976,7 +1040,7 @@ be used to check if the dimension matches</p>
 
 <dl class="method">
 <dt id="pydlm.dynamic.createCovPrior">
-<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=None</em>, <em>scale=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=None</em>, <em>scale=1000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createCovPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the prior covariance matrix for the latent states</p>
 </dd></dl>
 
@@ -1030,7 +1094,7 @@ in need of updating the correct evaluation matrix</p>
 <h1><a class="reference internal" href="index.html#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.autoReg">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>data=None</em>, <em>degree=2</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>data=None</em>, <em>degree=2</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>w=10000000.0</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
 <dd><p>The autoReg class alows user to add an autoregressive component to the dlm.
 This code implements the autoregressive component as a sub-class of
 dynamic. Different from the dynamic component, the features in the
@@ -1046,6 +1110,22 @@ correctly align the coefficients.</p>
 might need pass the dlm as a parameter to autoReg, so that autoReg can
 fetch the filtered observation on the fly)</dd>
 </dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> &#8211; the time series data</li>
+<li><strong>degree</strong> &#8211; the order of the autoregressive component</li>
+<li><strong>discount</strong> &#8211; the discount factor</li>
+<li><strong>name</strong> &#8211; the name of the trend component</li>
+<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="pydlm.autoReg.degree">
 <code class="descname">degree</code><a class="headerlink" href="#pydlm.autoReg.degree" title="Permalink to this definition">¶</a></dt>
@@ -1166,7 +1246,7 @@ matrix</p>
 <h1><a class="reference internal" href="index.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a><a class="headerlink" href="#longseason" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.longSeason">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">longSeason</code><span class="sig-paren">(</span><em>data=None</em>, <em>period=4</em>, <em>stay=7</em>, <em>discount=0.99</em>, <em>name='longSeason'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">longSeason</code><span class="sig-paren">(</span><em>data=None</em>, <em>period=4</em>, <em>stay=7</em>, <em>discount=0.99</em>, <em>name='longSeason'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason" title="Permalink to this definition">¶</a></dt>
 <dd><p>The longSeason class alows user to add a long seasonality component
 to the dlm. The difference between the long seasonality is that
 1) The seasonality component use each date as a unit and change in a given
@@ -1182,6 +1262,23 @@ This code implements the longSeason component as a sub-class of
 dynamic. Different from the dynamic component, the features in the
 autoReg is generated from the data, and updated according to the data.
 All other features are similar to &#64;dynamic.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> &#8211; the time series data</li>
+<li><strong>period</strong> &#8211; the periodicy of the longSeason component</li>
+<li><strong>stay</strong> &#8211; the length of each state lasts</li>
+<li><strong>discount</strong> &#8211; the discount factor</li>
+<li><strong>name</strong> &#8211; the name of the trend component</li>
+<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="pydlm.longSeason.period">
 <code class="descname">period</code><a class="headerlink" href="#pydlm.longSeason.period" title="Permalink to this definition">¶</a></dt>

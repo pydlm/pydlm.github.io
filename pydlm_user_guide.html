@@ -155,7 +155,7 @@ behavior. The data might be increasing linearly or quadraticly, which
 can all be captured by <a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a>. The degree argument specifics
 the shape of the trend and the discounting factor will be explained
 later in next section:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -165,7 +165,7 @@ later in next section:</p>
 data. Compared to the sine or cosine periodic curves,
 <a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> in this packages is more flexible, since it can
 turn into any shapes, much broader than the triangular families:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weekPeriod</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;week&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weekPeriod</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;week&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In the package, we implements the seasonality component in a
@@ -181,7 +181,7 @@ example, when studying the stock price, the &#8216;SP500&#8217; index could be a
 good indicator for the modeling stock. A dynamic component need the
 user to supply the necessary information of the control variable over
 time:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">SP500</span> <span class="o">=</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">SP500Index</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SP500&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">SP500</span> <span class="o">=</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">SP500Index</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SP500&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The input <code class="xref py py-attr docutils literal"><span class="pre">features</span></code> for <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> should be a list of
@@ -198,7 +198,7 @@ simple example:</p>
 the model, i.e., the direct linear or non-linear dependency between
 the current observation and the previous days. User needs to specify
 the number of days of the dependency:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AR3</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AR3</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In this example, the latent stats for Auto-regression are aligned in a
@@ -213,10 +213,10 @@ read the coefficients.</p>
 does not change every step. For example, the time unit is day, but
 client wants to add a monthly seasonality, then <a class="reference internal" href="index.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> is
 the correct choice.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">monthly</span> <span class="o">=</span> <span class="n">longSeason</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">stay</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">monthly</span> <span class="o">=</span> <span class="n">longSeason</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">stay</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>These four classes of model components offer abundant modeling
+<p>These five classes of model components offer abundant modeling
 possiblities of the Bayesian dynamic linear model. Users can construct
 very complicated models using these components, such as hourly, weekly or
 monthly periodicy and holiday indicator and many other features.</p>
