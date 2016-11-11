@@ -66,8 +66,8 @@ decompose <cite>y</cite> and learn the value of <cite>a</cite> and <cite>b</cite
 model:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">dynamic</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">mydlm</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">mydlm</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">[[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">mydlm</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">mydlm</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">[[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In the model, we add two components <a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> and
@@ -75,7 +75,8 @@ model:</p>
 that can be used to characterize the intrisic property of a time
 series, and trend is particularly suitable for our case. It has a
 discount factor of 0.98 as we believe the baseline can gradually shift
-overtime. The dynamic component <cite>b</cite> is modeling the regression
+overtime and we specify a prior covariance with 10.0 on the
+diagonal. The dynamic component <cite>b</cite> is modeling the regression
 component. We specify its discounting factor to be 1.0 since we
 believe <cite>b</cite> should be a constant. The <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> class only accepts 2-d
 list for feature arugment (since the control variable could be
@@ -87,7 +88,7 @@ believe these two processes <cite>a</cite> and <cite>b</cite> evolve independent
 </div>
 <p>This can also be set to &#8216;dependent&#8217; if the computation efficiency is a
 concern. The default prior on the covariance of each component is a
-diagonal matrix with 1e7 on the diagonal, this can be changed when
+diagonal matrix with 1e7 on the diagonal, we changed this value in
 building the component (more details please refer to the user manual).
 The prior on the observational noise (default to 1.0) can be set by:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">noisePrior</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
