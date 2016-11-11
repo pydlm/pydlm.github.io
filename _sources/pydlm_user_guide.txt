@@ -98,6 +98,14 @@ We can also easily delete the unwanted component by using `delete`::
   >>> myDLM.delete('trend2')
   >>> myDLM.delete('day4')
 
+After the building steps, we can specify some parameters for the model
+fitting, the most common one is the prior guess on the observational
+noise. The default value is 1.0. To change that to 10 you can do::
+
+  >>> myDLM.noisePrior(10.0)
+
+Such change usually has small impact on the model and is almost
+ignorable.
 
 Model components
 ===================
@@ -451,9 +459,9 @@ used to control how different components evolve over time. See
 Harrison and West (1999, Page 202). They could
 evolve independently, which is equivalent to assume the innovation
 matrix is a block-diagonal matrix. The default assumption is
-'dependent' and to change to 'independent', we can simply type::
+'independent' and to change to 'dependent', we can simply type::
 
-  >>> myDLM.evolveMode('independent')
+  >>> myDLM.evolveMode('dependent')
 
 The difference between 'independent' and 'dependent' is best explained
 when there are multiple components with different discounting factor

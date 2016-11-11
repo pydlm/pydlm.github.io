@@ -143,6 +143,14 @@ for example:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;day4&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>After the building steps, we can specify some parameters for the model
+fitting, the most common one is the prior guess on the observational
+noise. The default value is 1.0. To change that to 10 you can do:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">noisePrior</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Such change usually has small impact on the model and is almost
+ignorable.</p>
 </div>
 <div class="section" id="model-components">
 <h1>Model components<a class="headerlink" href="#model-components" title="Permalink to this headline">¶</a></h1>
@@ -492,8 +500,8 @@ used to control how different components evolve over time. See
 Harrison and West (1999, Page 202). They could
 evolve independently, which is equivalent to assume the innovation
 matrix is a block-diagonal matrix. The default assumption is
-&#8216;dependent&#8217; and to change to &#8216;independent&#8217;, we can simply type:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
+&#8216;independent&#8217; and to change to &#8216;dependent&#8217;, we can simply type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;dependent&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The difference between &#8216;independent&#8217; and &#8216;dependent&#8217; is best explained
