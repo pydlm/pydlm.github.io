@@ -234,12 +234,13 @@ component. We specify its discounting factor to be 1.0 since we
 believe <cite>b</cite> should be a constant. The <a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> class only accepts 2-d
 list for feature arugment (since the control variable could be
 multi-dimensional). Thus, we change <cite>x</cite> to 2d list. In addition, we
-believe these two processes <cite>a</cite> and <cite>b</cite> evolve independently and set:</p>
+believe these two processes <cite>a</cite> and <cite>b</cite> evolve independently and set
+(This is the default assumption, so actually no need to set):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This can also be set to &#8216;dependent&#8217; depending on the use case and the
-needs. We then fit the model by typing:</p>
+<p>This can also be set to &#8216;dependent&#8217; if the computation efficiency is a
+concern. We then fit the model by typing:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -413,8 +414,9 @@ package: trend, seasonality, dynamic and the auto-regression.</p>
 <p><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> class is a model component for trending
 behavior. The data might be increasing linearly or quadraticly, which
 can all be captured by <a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a>. The degree argument specifics
-the shape of the trend and the discounting factor will be explained
-later in next section:</p>
+the shape of the trend and <cite>w</cite> sets the prior covariance for the trend
+component (same for all the other components). The discounting factor
+will be explained later in next section:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>

@@ -118,8 +118,9 @@ Trend
 :class:`trend` class is a model component for trending
 behavior. The data might be increasing linearly or quadraticly, which
 can all be captured by :class:`trend`. The degree argument specifics
-the shape of the trend and the discounting factor will be explained
-later in next section::
+the shape of the trend and `w` sets the prior covariance for the trend
+component (same for all the other components). The discounting factor
+will be explained later in next section::
 
   >>> linearTrend = trend(degree=2, discount=0.99, name='trend1', w=1e7)
 
