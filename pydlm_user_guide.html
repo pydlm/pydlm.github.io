@@ -145,7 +145,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>This package implements the Bayesian dynamic linear model (DLM, Harrison
+  <p>#.. currentmodule:: pydlm</p>
+<p>This package implements the Bayesian dynamic linear model (DLM, Harrison
 and West, 1999) for time series analysis.
 The DLM is built upon two layers. The first layer is
 the fitting algorithm. DLM adopts a modified Kalman filter with a
@@ -198,7 +199,7 @@ ahead prediction. We will cover this topic later in this section.</p>
 <h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h1>
 <p>As discussed in the beginning, the modeling process is very simple
 with <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>, most modeling functions are integrated in the class
-<a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>. Following is an example for constructing a dlm with
+<code class="xref py py-class docutils literal"><span class="pre">dlm</span></code>. Following is an example for constructing a dlm with
 linear trend, 7-day seasonality and control variables:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">autoReg</span><span class="p">,</span> <span class="n">longSeason</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
@@ -211,12 +212,12 @@ linear trend, 7-day seasonality and control variables:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">page</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;page&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>User can also use <a class="reference internal" href="index.html#pydlm.dlm.add" title="pydlm.dlm.add"><code class="xref py py-func docutils literal"><span class="pre">dlm.add()</span></code></a> method to add new component:</p>
+<p>User can also use <code class="xref py py-func docutils literal"><span class="pre">dlm.add()</span></code> method to add new component:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend2&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The imput <code class="xref py py-attr docutils literal"><span class="pre">data</span></code> must be an 1d array or a list, since the current
-<a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> only supports one dimensional time series. Supporting for
+<code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> only supports one dimensional time series. Supporting for
 multivariate time series will be built upon this one dimensional class
 and added in the future.</p>
 <p>Now the variable <cite>myDLM</cite> contains the data and the modeling
@@ -254,9 +255,9 @@ ignorable.</p>
 package: trend, seasonality, dynamic and the auto-regression.</p>
 <div class="section" id="trend">
 <h2>Trend<a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> class is a model component for trending
+<p><code class="xref py py-class docutils literal"><span class="pre">trend</span></code> class is a model component for trending
 behavior. The data might be increasing linearly or quadraticly, which
-can all be captured by <a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a>. The degree argument specifics
+can all be captured by <code class="xref py py-class docutils literal"><span class="pre">trend</span></code>. The degree argument specifics
 the shape of the trend and <cite>w</cite> sets the prior covariance for the trend
 component (same for all the other components). The discounting factor
 will be explained later in next section:</p>
@@ -266,9 +267,9 @@ will be explained later in next section:</p>
 </div>
 <div class="section" id="seasonality">
 <h2>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> class models the periodic behavior of the
+<p>The <code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code> class models the periodic behavior of the
 data. Compared to the sine or cosine periodic curves,
-<a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> in this packages is more flexible, since it can
+<code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code> in this packages is more flexible, since it can
 turn into any shapes, much broader than the triangular families:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weekPeriod</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;week&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
@@ -276,11 +277,11 @@ turn into any shapes, much broader than the triangular families:</p>
 <p>In the package, we implements the seasonality component in a
 <cite>form-free</cite> way (Harrison and West, 1999) to avoid the identifiability
 issue. The states of one seasonality component are always summed up to
-zero, so that it will not tangle with the <a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> component.</p>
+zero, so that it will not tangle with the <code class="xref py py-class docutils literal"><span class="pre">trend</span></code> component.</p>
 </div>
 <div class="section" id="dynamic">
 <h2>Dynamic<a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> class offers the modeling ability to add any additional
+<p>The <code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code> class offers the modeling ability to add any additional
 observed time series as a controlled variable to the current one. For
 example, when studying the stock price, the &#8216;SP500&#8217; index could be a
 good indicator for the modeling stock. A dynamic component need the
@@ -289,7 +290,7 @@ time:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">SP500</span> <span class="o">=</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">SP500Index</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SP500&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The input <code class="xref py py-attr docutils literal"><span class="pre">features</span></code> for <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> should be a list of
+<p>The input <code class="xref py py-attr docutils literal"><span class="pre">features</span></code> for <code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code> should be a list of
 lists, since multi-dimension features are allowed. Following is one
 simple example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Features</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2000</span><span class="p">],</span> <span class="p">[</span><span class="mi">2010</span><span class="p">],</span> <span class="p">[</span><span class="mi">2020</span><span class="p">],</span> <span class="p">[</span><span class="mi">2030</span><span class="p">]]</span>
@@ -299,7 +300,7 @@ simple example:</p>
 </div>
 <div class="section" id="auto-regression">
 <h2>Auto-regression<a class="headerlink" href="#auto-regression" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="index.html#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a> class constructs the auto-regressive component on
+<p>The <code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code> class constructs the auto-regressive component on
 the model, i.e., the direct linear or non-linear dependency between
 the current observation and the previous days. User needs to specify
 the number of days of the dependency:</p>
@@ -313,10 +314,10 @@ read the coefficients.</p>
 </div>
 <div class="section" id="long-seasonality">
 <h2>Long-seasonality<a class="headerlink" href="#long-seasonality" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="index.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> class is a complement class for
-<a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a>. It allows constructing seasonality component that
+<p>The <code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code> class is a complement class for
+<code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code>. It allows constructing seasonality component that
 does not change every step. For example, the time unit is day, but
-client wants to add a monthly seasonality, then <a class="reference internal" href="index.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> is
+client wants to add a monthly seasonality, then <code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code> is
 the correct choice.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">monthly</span> <span class="o">=</span> <span class="n">longSeason</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">stay</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
@@ -331,17 +332,17 @@ monthly periodicy and holiday indicator and many other features.</p>
 <h1>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h1>
 <p>Entailed before, the fitting of the dlm is fulfilled by a modified
 Kalman filter. Once the user finished constructing the model by adding
-different components. the <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> will compute all the necessary
+different components. the <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> will compute all the necessary
 quantities internally for using Kalman filter. So users can simply
-call <a class="reference internal" href="index.html#pydlm.dlm.fitForwardFilter" title="pydlm.dlm.fitForwardFilter"><code class="xref py py-func docutils literal"><span class="pre">dlm.fitForwardFilter()</span></code></a>, <a class="reference internal" href="index.html#pydlm.dlm.fitBackwardSmoother" title="pydlm.dlm.fitBackwardSmoother"><code class="xref py py-func docutils literal"><span class="pre">dlm.fitBackwardSmoother()</span></code></a> or
-even simply <a class="reference internal" href="index.html#pydlm.dlm.fit" title="pydlm.dlm.fit"><code class="xref py py-func docutils literal"><span class="pre">dlm.fit()</span></code></a> to fit both forward filter and backward
+call <code class="xref py py-func docutils literal"><span class="pre">dlm.fitForwardFilter()</span></code>, <code class="xref py py-func docutils literal"><span class="pre">dlm.fitBackwardSmoother()</span></code> or
+even simply <code class="xref py py-func docutils literal"><span class="pre">dlm.fit()</span></code> to fit both forward filter and backward
 smoother:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitBackwardSmoother</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="index.html#pydlm.dlm.fitForwardFilter" title="pydlm.dlm.fitForwardFilter"><code class="xref py py-func docutils literal"><span class="pre">dlm.fitForwardFilter()</span></code></a> is implemented in an online
+<p>The <code class="xref py py-func docutils literal"><span class="pre">dlm.fitForwardFilter()</span></code> is implemented in an online
 manner. It keeps an internal count on the filtered dates and once new
 data comes in, it only filters the new data without touching the
 existing results. In addition, this function also allows a rolling
@@ -360,7 +361,7 @@ data. For example, we might initially believe the time series is
 stable, while that could be a random behavior within a volatile time
 series, and the user learn this from the smoother.</p>
 <p>Once the model fitting is completed, users can fetch the filtered or
-smoothed results from <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>:</p>
+smoothed results from <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
@@ -370,7 +371,7 @@ smoothed results from <a class="reference internal" href="index.html#pydlm.dlm" 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getVar</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> recomputes a wide variety of model quantities that
+<p>The <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> recomputes a wide variety of model quantities that
 can be extracted by the user. For example, user can get the filtered
 states and covariance by typing:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
@@ -381,7 +382,7 @@ states and covariance by typing:</p>
 </pre></div>
 </div>
 <p>This can be specified into individual component. For example, assume the
-model contains a <a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> component with a name of <cite>trend1</cite>, we
+model contains a <code class="xref py py-class docutils literal"><span class="pre">trend</span></code> component with a name of <cite>trend1</cite>, we
 can extract the corresponding latent state only for <cite>trend1</cite> as:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
@@ -400,13 +401,13 @@ can extract the corresponding latent state only for <cite>trend1</cite> as:</p>
 </pre></div>
 </div>
 <p>There are also corresponding methods for smoothed and predicted
-results. For more detail, please refer to the <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> class
+results. For more detail, please refer to the <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> class
 documentation.</p>
 </div>
 <div class="section" id="model-prediction">
 <h1>Model prediction<a class="headerlink" href="#model-prediction" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> provides two predict functions: <a class="reference internal" href="index.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> and
-<a class="reference internal" href="index.html#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a>. The <a class="reference internal" href="index.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> is a one-day ahead
+<p><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> provides two predict functions: <code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code> and
+<code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code>. The <code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code> is a one-day ahead
 prediction function based on a user given date and feature set:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># predict next date after the time series</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">featureDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[</span><span class="mi">2090</span><span class="p">],</span> <span class="s1">&#39;page&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]}</span>
@@ -415,7 +416,7 @@ prediction function based on a user given date and feature set:</p>
 </div>
 <p>The function returns a tuple of predicted mean and predicted variance.
 The <cite>featureDict</cite> argument is a dictionary contains the feature
-information for <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> component. Suppose the model contains
+information for <code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code> component. Suppose the model contains
 a one-dimensional dynamic component named <cite>SP500</cite> and another
 four-dimensional dynamic component <cite>page</cite>, then the featureDict takes the
 following Form:</p>
@@ -433,8 +434,8 @@ the feature value of all the dynamic component:</p>
 <cite>featureDict</cite>. If date is the last day but the featureDict is not
 provided, then an error will be raised.</p>
 <p>If the user is interested beyond one-day ahead prediction, they can
-use <a class="reference internal" href="index.html#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a> for multiple-day ahead prediction,
-after using <a class="reference internal" href="index.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a>:</p>
+use <code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code> for multiple-day ahead prediction,
+after using <code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feature1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[</span><span class="mi">2090</span><span class="p">],</span> <span class="s1">&#39;page&#39;</span><span class="p">:[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">feature2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[</span><span class="mi">2010</span><span class="p">],</span> <span class="s1">&#39;page&#39;</span><span class="p">:[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">41</span><span class="p">]}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">feature3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[</span><span class="mi">1990</span><span class="p">],</span> <span class="s1">&#39;page&#39;</span><span class="p">:[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">42</span><span class="p">]}</span>
@@ -447,7 +448,7 @@ after using <a class="reference internal" href="index.html#pydlm.dlm.predict" ti
 <span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">feature3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="index.html#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a> can only be used after <a class="reference internal" href="index.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a>
+<p><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code> can only be used after <code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code>
 for multiple-day prediction. The <cite>featureDict</cite> can also be ignored if
 the prediction is requested on dates before the last day and the
 features on the predict day can be found from the old data.</p>
@@ -459,12 +460,12 @@ been constructed.</p>
 <div class="section" id="adding-new-data">
 <h2>Adding new data<a class="headerlink" href="#adding-new-data" title="Permalink to this headline">¶</a></h2>
 <p>For adding more data, user can opt to
-<a class="reference internal" href="index.html#pydlm.dlm.append" title="pydlm.dlm.append"><code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code></a>:</p>
+<code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">newData</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newData</span><span class="p">,</span> <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;main&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If the model contains <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> component, the corresponding
+<p>If the model contains <code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code> component, the corresponding
 features need to be updated as well:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">newSP500</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2000</span><span class="p">],</span> <span class="p">[</span><span class="mi">2100</span><span class="p">],</span> <span class="p">[</span><span class="mi">2200</span><span class="p">]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">newSP500</span><span class="p">,</span> <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;SP500&#39;</span><span class="p">)</span>
@@ -479,12 +480,12 @@ data ponts.</p>
 </div>
 <div class="section" id="deleting-existing-data">
 <h2>Deleting existing data<a class="headerlink" href="#deleting-existing-data" title="Permalink to this headline">¶</a></h2>
-<p>To delete any existing data, user can simply use the <a class="reference internal" href="index.html#pydlm.dlm.popout" title="pydlm.dlm.popout"><code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code></a>
-function from <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> on a specific date, for example:</p>
+<p>To delete any existing data, user can simply use the <code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code>
+function from <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> on a specific date, for example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">popout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Different from <a class="reference internal" href="index.html#pydlm.dlm.append" title="pydlm.dlm.append"><code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code></a>, <a class="reference internal" href="index.html#pydlm.dlm.popout" title="pydlm.dlm.popout"><code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code></a> will be executed
+<p>Different from <code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code>, <code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code> will be executed
 automatically for all components, so the user does not need to conduct
 the deletion mannually for each component. After the deletion, the
 forward filter needs to be rerun following the deleted date:</p>
@@ -502,15 +503,15 @@ counts will therefore reduce by 1. By contrast, ignoring will treat
 the specific date as missing data, so the time count will not
 change. This difference is important when preriodicy is
 concerned. Changing of time counts will have high impacts on
-<a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> components.</p>
-<p><a class="reference internal" href="index.html#pydlm.dlm.ignore" title="pydlm.dlm.ignore"><code class="xref py py-func docutils literal"><span class="pre">dlm.ignore()</span></code></a> simply set the data of a specific date to be None:</p>
+<code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code> components.</p>
+<p><code class="xref py py-func docutils literal"><span class="pre">dlm.ignore()</span></code> simply set the data of a specific date to be None:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ignore</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="modify-data">
 <h2>modify data<a class="headerlink" href="#modify-data" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> also provides user the ability to modify the data on a
+<p>The <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> also provides user the ability to modify the data on a
 specific date and a specific component. This function enables possible
 future extension to interactive anomaly detection and data debugging:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">alter</span><span class="p">(</span><span class="n">date</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;main&#39;</span><span class="p">)</span>
@@ -521,7 +522,7 @@ future extension to interactive anomaly detection and data debugging:</p>
 <div class="section" id="model-plotting">
 <h1>Model plotting<a class="headerlink" href="#model-plotting" title="Permalink to this headline">¶</a></h1>
 <p>This package offers rich ploting options for illustrating the
-results. User can simply call <a class="reference internal" href="index.html#pydlm.dlm.plot" title="pydlm.dlm.plot"><code class="xref py py-func docutils literal"><span class="pre">dlm.plot()</span></code></a> to directly plot the
+results. User can simply call <code class="xref py py-func docutils literal"><span class="pre">dlm.plot()</span></code> to directly plot the
 results once the models are fitted:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="go">&gt;&gt;&gt;</span>
@@ -532,8 +533,8 @@ results once the models are fitted:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">the_component_name</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>User can choose which results to plot via <a class="reference internal" href="index.html#pydlm.dlm.turnOn" title="pydlm.dlm.turnOn"><code class="xref py py-func docutils literal"><span class="pre">dlm.turnOn()</span></code></a> and
-<a class="reference internal" href="index.html#pydlm.dlm.turnOff" title="pydlm.dlm.turnOff"><code class="xref py py-func docutils literal"><span class="pre">dlm.turnOff()</span></code></a>:</p>
+<p>User can choose which results to plot via <code class="xref py py-func docutils literal"><span class="pre">dlm.turnOn()</span></code> and
+<code class="xref py py-func docutils literal"><span class="pre">dlm.turnOff()</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOn</span><span class="p">(</span><span class="s1">&#39;filtered plot&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict plot&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;smoothed plot&#39;</span><span class="p">)</span>
@@ -548,7 +549,7 @@ change that:</p>
 </pre></div>
 </div>
 <p>The quantile of the confidence interval can be set via
-<a class="reference internal" href="index.html#pydlm.dlm.setConfidence" title="pydlm.dlm.setConfidence"><code class="xref py py-func docutils literal"><span class="pre">dlm.setConfidence()</span></code></a>:</p>
+<code class="xref py py-func docutils literal"><span class="pre">dlm.setConfidence()</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">setConfidence</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -568,14 +569,14 @@ change the confidence interval plots by:</p>
 <li>smoothed results: &#8216;red&#8217;</li>
 </ul>
 </div></blockquote>
-<p>User can change the color setting via <a class="reference internal" href="index.html#pydlm.dlm.setColor" title="pydlm.dlm.setColor"><code class="xref py py-func docutils literal"><span class="pre">dlm.setColor()</span></code></a>. The color
+<p>User can change the color setting via <code class="xref py py-func docutils literal"><span class="pre">dlm.setColor()</span></code>. The color
 space is the same as the <cite>matplotlib</cite>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s1">&#39;filtered plot&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If user decide to go back to the original setting, they can use
-<a class="reference internal" href="index.html#pydlm.dlm.resetPlotOptions" title="pydlm.dlm.resetPlotOptions"><code class="xref py py-func docutils literal"><span class="pre">dlm.resetPlotOptions()</span></code></a> to reset all the plot option:</p>
+<code class="xref py py-func docutils literal"><span class="pre">dlm.resetPlotOptions()</span></code> to reset all the plot option:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">resetPlotOptions</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -584,15 +585,15 @@ space is the same as the <cite>matplotlib</cite>:</p>
 <h1>Advanced Settings<a class="headerlink" href="#advanced-settings" title="Permalink to this headline">¶</a></h1>
 <p>This part of settings closely relate to the algorithm behavior and
 offers some advanced features, some of which are still under
-development. Currently implemented is the <a class="reference internal" href="index.html#pydlm.dlm.stableMode" title="pydlm.dlm.stableMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code></a>
-function and the <a class="reference internal" href="index.html#pydlm.dlm.evolveMode" title="pydlm.dlm.evolveMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.evolveMode()</span></code></a>. The <a class="reference internal" href="index.html#pydlm.dlm.stableMode" title="pydlm.dlm.stableMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code></a> is
+development. Currently implemented is the <code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code>
+function and the <code class="xref py py-func docutils literal"><span class="pre">dlm.evolveMode()</span></code>. The <code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code> is
 turned on by default, and you can turn it off by:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">stableModel</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This mode helps increasing the numerical stability of the <a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a>
+<p>This mode helps increasing the numerical stability of the <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code>
 when small discounting factor is used. Details about discounting
-factor will be covered in next section. The <a class="reference internal" href="index.html#pydlm.dlm.evolveMode" title="pydlm.dlm.evolveMode"><code class="xref py py-func docutils literal"><span class="pre">dlm.evolveMode()</span></code></a> is
+factor will be covered in next section. The <code class="xref py py-func docutils literal"><span class="pre">dlm.evolveMode()</span></code> is
 used to control how different components evolve over time. See
 Harrison and West (1999, Page 202). They could
 evolve independently, which is equivalent to assume the innovation
