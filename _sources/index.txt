@@ -147,7 +147,8 @@ For online updates::
   ...     myDLM.fitForwardFilter()
   >>> filteredObs = myDLM.getFilteredObs()
 
-
+Documentation
+=============
 .. toctree::
       :maxdepth: 2
 
