@@ -176,21 +176,18 @@ A simple example
 		 
       example
 
--------------------------------------
 Dynamic linear models --- user manual
--------------------------------------
+=====================================
 
 .. include:: pydlm_user_guide.rst
 
 
----------------------
 The discouting factor
----------------------
+=====================
 
 .. include:: discounting.rst
 
----------------
 Class Reference
----------------
+===============
 
 .. include:: class_ref.rst

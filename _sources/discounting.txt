@@ -1,4 +1,3 @@
-.. currentmodule:: pydlm
 
 The discounting factor is a technique introduced in Harrison and
 West (1999) to avoid estimating the two tuning parameters in the usual

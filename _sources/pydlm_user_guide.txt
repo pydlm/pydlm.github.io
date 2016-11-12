@@ -1,4 +1,3 @@
-#.. currentmodule:: pydlm
 
 This package implements the Bayesian dynamic linear model (DLM, Harrison
 and West, 1999) for time series analysis.
