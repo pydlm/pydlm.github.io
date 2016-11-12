@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>dlm &mdash; PyDLM 0.1.1 documentation</title>
+  <title>Class Reference &mdash; PyDLM 0.1.1 documentation</title>
   
 
   
@@ -30,7 +30,8 @@
   
 
   
-    <link rel="top" title="PyDLM 0.1.1 documentation" href="index.html"/> 
+    <link rel="top" title="PyDLM 0.1.1 documentation" href="index.html"/>
+        <link rel="prev" title="The discouting factor" href="discounting.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -79,16 +80,35 @@
           
             
             
-                <!-- Local TOC -->
-                <div class="local-toc"><ul>
-<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">dlm</span></code></a></li>
-<li><a class="reference internal" href="#trend"><code class="docutils literal"><span class="pre">trend</span></code></a></li>
-<li><a class="reference internal" href="#seasonality"><code class="docutils literal"><span class="pre">seasonality</span></code></a></li>
-<li><a class="reference internal" href="#dynamic"><code class="docutils literal"><span class="pre">dynamic</span></code></a></li>
-<li><a class="reference internal" href="#autoreg"><code class="docutils literal"><span class="pre">autoReg</span></code></a></li>
-<li><a class="reference internal" href="#longseason"><code class="docutils literal"><span class="pre">longSeason</span></code></a></li>
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">A simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discounting.html">The discouting factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discounting.html#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Class Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dlm"><code class="docutils literal"><span class="pre">dlm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trend"><code class="docutils literal"><span class="pre">trend</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seasonality"><code class="docutils literal"><span class="pre">seasonality</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic"><code class="docutils literal"><span class="pre">dynamic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autoreg"><code class="docutils literal"><span class="pre">autoReg</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#longseason"><code class="docutils literal"><span class="pre">longSeason</span></code></a></li>
 </ul>
-</div>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discounting.html">The discouting factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discounting.html#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Class Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dlm"><code class="docutils literal"><span class="pre">dlm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trend"><code class="docutils literal"><span class="pre">trend</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seasonality"><code class="docutils literal"><span class="pre">seasonality</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic"><code class="docutils literal"><span class="pre">dynamic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autoreg"><code class="docutils literal"><span class="pre">autoReg</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#longseason"><code class="docutils literal"><span class="pre">longSeason</span></code></a></li>
+</ul>
+</li>
+</ul>
+
             
           
         </div>
@@ -117,7 +137,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li><code class="docutils literal"><span class="pre">dlm</span></code></li>
+    <li>Class Reference</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -131,8 +151,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="dlm">
-<h1><a class="reference internal" href="index.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a><a class="headerlink" href="#dlm" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="class-reference">
+<h1>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dlm">
+<h2><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code><a class="headerlink" href="#dlm" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.dlm">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dlm</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm" title="Permalink to this definition">¶</a></dt>
@@ -169,8 +191,8 @@ The dlm use the &#64;builder to construct the &#64;baseModel based on user suppl
 </dd>
 </dl>
 <dl class="attribute">
-<dt id="pydlm.dlm.data">
-<code class="descname">data</code><a class="headerlink" href="#pydlm.dlm.data" title="Permalink to this definition">¶</a></dt>
+<dt id="dlm.data">
+<code class="descname">data</code><a class="headerlink" href="#dlm.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>a list of doubles of the raw time series data.
 It could be either the python&#8217;s built-in list of
 doubles or numpy 1d array.</p>
@@ -752,7 +774,7 @@ figures</p>
 
 </div>
 <div class="section" id="trend">
-<h1><a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a><a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h1>
+<h2><code class="xref py py-class docutils literal"><span class="pre">trend</span></code><a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.trend">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=1</em>, <em>discount=0.99</em>, <em>name='trend'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
@@ -783,52 +805,52 @@ matrix with 1e7 on the diagonal.</li>
 </pre></div>
 </div>
 <dl class="attribute">
-<dt id="pydlm.trend.d">
-<code class="descname">d</code><a class="headerlink" href="#pydlm.trend.d" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.d">
+<code class="descname">d</code><a class="headerlink" href="#trend.d" title="Permalink to this definition">¶</a></dt>
 <dd><p>the degree of the polynomial trend</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.trend.componentType">
-<code class="descname">componentType</code><a class="headerlink" href="#pydlm.trend.componentType" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.componentType">
+<code class="descname">componentType</code><a class="headerlink" href="#trend.componentType" title="Permalink to this definition">¶</a></dt>
 <dd><p>the type of the component, in this case, &#8216;trend&#8217;</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.trend.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.trend.name" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.name">
+<code class="descname">name</code><a class="headerlink" href="#trend.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>the name of the trend component, to be supplied by user
 used in modeling and result extraction</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.trend.discount">
-<code class="descname">discount</code><a class="headerlink" href="#pydlm.trend.discount" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.discount">
+<code class="descname">discount</code><a class="headerlink" href="#trend.discount" title="Permalink to this definition">¶</a></dt>
 <dd><p>the discount factor for this component. Details please refer
 to the &#64;kalmanFilter</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.trend.evaluation">
-<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.trend.evaluation" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.evaluation">
+<code class="descname">evaluation</code><a class="headerlink" href="#trend.evaluation" title="Permalink to this definition">¶</a></dt>
 <dd><p>the evaluation matrix for this component</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.trend.transition">
-<code class="descname">transition</code><a class="headerlink" href="#pydlm.trend.transition" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.transition">
+<code class="descname">transition</code><a class="headerlink" href="#trend.transition" title="Permalink to this definition">¶</a></dt>
 <dd><p>the transition matrix for this component</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.trend.covPrior">
-<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.trend.covPrior" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.covPrior">
+<code class="descname">covPrior</code><a class="headerlink" href="#trend.covPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>the prior guess of the covariance matrix of the latent states</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.trend.meanPrior">
-<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.trend.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dt id="trend.meanPrior">
+<code class="descname">meanPrior</code><a class="headerlink" href="#trend.meanPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
@@ -873,7 +895,7 @@ a form of</p>
 
 </div>
 <div class="section" id="seasonality">
-<h1><a class="reference internal" href="index.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h1>
+<h2><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code><a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.seasonality">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
@@ -909,52 +931,52 @@ matrix with 1e7 on the diagonal.</li>
 </pre></div>
 </div>
 <dl class="attribute">
-<dt id="pydlm.seasonality.d">
-<code class="descname">d</code><a class="headerlink" href="#pydlm.seasonality.d" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.d">
+<code class="descname">d</code><a class="headerlink" href="#seasonality.d" title="Permalink to this definition">¶</a></dt>
 <dd><p>the period of the seasonality</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.seasonality.componentType">
-<code class="descname">componentType</code><a class="headerlink" href="#pydlm.seasonality.componentType" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.componentType">
+<code class="descname">componentType</code><a class="headerlink" href="#seasonality.componentType" title="Permalink to this definition">¶</a></dt>
 <dd><p>the type of the component, in this case, &#8216;seasonality&#8217;</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.seasonality.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.seasonality.name" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.name">
+<code class="descname">name</code><a class="headerlink" href="#seasonality.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>the name of the seasonality component, to be supplied by user
 used in modeling and result extraction</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.seasonality.discount">
-<code class="descname">discount</code><a class="headerlink" href="#pydlm.seasonality.discount" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.discount">
+<code class="descname">discount</code><a class="headerlink" href="#seasonality.discount" title="Permalink to this definition">¶</a></dt>
 <dd><p>the discount factor for this component. Details please refer
 to the &#64;kalmanFilter</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.seasonality.evaluation">
-<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.seasonality.evaluation" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.evaluation">
+<code class="descname">evaluation</code><a class="headerlink" href="#seasonality.evaluation" title="Permalink to this definition">¶</a></dt>
 <dd><p>the evaluation matrix for this component</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.seasonality.transition">
-<code class="descname">transition</code><a class="headerlink" href="#pydlm.seasonality.transition" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.transition">
+<code class="descname">transition</code><a class="headerlink" href="#seasonality.transition" title="Permalink to this definition">¶</a></dt>
 <dd><p>the transition matrix for this component</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.seasonality.covPrior">
-<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.seasonality.covPrior" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.covPrior">
+<code class="descname">covPrior</code><a class="headerlink" href="#seasonality.covPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>the prior guess of the covariance matrix of the latent states</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.seasonality.meanPrior">
-<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.seasonality.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dt id="seasonality.meanPrior">
+<code class="descname">meanPrior</code><a class="headerlink" href="#seasonality.meanPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
@@ -1008,7 +1030,7 @@ system evolves</p>
 
 </div>
 <div class="section" id="dynamic">
-<h1><a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a><a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h1>
+<h2><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code><a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.dynamic">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dynamic</code><span class="sig-paren">(</span><em>features=None</em>, <em>discount=0.99</em>, <em>name='dynamic'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic" title="Permalink to this definition">¶</a></dt>
@@ -1043,58 +1065,58 @@ matrix with 1e7 on the diagonal.</li>
 </pre></div>
 </div>
 <dl class="attribute">
-<dt id="pydlm.dynamic.d">
-<code class="descname">d</code><a class="headerlink" href="#pydlm.dynamic.d" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.d">
+<code class="descname">d</code><a class="headerlink" href="#dynamic.d" title="Permalink to this definition">¶</a></dt>
 <dd><p>the dimension of the features (number of latent states)</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.n">
-<code class="descname">n</code><a class="headerlink" href="#pydlm.dynamic.n" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.n">
+<code class="descname">n</code><a class="headerlink" href="#dynamic.n" title="Permalink to this definition">¶</a></dt>
 <dd><p>the number of observation</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.componentType">
-<code class="descname">componentType</code><a class="headerlink" href="#pydlm.dynamic.componentType" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.componentType">
+<code class="descname">componentType</code><a class="headerlink" href="#dynamic.componentType" title="Permalink to this definition">¶</a></dt>
 <dd><p>the type of the component, in this case, &#8216;dynamic&#8217;</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.dynamic.name" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.name">
+<code class="descname">name</code><a class="headerlink" href="#dynamic.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>the name of the trend component, to be supplied by user
 used in modeling and result extraction</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.discount">
-<code class="descname">discount</code><a class="headerlink" href="#pydlm.dynamic.discount" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.discount">
+<code class="descname">discount</code><a class="headerlink" href="#dynamic.discount" title="Permalink to this definition">¶</a></dt>
 <dd><p>the discount factor for this component. Details please refer
 to the &#64;kalmanFilter</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.evaluation">
-<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.dynamic.evaluation" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.evaluation">
+<code class="descname">evaluation</code><a class="headerlink" href="#dynamic.evaluation" title="Permalink to this definition">¶</a></dt>
 <dd><p>the evaluation matrix for this component</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.transition">
-<code class="descname">transition</code><a class="headerlink" href="#pydlm.dynamic.transition" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.transition">
+<code class="descname">transition</code><a class="headerlink" href="#dynamic.transition" title="Permalink to this definition">¶</a></dt>
 <dd><p>the transition matrix for this component</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.covPrior">
-<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.dynamic.covPrior" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.covPrior">
+<code class="descname">covPrior</code><a class="headerlink" href="#dynamic.covPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>the prior guess of the covariance matrix of the latent states</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.dynamic.meanPrior">
-<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.dynamic.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dt id="dynamic.meanPrior">
+<code class="descname">meanPrior</code><a class="headerlink" href="#dynamic.meanPrior" title="Permalink to this definition">¶</a></dt>
 <dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
@@ -1173,7 +1195,7 @@ in need of updating the correct evaluation matrix</p>
 
 </div>
 <div class="section" id="autoreg">
-<h1><a class="reference internal" href="index.html#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h1>
+<h2><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.autoReg">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>data=None</em>, <em>degree=2</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>w=10000000.0</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
@@ -1209,14 +1231,14 @@ matrix with 1e7 on the diagonal.</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="pydlm.autoReg.degree">
-<code class="descname">degree</code><a class="headerlink" href="#pydlm.autoReg.degree" title="Permalink to this definition">¶</a></dt>
+<dt id="autoReg.degree">
+<code class="descname">degree</code><a class="headerlink" href="#autoReg.degree" title="Permalink to this definition">¶</a></dt>
 <dd><p>the degree of autoregressive, i.e., how many days to look back</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.autoReg.data">
-<code class="descname">data</code><a class="headerlink" href="#pydlm.autoReg.data" title="Permalink to this definition">¶</a></dt>
+<dt id="autoReg.data">
+<code class="descname">data</code><a class="headerlink" href="#autoReg.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>the time series data used for constructing the autoregressive
 features</p>
 </dd></dl>
@@ -1228,14 +1250,14 @@ features</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.autoReg.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.autoReg.name" title="Permalink to this definition">¶</a></dt>
+<dt id="autoReg.name">
+<code class="descname">name</code><a class="headerlink" href="#autoReg.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>the name of the component</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.autoReg.padding">
-<code class="descname">padding</code><a class="headerlink" href="#pydlm.autoReg.padding" title="Permalink to this definition">¶</a></dt>
+<dt id="autoReg.padding">
+<code class="descname">padding</code><a class="headerlink" href="#autoReg.padding" title="Permalink to this definition">¶</a></dt>
 <dd><p>either 0 or None. The number to be padded for the first degree
 days, as no previous data is observed to form the feature
 matrix</p>
@@ -1325,7 +1347,7 @@ matrix</p>
 
 </div>
 <div class="section" id="longseason">
-<h1><a class="reference internal" href="index.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a><a class="headerlink" href="#longseason" title="Permalink to this headline">¶</a></h1>
+<h2><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code><a class="headerlink" href="#longseason" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.longSeason">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">longSeason</code><span class="sig-paren">(</span><em>data=None</em>, <em>period=4</em>, <em>stay=7</em>, <em>discount=0.99</em>, <em>name='longSeason'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason" title="Permalink to this definition">¶</a></dt>
@@ -1362,15 +1384,15 @@ matrix with 1e7 on the diagonal.</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="pydlm.longSeason.period">
-<code class="descname">period</code><a class="headerlink" href="#pydlm.longSeason.period" title="Permalink to this definition">¶</a></dt>
+<dt id="longSeason.period">
+<code class="descname">period</code><a class="headerlink" href="#longSeason.period" title="Permalink to this definition">¶</a></dt>
 <dd><p>the periodicity, i.e., how many different states it has in
 one period</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.longSeason.stay">
-<code class="descname">stay</code><a class="headerlink" href="#pydlm.longSeason.stay" title="Permalink to this definition">¶</a></dt>
+<dt id="longSeason.stay">
+<code class="descname">stay</code><a class="headerlink" href="#longSeason.stay" title="Permalink to this definition">¶</a></dt>
 <dd><p>the length of a state last.</p>
 </dd></dl>
 
@@ -1381,8 +1403,8 @@ one period</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="pydlm.longSeason.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.longSeason.name" title="Permalink to this definition">¶</a></dt>
+<dt id="longSeason.name">
+<code class="descname">name</code><a class="headerlink" href="#longSeason.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>the name of the component</p>
 </dd></dl>
 
@@ -1458,11 +1480,19 @@ in need of updating the correct evaluation matrix</p>
 </dd></dl>
 
 </div>
+</div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="discounting.html" class="btn btn-neutral" title="The discouting factor" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

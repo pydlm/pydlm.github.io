@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Numerical stability and the renewal strategy &mdash; PyDLM 0.1.1 documentation</title>
+  <title>The discouting factor &mdash; PyDLM 0.1.1 documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="PyDLM 0.1.1 documentation" href="index.html"/> 
+    <link rel="top" title="PyDLM 0.1.1 documentation" href="index.html"/>
+        <link rel="next" title="Class Reference" href="class_ref.html"/>
+        <link rel="prev" title="Dynamic linear models — user manual" href="pydlm_user_guide.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -79,8 +81,17 @@
           
             
             
-                <ul>
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">A simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The discouting factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref.html">Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The discouting factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref.html">Class Reference</a></li>
 </ul>
 
             
@@ -111,7 +122,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Numerical stability and the renewal strategy</li>
+    <li>The discouting factor</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -125,7 +136,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>The discounting factor is a technique introduced in Harrison and
+  <div class="section" id="the-discouting-factor">
+<h1>The discouting factor<a class="headerlink" href="#the-discouting-factor" title="Permalink to this headline">¶</a></h1>
+<p>The discounting factor is a technique introduced in Harrison and
 West (1999) to avoid estimating the two tuning parameters in the usual
 kalman filter. The basic idea is as follows.</p>
 <p>Kalman filter assumes the same innovation for every step,
@@ -165,6 +178,7 @@ can have different discounting factors:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span>
 <span class="go">discount = 0.99)</span>
 </pre></div>
+</div>
 </div>
 <div class="section" id="numerical-stability-and-the-renewal-strategy">
 <h1>Numerical stability and the renewal strategy<a class="headerlink" href="#numerical-stability-and-the-renewal-strategy" title="Permalink to this headline">¶</a></h1>
@@ -219,6 +233,15 @@ suppress the numerical issue.</p>
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="class_ref.html" class="btn btn-neutral float-right" title="Class Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pydlm_user_guide.html" class="btn btn-neutral" title="Dynamic linear models — user manual" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
