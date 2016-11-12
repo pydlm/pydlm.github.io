@@ -85,12 +85,10 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">A simple example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">The discouting factor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="class_ref.html">Class Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">The discouting factor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The discouting factor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-stability-and-the-renewal-strategy">Numerical stability and the renewal strategy</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="class_ref.html">Class Reference</a></li>
 </ul>
 
@@ -179,9 +177,8 @@ can have different discounting factors:</p>
 <span class="go">discount = 0.99)</span>
 </pre></div>
 </div>
-</div>
 <div class="section" id="numerical-stability-and-the-renewal-strategy">
-<h1>Numerical stability and the renewal strategy<a class="headerlink" href="#numerical-stability-and-the-renewal-strategy" title="Permalink to this headline">¶</a></h1>
+<h2>Numerical stability and the renewal strategy<a class="headerlink" href="#numerical-stability-and-the-renewal-strategy" title="Permalink to this headline">¶</a></h2>
 <p>One big caveat for using discounting factor is its numerical
 instability. The original kalman filter already suffers from the
 numerical issue due to the matrix multiplication and
@@ -227,6 +224,7 @@ simple illutration.</p>
 <p>With this <cite>renewal strategy</cite>, the longest length the discounting model
 needs to fit is limited by the twice of the renewal length and thus
 suppress the numerical issue.</p>
+</div>
 </div>
 
 

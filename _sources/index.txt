@@ -155,6 +155,3 @@ For online updates::
       pydlm_user_guide
       discounting
       class_ref
-      pydlm_user_guide.rst
-      discounting.rst
-      class_ref.rst
