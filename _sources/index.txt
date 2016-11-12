@@ -173,7 +173,7 @@ A simple example
 ----------------
 .. toctree::
       :maxdepth: 2
-		 example.rst
+	 example
 
 -------------------------------------
 Dynamic linear models --- user manual

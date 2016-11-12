@@ -125,8 +125,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>#.. currentmodule:: pydlm</p>
-<p>In this section, we give a simple example on linear regression to
+  <p>In this section, we give a simple example on linear regression to
 illustrate how to use the <cite>pydlm</cite> for analyzing data. The data is
 generated via the following process:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -147,15 +146,15 @@ model:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">mydlm</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">[[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In the model, we add two components <code class="xref py py-class docutils literal"><span class="pre">trend</span></code> and
-<code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code>. The trend <cite>a</cite> is one of the systematical components
+<p>In the model, we add two components <a class="reference internal" href="index.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> and
+<a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a>. The trend <cite>a</cite> is one of the systematical components
 that can be used to characterize the intrisic property of a time
 series, and trend is particularly suitable for our case. It has a
 discount factor of 0.98 as we believe the baseline can gradually shift
 overtime and we specify a prior covariance with 10.0 on the
 diagonal. The dynamic component <cite>b</cite> is modeling the regression
 component. We specify its discounting factor to be 1.0 since we
-believe <cite>b</cite> should be a constant. The <code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code> class only accepts 2-d
+believe <cite>b</cite> should be a constant. The <a class="reference internal" href="index.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> class only accepts 2-d
 list for feature arugment (since the control variable could be
 multi-dimensional). Thus, we change <cite>x</cite> to 2d list. In addition, we
 believe these two processes <cite>a</cite> and <cite>b</cite> evolve independently and set
