@@ -173,6 +173,7 @@ A simple example
 ----------------
 .. toctree::
       :maxdepth: 2
+		 
 	 example.rst
 
 -------------------------------------
