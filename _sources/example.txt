@@ -1,4 +1,6 @@
 
+:currentmodel:`pydlm`
+	      
 A simple example
 ================
 

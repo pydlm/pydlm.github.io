@@ -1,3 +1,5 @@
+.. py:currentmodule:: pydlm
+		      
 Dynamic linear models --- user manual
 =====================================
 

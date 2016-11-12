@@ -1,4 +1,5 @@
-
+.. py:currentmodule:: pydlm
+		      
 Installation
 ============
 You can now get the package from `PyPI`::

@@ -1,3 +1,4 @@
+.. module:: pydlm
 
 `PyDLM <https://github.com/wwrechard/PyDLM>`_
 =======================================================
