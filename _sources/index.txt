@@ -151,7 +151,6 @@ For online updates::
 .. toctree::
       :maxdepth: 2
 
-      index
       installation
       example
       pydlm_user_guide
