@@ -258,8 +258,9 @@ reconstruct the model and refit:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filteredObs</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
 <div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>You can now get the package from <cite>PyPI</cite>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install pydlm
 </pre></div>
@@ -279,12 +280,11 @@ $ sudo python setup.py install
 </ul>
 </div>
 <div class="section" id="a-simple-example">
-<h2>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">¶</a></h2>
+<h1>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="example.html">A simple example</a></li>
 </ul>
-</div>
 </div>
 <div class="section" id="dynamic-linear-models-user-manual">
 <h2>Dynamic linear models &#8212; user manual<a class="headerlink" href="#dynamic-linear-models-user-manual" title="Permalink to this headline">¶</a></h2>
@@ -338,8 +338,10 @@ ahead prediction. We will cover this topic later in this section.</p>
 <li>only for Gaussian noise</li>
 </ul>
 </div></blockquote>
+</div>
+</div>
 <div class="section" id="modeling">
-<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h3>
+<h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h1>
 <p>As discussed in the beginning, the modeling process is very simple
 with <code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code>, most modeling functions are integrated in the class
 <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code>. Following is an example for constructing a dlm with
@@ -393,11 +395,9 @@ noise. The default value is 1.0. To change that to 10 you can do:</p>
 ignorable.</p>
 </div>
 <div class="section" id="model-components">
-<h3>Model components<a class="headerlink" href="#model-components" title="Permalink to this headline">¶</a></h3>
+<h1>Model components<a class="headerlink" href="#model-components" title="Permalink to this headline">¶</a></h1>
 <p>There are four model components provided with this
 package: trend, seasonality, dynamic and the auto-regression.</p>
-<div class="section" id="trend">
-<h4>Trend<a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h4>
 <p><code class="xref py py-class docutils literal"><span class="pre">trend</span></code> class is a model component for trending
 behavior. The data might be increasing linearly or quadraticly, which
 can all be captured by <code class="xref py py-class docutils literal"><span class="pre">trend</span></code>. The degree argument specifics
@@ -407,9 +407,6 @@ will be explained later in next section:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="seasonality">
-<h4>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code> class models the periodic behavior of the
 data. Compared to the sine or cosine periodic curves,
 <code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code> in this packages is more flexible, since it can
@@ -421,9 +418,6 @@ turn into any shapes, much broader than the triangular families:</p>
 <cite>form-free</cite> way (Harrison and West, 1999) to avoid the identifiability
 issue. The states of one seasonality component are always summed up to
 zero, so that it will not tangle with the <code class="xref py py-class docutils literal"><span class="pre">trend</span></code> component.</p>
-</div>
-<div class="section" id="dynamic">
-<h4>Dynamic<a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code> class offers the modeling ability to add any additional
 observed time series as a controlled variable to the current one. For
 example, when studying the stock price, the &#8216;SP500&#8217; index could be a
@@ -440,9 +434,6 @@ simple example:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Features</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="auto-regression">
-<h4>Auto-regression<a class="headerlink" href="#auto-regression" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code> class constructs the auto-regressive component on
 the model, i.e., the direct linear or non-linear dependency between
 the current observation and the previous days. User needs to specify
@@ -454,9 +445,6 @@ the number of days of the dependency:</p>
 way of [today - 3, today - 2, today - 1]. So when fetching the
 coefficients from the latent states, this will be the correct order to
 read the coefficients.</p>
-</div>
-<div class="section" id="long-seasonality">
-<h4>Long-seasonality<a class="headerlink" href="#long-seasonality" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code> class is a complement class for
 <code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code>. It allows constructing seasonality component that
 does not change every step. For example, the time unit is day, but
@@ -470,9 +458,8 @@ possiblities of the Bayesian dynamic linear model. Users can construct
 very complicated models using these components, such as hourly, weekly or
 monthly periodicy and holiday indicator and many other features.</p>
 </div>
-</div>
 <div class="section" id="model-fitting">
-<h3>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h3>
+<h1>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h1>
 <p>Entailed before, the fitting of the dlm is fulfilled by a modified
 Kalman filter. Once the user finished constructing the model by adding
 different components. the <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> will compute all the necessary
@@ -548,7 +535,7 @@ results. For more detail, please refer to the <code class="xref py py-class docu
 documentation.</p>
 </div>
 <div class="section" id="model-prediction">
-<h3>Model prediction<a class="headerlink" href="#model-prediction" title="Permalink to this headline">¶</a></h3>
+<h1>Model prediction<a class="headerlink" href="#model-prediction" title="Permalink to this headline">¶</a></h1>
 <p><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> provides two predict functions: <code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code> and
 <code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code>. The <code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code> is a one-day ahead
 prediction function based on a user given date and feature set:</p>
@@ -597,11 +584,9 @@ the prediction is requested on dates before the last day and the
 features on the predict day can be found from the old data.</p>
 </div>
 <div class="section" id="model-amending">
-<h3>Model amending<a class="headerlink" href="#model-amending" title="Permalink to this headline">¶</a></h3>
+<h1>Model amending<a class="headerlink" href="#model-amending" title="Permalink to this headline">¶</a></h1>
 <p>The user can still add, delete, modify data even when the model has
 been constructed.</p>
-<div class="section" id="adding-new-data">
-<h4>Adding new data<a class="headerlink" href="#adding-new-data" title="Permalink to this headline">¶</a></h4>
 <p>For adding more data, user can opt to
 <code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">newData</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
@@ -620,9 +605,6 @@ features need to be updated as well:</p>
 </div>
 <p>The package will continue running the forward filter on the three new
 data ponts.</p>
-</div>
-<div class="section" id="deleting-existing-data">
-<h4>Deleting existing data<a class="headerlink" href="#deleting-existing-data" title="Permalink to this headline">¶</a></h4>
 <p>To delete any existing data, user can simply use the <code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code>
 function from <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> on a specific date, for example:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">popout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -637,9 +619,6 @@ forward filter needs to be rerun following the deleted date:</p>
 </div>
 <p>Again, the package will automatically recognize the date and fit only
 the necessary period of time.</p>
-</div>
-<div class="section" id="ignoring-a-date">
-<h4>Ignoring a date<a class="headerlink" href="#ignoring-a-date" title="Permalink to this headline">¶</a></h4>
 <p>Ignoring is very similar to deleting. The only difference is the time
 counts. Because deleting will delete the data entirely, the time
 counts will therefore reduce by 1. By contrast, ignoring will treat
@@ -651,9 +630,6 @@ concerned. Changing of time counts will have high impacts on
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ignore</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-data">
-<h4>modify data<a class="headerlink" href="#modify-data" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="xref py py-class docutils literal"><span class="pre">dlm</span></code> also provides user the ability to modify the data on a
 specific date and a specific component. This function enables possible
 future extension to interactive anomaly detection and data debugging:</p>
@@ -661,9 +637,8 @@ future extension to interactive anomaly detection and data debugging:</p>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="model-plotting">
-<h3>Model plotting<a class="headerlink" href="#model-plotting" title="Permalink to this headline">¶</a></h3>
+<h1>Model plotting<a class="headerlink" href="#model-plotting" title="Permalink to this headline">¶</a></h1>
 <p>This package offers rich ploting options for illustrating the
 results. User can simply call <code class="xref py py-func docutils literal"><span class="pre">dlm.plot()</span></code> to directly plot the
 results once the models are fitted:</p>
@@ -725,7 +700,7 @@ space is the same as the <cite>matplotlib</cite>:</p>
 </div>
 </div>
 <div class="section" id="advanced-settings">
-<h3>Advanced Settings<a class="headerlink" href="#advanced-settings" title="Permalink to this headline">¶</a></h3>
+<h1>Advanced Settings<a class="headerlink" href="#advanced-settings" title="Permalink to this headline">¶</a></h1>
 <p>This part of settings closely relate to the algorithm behavior and
 offers some advanced features, some of which are still under
 development. Currently implemented is the <code class="xref py py-func docutils literal"><span class="pre">dlm.stableMode()</span></code>
@@ -755,8 +730,6 @@ their own use case.</p>
 <p>In the future, following functionalities are planned to be added:
 feature selection among dynamic components, factor models for high
 dimensional latent states.</p>
-</div>
-</div>
 <div class="section" id="the-discouting-factor">
 <h2>The discouting factor<a class="headerlink" href="#the-discouting-factor" title="Permalink to this headline">¶</a></h2>
 <p>The discounting factor is a technique introduced in Harrison and
@@ -800,8 +773,10 @@ can have different discounting factors:</p>
 <span class="go">discount = 0.99)</span>
 </pre></div>
 </div>
+</div>
+</div>
 <div class="section" id="numerical-stability-and-the-renewal-strategy">
-<h3>Numerical stability and the renewal strategy<a class="headerlink" href="#numerical-stability-and-the-renewal-strategy" title="Permalink to this headline">¶</a></h3>
+<h1>Numerical stability and the renewal strategy<a class="headerlink" href="#numerical-stability-and-the-renewal-strategy" title="Permalink to this headline">¶</a></h1>
 <p>One big caveat for using discounting factor is its numerical
 instability. The original kalman filter already suffers from the
 numerical issue due to the matrix multiplication and
@@ -847,12 +822,12 @@ simple illutration.</p>
 <p>With this <cite>renewal strategy</cite>, the longest length the discounting model
 needs to fit is limited by the twice of the renewal length and thus
 suppress the numerical issue.</p>
-</div>
-</div>
 <div class="section" id="class-reference">
 <h2>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
 <div class="section" id="dlm">
-<h3><a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a><a class="headerlink" href="#dlm" title="Permalink to this headline">¶</a></h3>
+<h1><a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a><a class="headerlink" href="#dlm" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.dlm">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dlm</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm" title="Permalink to this definition">¶</a></dt>
@@ -1471,8 +1446,8 @@ figures</p>
 </dd></dl>
 
 </div>
-<div class="section" id="id3">
-<h3><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="trend">
+<h1><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a><a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.trend">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=1</em>, <em>discount=0.99</em>, <em>name='trend'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
@@ -1592,8 +1567,8 @@ a form of</p>
 </dd></dl>
 
 </div>
-<div class="section" id="id4">
-<h3><a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="seasonality">
+<h1><a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.seasonality">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
@@ -1727,8 +1702,8 @@ system evolves</p>
 </dd></dl>
 
 </div>
-<div class="section" id="id5">
-<h3><a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="dynamic">
+<h1><a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a><a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.dynamic">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dynamic</code><span class="sig-paren">(</span><em>features=None</em>, <em>discount=0.99</em>, <em>name='dynamic'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic" title="Permalink to this definition">¶</a></dt>
@@ -1893,7 +1868,7 @@ in need of updating the correct evaluation matrix</p>
 
 </div>
 <div class="section" id="autoreg">
-<h3><a class="reference internal" href="#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h3>
+<h1><a class="reference internal" href="#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.autoReg">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>data=None</em>, <em>degree=2</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>w=10000000.0</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
@@ -2045,7 +2020,7 @@ matrix</p>
 
 </div>
 <div class="section" id="longseason">
-<h3><a class="reference internal" href="#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a><a class="headerlink" href="#longseason" title="Permalink to this headline">¶</a></h3>
+<h1><a class="reference internal" href="#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a><a class="headerlink" href="#longseason" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydlm.longSeason">
 <em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">longSeason</code><span class="sig-paren">(</span><em>data=None</em>, <em>period=4</em>, <em>stay=7</em>, <em>discount=0.99</em>, <em>name='longSeason'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason" title="Permalink to this definition">¶</a></dt>
@@ -2177,8 +2152,6 @@ in need of updating the correct evaluation matrix</p>
 
 </dd></dl>
 
-</div>
-</div>
 </div>
 
 

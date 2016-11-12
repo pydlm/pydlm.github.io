@@ -1,4 +1,4 @@
-=======================================================
+
 `PyDLM <https://github.com/wwrechard/PyDLM>`_
 =======================================================
 
@@ -146,9 +146,9 @@ For online updates::
   ...     myDLM.fitForwardFilter()
   >>> filteredObs = myDLM.getFilteredObs()
 
-------------
+
 Installation
-------------
+============
 You can now get the package from `PyPI`::
 
   $ pip install pydlm
@@ -168,9 +168,9 @@ You can also get the latest from `github
 * :mod:`unittest`   (for tests)
 
 
-----------------
+
 A simple example
-----------------
+================
 .. toctree::
       :maxdepth: 2
 		 
