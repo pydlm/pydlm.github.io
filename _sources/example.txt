@@ -1,5 +1,4 @@
-
-:currentmodel:`pydlm`
+.. py:currentmodule:: pydlm
 	      
 A simple example
 ================
