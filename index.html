@@ -138,47 +138,42 @@ time series modeling library for python. This package implementes the
 Bayesian dynamic linear model (Harrison and West, 1999) for time
 series data analysis. Modeling and fitting is simple and easy with <a class="reference internal" href="#module-pydlm" title="pydlm"><code class="xref py py-mod docutils literal"><span class="pre">pydlm</span></code></a>.
 Complex models can be constructed via simple operations:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#import dlm and its modeling components</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">autoReg</span><span class="p">,</span> <span class="n">longSeason</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#randomly generate data</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#construct the base</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#adding model components</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># add a second-order trend (linear trending) with prior covariance 1.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;7day&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># add a 7 day seasonality with prior covariance 1.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># add a 3 step auto regression</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#show the added components</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#delete unwanted component</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;7day&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># import dlm and its modeling components</span>
+<span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">autoReg</span><span class="p">,</span> <span class="n">longSeason</span>
+<span class="c1"># randomly generate data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="c1"># construct the base</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># adding model components</span>
+<span class="c1"># add a second-order trend (linear trending) with prior covariance 1.0</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># add a 7 day seasonality with prior covariance 1.0</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;7day&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># add a 3 step auto regression</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># show the added components</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+<span class="c1"># delete unwanted component</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;7day&#39;</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Users can then analyze the data with the constructed model:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#fit forward filter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#fit backward smoother</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fitBackwardSmoother</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># fit forward filter</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+<span class="c1"># fit backward smoother</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">fitBackwardSmoother</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>and plot the results easily:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot the results</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot only the filtered results</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;smoothed plot&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot in one figure</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;multiple plots&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c1"># plot only the filtered results</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;smoothed plot&#39;</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c1"># plot in one figure</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;multiple plots&#39;</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The three images show</p>
@@ -187,15 +182,15 @@ Complex models can be constructed via simple operations:</p>
 <a class="reference internal image-reference" href="_images/intro_plot_in_1.png"><img alt="_images/intro_plot_in_1.png" src="_images/intro_plot_in_1.png" style="width: 33%;" /></a>
 <p>User can also plot the mean of a component (the time series value that
 attributed to this component):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot the component mean of &#39;ar3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOn</span><span class="p">(</span><span class="s1">&#39;smoothed plot&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># plot the component mean of &#39;ar3&#39;</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">turnOn</span><span class="p">(</span><span class="s1">&#39;smoothed plot&#39;</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and also the latent states for a given component:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot the latent states of the &#39;ar3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># plot the latent states of the &#39;ar3&#39;</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ar3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>which result in</p>
@@ -207,59 +202,57 @@ and the states are aligned in the order fo [<cite>today - 3</cite>, <cite>today 
 to the <cite>today - 1</cite> latent state.</p>
 <p>If users are unsatisfied with the model results, they can simply
 reconstruct the model and refit:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><cite>pydlm</cite> supports missing observations:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span> <span class="c1">#fit() will fit both forward filter and backward smoother</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>  <span class="c1"># fit() will fit both forward filter and backward smoother</span>
 </pre></div>
 </div>
 <p>It also includes the discounting factor, which can be used to control how rapidly the model should adapt to the new data:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;trend&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;trend&#39;</span><span class="p">)</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The two different settings give different adaptiveness</p>
 <a class="reference internal image-reference" href="_images/intro_discount_1.png"><img alt="_images/intro_discount_1.png" src="_images/intro_discount_1.png" style="width: 49%;" /></a>
 <a class="reference internal image-reference" href="_images/intro_discount_09.png"><img alt="_images/intro_discount_09.png" src="_images/intro_discount_09.png" style="width: 49%;" /></a>
 <p>The filtered results and latent states can be retrieved easily:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># get the filtered and smoothed results</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">filteredMean</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">smoothedMean</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">filteredVar</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getVar</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">smoothedVar</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getVar</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">filteredCI</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getInterval</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">smoothedCI</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getInterval</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># get the filtered and smoothed mean for a given component</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">filteredTrend</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">smoothedTrend</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># get the latent states</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">allStates</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">trendStates</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># get the filtered and smoothed results</span>
+<span class="n">filteredMean</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
+<span class="n">smoothedMean</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
+<span class="n">filteredVar</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getVar</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
+<span class="n">smoothedVar</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getVar</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
+
+<span class="n">filteredCI</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getInterval</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
+<span class="n">smoothedCI</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getInterval</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
+
+<span class="c1"># get the filtered and smoothed mean for a given component</span>
+<span class="n">filteredTrend</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span>
+<span class="n">smoothedTrend</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span>
+
+<span class="c1"># get the latent states</span>
+<span class="n">allStates</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
+<span class="n">trendStates</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For online updates:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">([])</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
-<span class="gp">... </span>    <span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
-<span class="gp">... </span>    <span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">filteredObs</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">([])</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+<span class="o">...</span>     <span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
+<span class="o">...</span>     <span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
+<span class="n">filteredObs</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getFilteredObs</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
