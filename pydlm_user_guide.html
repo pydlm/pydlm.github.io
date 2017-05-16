@@ -104,6 +104,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#model-plotting">Model plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-tuning-and-evaluation">Model Tuning and evaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-settings">Advanced Settings</a></li>
 </ul>
 </li>
@@ -326,7 +327,7 @@ read the coefficients.</p>
 <p>The <a class="reference internal" href="class_ref.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> class is a complement class for
 <a class="reference internal" href="class_ref.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a>. It allows constructing seasonality component that
 does not change every step. For example, the time unit is day, but
-client wants to add a monthly seasonality, then <a class="reference internal" href="class_ref.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> is
+user wants to add a monthly seasonality, then <a class="reference internal" href="class_ref.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> is
 the correct choice.</p>
 <blockquote>
 <div>monthly = longSeason(period=12, stay=30, data=data, name=&#8217;monthly&#8217;, w=1e7)</div></blockquote>
@@ -588,6 +589,44 @@ space is the same as the <cite>matplotlib</cite>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span><span class="o">.</span><span class="n">resetPlotOptions</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="model-tuning-and-evaluation">
+<h2>Model Tuning and evaluation<a class="headerlink" href="#model-tuning-and-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>The discounting factor of DLM determines how fast the model adapts to
+the new data. It could raise issues for users to decide which rate to
+choose when the users actually want the model itself to figure that
+out. The <a class="reference internal" href="class_ref.html#pydlm.modelTuner" title="pydlm.modelTuner"><code class="xref py py-class docutils literal"><span class="pre">modelTuner</span></code></a> provides the users automatic tool for
+tuning the discounting factors:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">modelTuner</span>
+<span class="n">myTuner</span> <span class="o">=</span> <span class="n">modelTuner</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;gradient_descent&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+<span class="n">tunedDLM</span> <span class="o">=</span> <span class="n">myTuner</span><span class="o">.</span><span class="n">tune</span><span class="p">(</span><span class="n">myDLM</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>myDLM</cite> will remain unchanged and <cite>tunedDLM</cite> will contain the tuned
+discounting factos and will be in uninitialized status. Users need
+to run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">tunedDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>before any other analysis on <cite>tunedDLM</cite>. The <a class="reference internal" href="class_ref.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> also provides
+a simpler way to tune the discounting factor if the user would like
+<cite>myDLM</cite> to be altered directly:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span><span class="o">.</span><span class="n">tune</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The tuner makes use of the MSE (one-day ahead prediction loss) and the
+gradient descent algorithm to tune the discounting factor to achieve
+the minimum loss. The discounting factors are assumed to be different
+across components but the same within a component. For now, only the
+MSE loss and the gradient descent algorithm is supported.</p>
+<p>To ease the evaluation of the performance of the model fitting, the
+model also provides the residual time series and the one-day a head
+prediction error via:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mse</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMSE</span><span class="p">()</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getResidual</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Users can use these values to evaluate and choose the optimal model.</p>
 </div>
 <div class="section" id="advanced-settings">
 <h2>Advanced Settings<a class="headerlink" href="#advanced-settings" title="Permalink to this headline">¶</a></h2>

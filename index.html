@@ -228,6 +228,19 @@ reconstruct the model and refit:</p>
 <p>The two different settings give different adaptiveness</p>
 <a class="reference internal image-reference" href="_images/intro_discount_1.png"><img alt="_images/intro_discount_1.png" src="_images/intro_discount_1.png" style="width: 49%;" /></a>
 <a class="reference internal image-reference" href="_images/intro_discount_09.png"><img alt="_images/intro_discount_09.png" src="_images/intro_discount_09.png" style="width: 49%;" /></a>
+<p>The discounting factor can be auto-tuned by the <a class="reference internal" href="class_ref.html#pydlm.modelTuner" title="pydlm.modelTuner"><code class="xref py py-class docutils literal"><span class="pre">modelTuner</span></code></a>
+provided by the package:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">modelTuner</span>
+<span class="n">myTuner</span> <span class="o">=</span> <span class="n">modelTuner</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;gradient_descent&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+<span class="n">tunedDLM</span> <span class="o">=</span> <span class="n">myTuner</span><span class="o">.</span><span class="n">tune</span><span class="p">(</span><span class="n">myDLM</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and users can get the MSE of each model for performance comparison:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM_mse</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMSE</span><span class="p">()</span>
+<span class="n">tunedDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">tunedDLM_mse</span> <span class="o">=</span> <span class="n">tunedDLM</span><span class="o">.</span><span class="n">getMSE</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>The filtered results and latent states can be retrieved easily:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># get the filtered and smoothed results</span>
 <span class="n">filteredMean</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
@@ -237,6 +250,9 @@ reconstruct the model and refit:</p>
 
 <span class="n">filteredCI</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getInterval</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">)</span>
 <span class="n">smoothedCI</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getInterval</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
+
+<span class="c1"># get the residual time series</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getResidual</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
 
 <span class="c1"># get the filtered and smoothed mean for a given component</span>
 <span class="n">filteredTrend</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;forwardFilter&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">)</span>
@@ -269,6 +285,7 @@ reconstruct the model and refit:</p>
 <li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#model-prediction">Model prediction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#model-amending">Model amending</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#model-plotting">Model plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#model-tuning-and-evaluation">Model Tuning and evaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#advanced-settings">Advanced Settings</a></li>
 </ul>
 </li>
@@ -283,6 +300,7 @@ reconstruct the model and refit:</p>
 <li class="toctree-l2"><a class="reference internal" href="class_ref.html#dynamic"><code class="docutils literal"><span class="pre">dynamic</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="class_ref.html#autoreg"><code class="docutils literal"><span class="pre">autoReg</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="class_ref.html#longseason"><code class="docutils literal"><span class="pre">longSeason</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_ref.html#modeltuner"><code class="docutils literal"><span class="pre">modelTuner</span></code></a></li>
 </ul>
 </li>
 </ul>

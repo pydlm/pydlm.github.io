@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#dynamic"><code class="docutils literal"><span class="pre">dynamic</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autoreg"><code class="docutils literal"><span class="pre">autoReg</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#longseason"><code class="docutils literal"><span class="pre">longSeason</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modeltuner"><code class="docutils literal"><span class="pre">modelTuner</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -508,6 +509,26 @@ mean for that component. Default to &#8216;main&#8217;.</li>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of the time series observations based on the choice</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.getResidual">
+<code class="descname">getResidual</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getResidual" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the residuals for data after filtering or smoothing.</p>
+<p>If the working dates are not (0, self.n - 1),
+then a warning will prompt stating the actual filtered dates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filterType</strong> &#8211; the type of residuals to be returned. Could be
+&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
+Default to &#8216;forwardFilter&#8217;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of residuals based on the choice</td>
 </tr>
 </tbody>
 </table>
@@ -1511,6 +1532,29 @@ change to the next state.</li>
 This function is used when fitting the forward filter and
 backward smoother
 in need of updating the correct evaluation matrix</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="modeltuner">
+<h2><a class="reference internal" href="#pydlm.modelTuner" title="pydlm.modelTuner"><code class="xref py py-class docutils literal"><span class="pre">modelTuner</span></code></a><a class="headerlink" href="#modeltuner" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pydlm.modelTuner">
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">modelTuner</code><span class="sig-paren">(</span><em>method='gradient_descent'</em>, <em>loss='mse'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.modelTuner" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main class for modelTuner</p>
+<dl class="attribute">
+<dt id="pydlm.modelTuner.method">
+<code class="descname">method</code><a class="headerlink" href="#pydlm.modelTuner.method" title="Permalink to this definition">¶</a></dt>
+<dd><p>the optimization method. Currently only &#8216;gradient_descent&#8217;
+is supported.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.modelTuner.loss">
+<code class="descname">loss</code><a class="headerlink" href="#pydlm.modelTuner.loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>the optimization loss function. Currently only &#8216;mse&#8217; (one-day
+ahead prediction) is supported.</p>
 </dd></dl>
 
 </dd></dl>
