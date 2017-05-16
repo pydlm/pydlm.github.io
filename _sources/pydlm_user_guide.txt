@@ -456,9 +456,14 @@ tuning the discounting factors::
   myTuner = modelTuner(method='gradient_descent', loss='mse')
   tunedDLM = myTuner.tune(myDLM, maxit=100)
 
-`myDLM` will remain unchanged and `tunedDLM` will contain the tuned
-discounting factos and will be in uninitialized status. Users need
-to run::
+The tuned discounting factor will be set inside the `tunedDLM`. Users
+can examine the tuned value from `myTuner`::
+
+  tuned_discounts = myTuner.getDiscounts()
+
+After tuning, `myDLM` will remain unchanged and `tunedDLM` will
+contain the tuned discounting factos and will be in uninitialized
+status. Users need to run::
 
   tunedDLM.fit()
 

@@ -602,9 +602,14 @@ tuning the discounting factors:</p>
 <span class="n">tunedDLM</span> <span class="o">=</span> <span class="n">myTuner</span><span class="o">.</span><span class="n">tune</span><span class="p">(</span><span class="n">myDLM</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><cite>myDLM</cite> will remain unchanged and <cite>tunedDLM</cite> will contain the tuned
-discounting factos and will be in uninitialized status. Users need
-to run:</p>
+<p>The tuned discounting factor will be set inside the <cite>tunedDLM</cite>. Users
+can examine the tuned value from <cite>myTuner</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">tuned_discounts</span> <span class="o">=</span> <span class="n">myTuner</span><span class="o">.</span><span class="n">getDiscounts</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After tuning, <cite>myDLM</cite> will remain unchanged and <cite>tunedDLM</cite> will
+contain the tuned discounting factos and will be in uninitialized
+status. Users need to run:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">tunedDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
