@@ -447,10 +447,9 @@ If user decide to go back to the original setting, they can use
 Model Tuning and evaluation
 ---------------------------
 The discounting factor of DLM determines how fast the model adapts to
-the new data. It could raise issues for users to decide which rate to
-choose when the users actually want the model itself to figure that
-out. The :class:`modelTuner` provides the users automatic tool for
-tuning the discounting factors::
+the new data. It could cause troublesome when users actually want the
+model itself to figure that out. The :class:`modelTuner` provides
+users automatic tool for tuning the discounting factors:: 
 
   from pydlm import modelTuner
   myTuner = modelTuner(method='gradient_descent', loss='mse')

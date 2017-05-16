@@ -593,10 +593,9 @@ space is the same as the <cite>matplotlib</cite>:</p>
 <div class="section" id="model-tuning-and-evaluation">
 <h2>Model Tuning and evaluation<a class="headerlink" href="#model-tuning-and-evaluation" title="Permalink to this headline">¶</a></h2>
 <p>The discounting factor of DLM determines how fast the model adapts to
-the new data. It could raise issues for users to decide which rate to
-choose when the users actually want the model itself to figure that
-out. The <a class="reference internal" href="class_ref.html#pydlm.modelTuner" title="pydlm.modelTuner"><code class="xref py py-class docutils literal"><span class="pre">modelTuner</span></code></a> provides the users automatic tool for
-tuning the discounting factors:</p>
+the new data. It could cause troublesome when users actually want the
+model itself to figure that out. The <a class="reference internal" href="class_ref.html#pydlm.modelTuner" title="pydlm.modelTuner"><code class="xref py py-class docutils literal"><span class="pre">modelTuner</span></code></a> provides
+users automatic tool for tuning the discounting factors:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">modelTuner</span>
 <span class="n">myTuner</span> <span class="o">=</span> <span class="n">modelTuner</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;gradient_descent&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">)</span>
 <span class="n">tunedDLM</span> <span class="o">=</span> <span class="n">myTuner</span><span class="o">.</span><span class="n">tune</span><span class="p">(</span><span class="n">myDLM</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
