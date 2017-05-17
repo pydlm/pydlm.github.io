@@ -698,10 +698,10 @@ observation)</p>
 <code class="descname">predictN</code><span class="sig-paren">(</span><em>N=1</em>, <em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predictN" title="Permalink to this definition">¶</a></dt>
 <dd><p>N day ahead prediction based on the current data.</p>
 <p>This function is a convenient wrapper of predict() and
-continuePredict(). If the prediction is onto the future, i.e, &gt; n,
-the featureDict has to contain the feature vectors for multiple days
-for a dynamic component. For example, the dlm has a component named
-&#8216;spy&#8217; which posseses two dimensions,</p>
+continuePredict(). If the prediction is into the future, i.e, &gt; n,
+the featureDict has to contain all feature vectors for multiple days
+for each dynamic component. For example, assume myDLM has a component
+named &#8216;spy&#8217; which posseses two dimensions,</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">featureDict_3day</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;spy&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predictN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_3day</span><span class="p">)</span>
 </pre></div>

@@ -327,7 +327,11 @@ results can be obtained by just called::
 
   features = {'SP500':[[2090], [2010], [1990]], 'page':[[10, 20, 30,
   40], [11, 21, 31, 41], [12, 22, 32, 42]]}
-  (predictMean, predictVar) = myDLM.predictN(N=3, date=myDLM.n-1, featureDict=features)
+  (predictMean, predictVar) = myDLM.predictN(N=3, date=myDLM.n-1,
+  featureDict=features)
+
+The `predictMean` and `predictVar` will be two lists of three elements
+containing the predicted mean and variance.
       
 Model amending
 --------------
