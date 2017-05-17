@@ -267,6 +267,7 @@ featureDict. For example,</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_day3</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>The featureDict acts the same way as in predict().</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -664,6 +665,12 @@ states.</li>
 days.</p>
 <p>The predict result is based on all the data before date and predict the
 observation at date + days.</p>
+<p>The prediction could be on the last day and into the future or in
+the middle of the time series and ignore the rest. For predicting into
+the future, the new features must be supplied to featureDict. For
+prediction in the middle, the user can still supply the features which
+will be used priorily. The old features will be used if featureDict is
+None.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
