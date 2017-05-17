@@ -415,8 +415,11 @@ documentation.</p>
 </div>
 <div class="section" id="model-prediction">
 <h2>Model prediction<a class="headerlink" href="#model-prediction" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="class_ref.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> provides two predict functions: <a class="reference internal" href="class_ref.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> and
-<a class="reference internal" href="class_ref.html#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a>. The <a class="reference internal" href="class_ref.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> is a one-day ahead
+<p><a class="reference internal" href="class_ref.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> provides three predict functions: <a class="reference internal" href="class_ref.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> and
+<a class="reference internal" href="class_ref.html#pydlm.dlm.continuePredict" title="pydlm.dlm.continuePredict"><code class="xref py py-func docutils literal"><span class="pre">dlm.continuePredict()</span></code></a> and <a class="reference internal" href="class_ref.html#pydlm.dlm.predictN" title="pydlm.dlm.predictN"><code class="xref py py-func docutils literal"><span class="pre">dlm.predictN()</span></code></a>. The last one is
+wrapper of the former two and is recommended to use. (The former two
+will be gradually deprecated).</p>
+<p>The <a class="reference internal" href="class_ref.html#pydlm.dlm.predict" title="pydlm.dlm.predict"><code class="xref py py-func docutils literal"><span class="pre">dlm.predict()</span></code></a> is a one-day ahead
 prediction function based on a user given date and feature set:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># predict next date after the time series</span>
 <span class="n">featureDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[</span><span class="mi">2090</span><span class="p">],</span> <span class="s1">&#39;page&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]}</span>
@@ -461,6 +464,14 @@ after using <a class="reference internal" href="class_ref.html#pydlm.dlm.predict
 for multiple-day prediction. The <cite>featureDict</cite> can also be ignored if
 the prediction is requested on dates before the last day and the
 features on the predict day can be found from the old data.</p>
+<p><a class="reference internal" href="class_ref.html#pydlm.dlm.predictN" title="pydlm.dlm.predictN"><code class="xref py py-func docutils literal"><span class="pre">dlm.predictN()</span></code></a> (recommended) predicts over multiple days and is
+a wrapper of the two functions above. Using the same example, the
+results can be obtained by just called:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SP500&#39;</span><span class="p">:[[</span><span class="mi">2090</span><span class="p">],</span> <span class="p">[</span><span class="mi">2010</span><span class="p">],</span> <span class="p">[</span><span class="mi">1990</span><span class="p">]],</span> <span class="s1">&#39;page&#39;</span><span class="p">:[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>
+<span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">41</span><span class="p">],</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">42</span><span class="p">]]}</span>
+<span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">myDLM</span><span class="o">.</span><span class="n">predictN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">myDLM</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="model-amending">
 <h2>Model amending<a class="headerlink" href="#model-amending" title="Permalink to this headline">¶</a></h2>

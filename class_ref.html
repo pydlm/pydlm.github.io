@@ -273,7 +273,7 @@ featureDict. For example,</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>featureDict</strong> &#8211; the feature set for the dynamic components, stored
-in a for of {&#8220;component name&#8221;: feature}. If the set
+in a for of {&#8220;component name&#8221;: vector}. If the set
 was not supplied, then the algo will re-use the old
 feature. For days beyond the data, the featureDict
 for every dynamic component must be provided.</td>
@@ -661,8 +661,7 @@ states.</li>
 <dl class="method">
 <dt id="pydlm.dlm.predict">
 <code class="descname">predict</code><span class="sig-paren">(</span><em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>One day ahead predict based on the current data for a specific future
-days.</p>
+<dd><p>One day ahead predict based on the current data.</p>
 <p>The predict result is based on all the data before date and predict the
 observation at date + days.</p>
 <p>The prediction could be on the last day and into the future or in
@@ -687,6 +686,44 @@ be supplied.</li>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple. (Predicted observation, variance of the predicted
+observation)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydlm.dlm.predictN">
+<code class="descname">predictN</code><span class="sig-paren">(</span><em>N=1</em>, <em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predictN" title="Permalink to this definition">¶</a></dt>
+<dd><p>N day ahead prediction based on the current data.</p>
+<p>This function is a convenient wrapper of predict() and
+continuePredict(). If the prediction is onto the future, i.e, &gt; n,
+the featureDict has to contain the feature vectors for multiple days
+for a dynamic component. For example, the dlm has a component named
+&#8216;spy&#8217; which posseses two dimensions,</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">featureDict_3day</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;spy&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predictN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_3day</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>N</strong> &#8211; The length of days to predict.</li>
+<li><strong>date</strong> &#8211; The index when the prediction based on. Default to the
+last day.</li>
+<li><strong>FeatureDict</strong> &#8211; The feature set for the dynamic Components, in a form
+of {&#8220;component_name&#8221;: feature}, where the feature must have
+N elements of feature vectors. If the featureDict is not
+supplied, then the algo reuse those stored in the dynamic
+components. For dates beyond the last day, featureDict must
+be supplied.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple of two lists. (Predicted observation, variance of the predicted
 observation)</p>
 </td>
 </tr>

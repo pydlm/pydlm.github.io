@@ -237,6 +237,11 @@ can do:</p>
 <span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData3</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>or using the simpler <a class="reference internal" href="class_ref.html#pydlm.dlm.predictN" title="pydlm.dlm.predictN"><code class="xref py py-func docutils literal"><span class="pre">dlm.predictN()</span></code></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">newData</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]]}</span>
+<span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">predictN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">mydlm</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">newData</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 
 
