@@ -265,12 +265,15 @@ ignorable.</p>
 package: trend, seasonality, dynamic and the auto-regression.</p>
 <div class="section" id="trend">
 <h3>Trend<a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> class is a model component for trending
-behavior. The data might be increasing linearly or quadraticly, which
-can all be captured by <a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a>. The degree argument specifics
-the shape of the trend and <cite>w</cite> sets the prior covariance for the trend
-component (same for all the other components). The discounting factor
-will be explained later in next section:</p>
+<p><a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> class is a model component for trend
+behavior. The data might be const or increasing linearly or
+quadraticly, which can all be captured by <a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a>. The degree
+argument specifics the shape of the trend. <cite>degree=1</cite> indicates this
+is a const, <cite>degree=2</cite> indicates a line and <cite>degree=3</cite> stands for a
+quadratic curve and so on so forth. <cite>w</cite> sets the prior
+covariance for the trend component (same for all the other
+components). The discounting factor will be explained later in next
+section:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>

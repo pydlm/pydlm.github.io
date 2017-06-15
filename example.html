@@ -156,8 +156,9 @@ model:</p>
 </div>
 <p>In the model, we add two components <a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> and
 <a class="reference internal" href="class_ref.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a>. The trend <cite>a</cite> is one of the systematical components
-that can be used to characterize the intrisic property of a time
-series, and trend is particularly suitable for our case. It has a
+that used to characterize a time series, and trend is particularly
+suitable for this case. <cite>degree=1</cite> indicates this is a constant and
+<cite>degree=2</cite> indicates a line and so on so forth. It has a
 discount factor of 0.98 as we believe the baseline can gradually shift
 overtime and we specify a prior covariance with 10.0 on the
 diagonal. The dynamic component <cite>b</cite> is modeling the regression
