@@ -857,7 +857,7 @@ figures</p>
 <h2><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a><a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.trend">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=1</em>, <em>discount=0.99</em>, <em>name='trend'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=0</em>, <em>discount=0.99</em>, <em>name='trend'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
 <dd><p>The trend component that features the polynomial trending,
 providing one building block for the dynamic linear model.
 It decribes a latent polynomial trending in the time series data.</p>
@@ -866,7 +866,7 @@ It decribes a latent polynomial trending in the time series data.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>degree</strong> &#8211; the degree of the polynomial</li>
+<li><strong>degree</strong> &#8211; the degree of the polynomial. 0: constant; 1: linear...</li>
 <li><strong>discount</strong> &#8211; the discount factor</li>
 <li><strong>name</strong> &#8211; the name of the trend component</li>
 <li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal

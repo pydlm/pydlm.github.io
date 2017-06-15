@@ -85,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">A simple example</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dynamic linear models &#8212; user manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modeling">Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#model-components">Model components</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#trend">Trend</a></li>
@@ -183,7 +184,7 @@ control variables and auto-regressive, which could appear
 simultaneously in one model. Due to this nice property, users of this
 package can construct models simply by &#8220;adding&#8221; some component into
 the model as:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The modeling process is simple.</p>
@@ -205,6 +206,15 @@ ahead prediction. We will cover this topic later in this section.</p>
 <li>only for Gaussian noise</li>
 </ul>
 </div></blockquote>
+<div class="section" id="miscellaneous">
+<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><cite>PyDLM</cite> index starts at 0 instead of 1, i.e., for any prediction or
+modification that involves <cite>date</cite> argument, it corresponds to the
+actual index in the array. For instance, for a time series with
+length 10, the date of the last day is 9.</li>
+</ul>
+</div>
 <div class="section" id="modeling">
 <h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h2>
 <p>As discussed in the beginning, the modeling process is very simple
@@ -216,14 +226,14 @@ linear trend, 7-day seasonality and control variables:</p>
 <span class="n">SP500Index</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2000</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[[</span><span class="mi">2010</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
 <span class="n">page</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)]</span>
 <span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">)</span>
 <span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;week&#39;</span><span class="p">)</span>
 <span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">SP500Index</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SP500&#39;</span><span class="p">)</span>
 <span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">page</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;page&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>User can also use <a class="reference internal" href="class_ref.html#pydlm.dlm.add" title="pydlm.dlm.add"><code class="xref py py-func docutils literal"><span class="pre">dlm.add()</span></code></a> method to add new component:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend2&#39;</span><span class="p">))</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend2&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The imput <code class="xref py py-attr docutils literal"><span class="pre">data</span></code> must be an 1d array or a list, since the current
@@ -268,13 +278,13 @@ package: trend, seasonality, dynamic and the auto-regression.</p>
 <p><a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> class is a model component for trend
 behavior. The data might be const or increasing linearly or
 quadraticly, which can all be captured by <a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a>. The degree
-argument specifics the shape of the trend. <cite>degree=1</cite> indicates this
-is a const, <cite>degree=2</cite> indicates a line and <cite>degree=3</cite> stands for a
+argument specifics the shape of the trend. <cite>degree=0</cite> indicates this
+is a const, <cite>degree=1</cite> indicates a line and <cite>degree=2</cite> stands for a
 quadratic curve and so on so forth. <cite>w</cite> sets the prior
 covariance for the trend component (same for all the other
 components). The discounting factor will be explained later in next
 section:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">linearTrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trend1&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -331,9 +341,10 @@ read the coefficients.</p>
 <a class="reference internal" href="class_ref.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a>. It allows constructing seasonality component that
 does not change every step. For example, the time unit is day, but
 user wants to add a monthly seasonality, then <a class="reference internal" href="class_ref.html#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a> is
-the correct choice.</p>
-<blockquote>
-<div>monthly = longSeason(period=12, stay=30, data=data, name=&#8217;monthly&#8217;, w=1e7)</div></blockquote>
+the correct choice:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">monthly</span> <span class="o">=</span> <span class="n">longSeason</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">stay</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="n">e7</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>These five classes of model components offer abundant modeling
 possiblities of the Bayesian dynamic linear model. Users can construct
 very complicated models using these components, such as hourly, weekly or
@@ -508,7 +519,7 @@ data ponts.</p>
 <h3>Deleting existing data<a class="headerlink" href="#deleting-existing-data" title="Permalink to this headline">¶</a></h3>
 <p>To delete any existing data, user can simply use the <a class="reference internal" href="class_ref.html#pydlm.dlm.popout" title="pydlm.dlm.popout"><code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code></a>
 function from <a class="reference internal" href="class_ref.html#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a> on a specific date, for example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span><span class="o">.</span><span class="n">popout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span><span class="o">.</span><span class="n">popout</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Different from <a class="reference internal" href="class_ref.html#pydlm.dlm.append" title="pydlm.dlm.append"><code class="xref py py-func docutils literal"><span class="pre">dlm.append()</span></code></a>, <a class="reference internal" href="class_ref.html#pydlm.dlm.popout" title="pydlm.dlm.popout"><code class="xref py py-func docutils literal"><span class="pre">dlm.popout()</span></code></a> will be executed

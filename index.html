@@ -145,8 +145,8 @@ Complex models can be constructed via simple operations:</p>
 <span class="c1"># construct the base</span>
 <span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="c1"># adding model components</span>
-<span class="c1"># add a second-order trend (linear trending) with prior covariance 1.0</span>
-<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># add a first-order trend (linear trending) with prior covariance 1.0</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lineTrend&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="c1"># add a 7 day seasonality with prior covariance 1.0</span>
 <span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;7day&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="c1"># add a 3 step auto regression</span>
@@ -209,18 +209,18 @@ reconstruct the model and refit:</p>
 </div>
 <p><cite>pydlm</cite> supports missing observations:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>  <span class="c1"># fit() will fit both forward filter and backward smoother</span>
 </pre></div>
 </div>
 <p>It also includes the discounting factor, which can be used to control how rapidly the model should adapt to the new data:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 
 <span class="n">myDLM</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;trend&#39;</span><span class="p">)</span>
-<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">myDLM</span> <span class="o">=</span> <span class="n">myDLM</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">myDLM</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">myDLM</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -264,7 +264,7 @@ provided by the package:</p>
 </pre></div>
 </div>
 <p>For online updates:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">([])</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myDLM</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">([])</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">seasonality</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
 <span class="o">...</span>     <span class="n">myDLM</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
 <span class="o">...</span>     <span class="n">myDLM</span><span class="o">.</span><span class="n">fitForwardFilter</span><span class="p">()</span>
@@ -279,6 +279,7 @@ provided by the package:</p>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">A simple example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#miscellaneous">Miscellaneous</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#modeling">Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#model-components">Model components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pydlm_user_guide.html#model-fitting">Model fitting</a></li>
