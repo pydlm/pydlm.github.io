@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>A simple example &mdash; PyDLM 0.1.1 documentation</title>
+  <title>Examples &mdash; PyDLM 0.1.1 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="PyDLM 0.1.1 documentation" href="index.html"/>
-        <link rel="next" title="Dynamic linear models — user manual" href="pydlm_user_guide.html"/>
+        <link rel="next" title="A simple example" href="simple_example.html"/>
         <link rel="prev" title="Installation" href="installation.html"/> 
 
   
@@ -83,7 +83,11 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">A simple example</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simple_example.html">A simple example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example1.html">Google data science post example</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discounting.html">The discouting factor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_ref.html">Class Reference</a></li>
@@ -117,7 +121,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>A simple example</li>
+    <li>Examples</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -131,117 +135,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="a-simple-example">
-<h1>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">¶</a></h1>
-<p>In this section, we give a simple example on linear regression to
-illustrate how to use the <cite>pydlm</cite> for analyzing data. The data is
-generated via the following process:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># the intercept</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># the control variable</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="c1"># the coefficient</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span>
-</pre></div>
-</div>
-<p>In the above code, <cite>a</cite> is the baseline random walk centered around 1.0
-and <cite>b</cite> is the coefficient for a control variable. The goal is to
-decompose <cite>y</cite> and learn the value of <cite>a</cite> and <cite>b</cite>. We first build the
-model:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">dynamic</span>
-<span class="n">mydlm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">mydlm</span> <span class="o">=</span> <span class="n">mydlm</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
-<span class="n">mydlm</span> <span class="o">=</span> <span class="n">mydlm</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">[[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">discount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In the model, we add two components <a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> and
-<a class="reference internal" href="class_ref.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a>. The trend <cite>a</cite> is one of the systematical components
-that used to characterize a time series, and trend is particularly
-suitable for this case. <cite>degree=0</cite> indicates this is a constant and
-<cite>degree=1</cite> indicates a line and so on so forth. It has a
-discount factor of 0.98 as we believe the baseline can gradually shift
-overtime and we specify a prior covariance with 10.0 on the
-diagonal. The dynamic component <cite>b</cite> is modeling the regression
-component. We specify its discounting factor to be 1.0 since we
-believe <cite>b</cite> should be a constant. The <a class="reference internal" href="class_ref.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> class only accepts 2-d
-list for feature arugment (since the control variable could be
-multi-dimensional). Thus, we change <cite>x</cite> to 2d list. In addition, we
-believe these two processes <cite>a</cite> and <cite>b</cite> evolve independently and set
-(This is currently the default assumption, so actually no need to set):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mydlm</span><span class="o">.</span><span class="n">evolveMode</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This can also be set to &#8216;dependent&#8217; if the computation efficiency is a
-concern. The default prior on the covariance of each component is a
-diagonal matrix with 1e7 on the diagonal, we changed this value in
-building the component (more details please refer to the user manual).
-The prior on the observational noise (default to 1.0) can be set by:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mydlm</span><span class="o">.</span><span class="n">noisePrior</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>We then fit the model by typing:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mydlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>After some information printed on the screen, we are done (yah! :p)
-and we can fetch and examine our results. We
-first visualize the fitted results and see how well the model fits the
-data:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mydlm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>The result shows</p>
-<div class="figure">
-<img alt="_images/example_plot_all.png" src="_images/example_plot_all.png" />
-</div>
-<p>It looks pretty nice for the one-day ahead prediction accuracy.
-We can also plot the two coefficients <cite>a</cite> and <cite>b</cite> and see how they
-change when more data is added:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mydlm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
-<span class="n">mydlm</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="n">mydlm</span><span class="o">.</span><span class="n">plotCoef</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>and we have</p>
-<a class="reference internal image-reference" href="_images/example_plot_a.png"><img alt="_images/example_plot_a.png" src="_images/example_plot_a.png" style="width: 49%;" /></a>
-<a class="reference internal image-reference" href="_images/example_plot_b.png"><img alt="_images/example_plot_b.png" src="_images/example_plot_b.png" style="width: 49%;" /></a>
-<p>We see that the latent state of <cite>b</cite> quickly shift from 0 (which is our
-initial guess on the parameter) to around 3.0 and the confidence
-interval explodes and then narrows down as more data is added.</p>
-<p>Once we are happy about the result, we can fetch the results::</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># get the smoothed results</span>
-<span class="n">smoothedResult</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
-<span class="n">smoothedVar</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getVar</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
-<span class="n">smoothedCI</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getInterval</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">)</span>
-
-<span class="c1"># get the coefficients</span>
-<span class="n">coef_a</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="n">coef_a_var</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentCov</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="n">coef_b</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentState</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">coef_b_var</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">getLatentCov</span><span class="p">(</span><span class="n">filterType</span><span class="o">=</span><span class="s1">&#39;backwardSmoother&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>We can then use <cite>coef_a</cite> and <cite>coef_b</cite> for further analysis. If we
-want to predict the future observation based on the current data, we
-can do:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># prepare the new feature</span>
-<span class="n">newData1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">]}</span>
-<span class="c1"># one-day ahead prediction from the last day</span>
-<span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">mydlm</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">newData1</span><span class="p">)</span>
-
-<span class="c1"># continue predicting for next day</span>
-<span class="n">newData2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">]}</span>
-<span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData2</span><span class="p">)</span>
-
-<span class="c1"># continue predicting for the third day</span>
-<span class="n">newData3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]}</span>
-<span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">newData3</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>or using the simpler <a class="reference internal" href="class_ref.html#pydlm.dlm.predictN" title="pydlm.dlm.predictN"><code class="xref py py-func docutils literal"><span class="pre">dlm.predictN()</span></code></a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">newData</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]]}</span>
-<span class="p">(</span><span class="n">predictMean</span><span class="p">,</span> <span class="n">predictVar</span><span class="p">)</span> <span class="o">=</span> <span class="n">mydlm</span><span class="o">.</span><span class="n">predictN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">mydlm</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">newData</span><span class="p">)</span>
-</pre></div>
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="simple_example.html">A simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1.html">Google data science post example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example1.html#a-simple-model">A simple model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example1.html#dynamic-linear-regression">Dynamic linear regression</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -252,7 +156,7 @@ can do:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pydlm_user_guide.html" class="btn btn-neutral float-right" title="Dynamic linear models — user manual" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="simple_example.html" class="btn btn-neutral float-right" title="A simple example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
