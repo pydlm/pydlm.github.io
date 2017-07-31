@@ -645,6 +645,33 @@ states.</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="pydlm.dlm.plotPredictN">
+<code class="descname">plotPredictN</code><span class="sig-paren">(</span><em>N=1</em>, <em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plotPredictN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to plot the N-day prediction results.</p>
+<p>The input is the same as <cite>dlm.predictN</cite>. For details,
+please refer to that function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>N</strong> &#8211; The length of days to predict.</li>
+<li><strong>date</strong> &#8211; The index when the prediction based on. Default to the
+last day.</li>
+<li><strong>FeatureDict</strong> &#8211; The feature set for the dynamic Components, in a form
+of {&#8220;component_name&#8221;: feature}, where the feature must have
+N elements of feature vectors. If the featureDict is not
+supplied, then the algo reuses those stored in the dynamic
+components. For dates beyond the last day, featureDict must
+be supplied.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pydlm.dlm.popout">
 <code class="descname">popout</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.popout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pop out the data for a given date</p>
@@ -978,7 +1005,7 @@ a form of</p>
 <h2><a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pydlm.seasonality">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em>, <em>w=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em>, <em>w=100</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
 <dd><p>The seasonality component that features the periodicity behavior,
 providing one building block for the dynamic linear model.
 It decribes a latent seasonality trending in the time series data. The user
@@ -995,7 +1022,7 @@ or cos relationship between each state. They can be arbitrarily valued.</p>
 <li><strong>discount</strong> &#8211; the discount factor</li>
 <li><strong>name</strong> &#8211; the name of the trend component</li>
 <li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
-matrix with 1e7 on the diagonal.</li>
+matrix with 100 on the diagonal.</li>
 </ul>
 </td>
 </tr>

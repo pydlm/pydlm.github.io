@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Google data science post example &mdash; PyDLM 0.1.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PyDLM 0.1.1 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyDLM
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">A simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discounting.html">The discouting factor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref.html">Class Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">PyDLM</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Google data science post example</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/example1.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="google-data-science-post-example">
+<h1>Google data science post example<a class="headerlink" href="#google-data-science-post-example" title="Permalink to this headline">¶</a></h1>
+<p>We use the example from the <a class="reference external" href="http://www.unofficialgoogledatascience.com/2017/07/fitting-bayesiean-structural-time-series.html">Google data science post</a> to showcase <cite>pydlm</cite>. The code and data is placed under <cite>examples/unemployment_insurance/...</cite>. The data is the weekly counts of initial claims for unemployment during 2004 - 2012 and is available from the R package <cite>bsts</cite> (which is a popular R package for time series modeling). The raw data is shown below (left)</p>
+<a class="reference internal image-reference" href="_images/unemployment_2.png"><img alt="_images/unemployment_2.png" src="_images/unemployment_2.png" style="width: 48%;" /></a>
+<a class="reference internal image-reference" href="_images/unemployment_1.png"><img alt="_images/unemployment_1.png" src="_images/unemployment_1.png" style="width: 48%;" /></a>
+<p>We can see strong annual pattern and some local trend from the data.</p>
+<div class="section" id="a-simple-model">
+<h2>A simple model<a class="headerlink" href="#a-simple-model" title="Permalink to this headline">¶</a></h2>
+<p>Following the post, we first build a simple model with only local
+linear <a class="reference internal" href="class_ref.html#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a> and <a class="reference internal" href="class_ref.html#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a> component:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dlm</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">seasonality</span>
+<span class="c1"># A linear trend</span>
+<span class="n">linear_trend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;linear_trend&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># A seasonality</span>
+<span class="n">seasonal52</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;seasonal52&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># Build a simple dlm</span>
+<span class="n">simple_dlm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span> <span class="o">+</span> <span class="n">linear_trend</span> <span class="o">+</span> <span class="n">seasonal52</span>
+</pre></div>
+</div>
+<p>In the actual code, the time series data is scored in the variable
+<cite>time_series</cite>. <cite>degree=1</cite> indicates the trend is a linear (2 stands
+for quadratic) and <cite>period=52</cite> means the seasonality has a periodicy
+of 52. Since the seasonality is generally more stable, we set its
+discount factor to 0.99. For local linear trend, we use 0.95 to allow
+for some flexibility. <cite>w=10</cite> is the prior guess on the variance of
+each component, the larger number the more uncertain. For actual
+meaning of these parameters, please refer to the <a class="reference external" href="./pydlm_user_manual.rst">user manual</a>. After the model built, we can fit the model and plot the result (shown above, right figure):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Fit the model</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1"># Plot the fitted results</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;data points&#39;</span><span class="p">)</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The blue curve is the forward filtering result, the green curve is the one-day ahead prediction and the red curve is the backward smoothed result. The light-colored ribbon around the curve is the confidence interval (you might need to zoom-in to see it). The one-day ahead prediction shows this simple model captures the time series somewhat good but loses accuracy around the peak crisis at Week 280 (which is between year 2008 - 2009). The one-day-ahead mean squared prediction error is <strong>0.173</strong> which can be obtaied by calling:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">simple_dlm</span><span class="o">.</span><span class="n">getMSE</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can decompose the time series into each of its components:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Plot each component (attribute the time series to each component)</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict plot&#39;</span><span class="p">)</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;filtered plot&#39;</span><span class="p">)</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;linear_trend&#39;</span><span class="p">)</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;seasonal52&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/unemployment_3-1.png"><img alt="_images/unemployment_3-1.png" src="_images/unemployment_3-1.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/unemployment_4-1.png"><img alt="_images/unemployment_4-1.png" src="_images/unemployment_4-1.png" style="width: 49%;" /></a>
+<p>Most of the time series shape is attributed to the local linear trend
+and the strong seasonality pattern is easily seen. To further verify
+the performance, we use this simple model for long-term
+forecasting. In particular, we use the previous <strong>351 week</strong> &#8216;s data to
+forecast the next <strong>200 weeks</strong> and the previous <strong>251 week</strong> &#8216;s data
+to forecast the next <strong>200 weeks</strong>. We lay the predicted results on
+top of the real data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Plot the prediction give the first 351 weeks and forcast the next 200 weeks.</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">plotPredictN</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="c1"># Plot the prediction give the first 251 weeks and forcast the next 200 weeks.</span>
+<span class="n">simple_dlm</span><span class="o">.</span><span class="n">plotPredictN</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/unemployment_5.png"><img alt="_images/unemployment_5.png" src="_images/unemployment_5.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/unemployment_6.png"><img alt="_images/unemployment_6.png" src="_images/unemployment_6.png" style="width: 49%;" /></a>
+<p>From the figure we see that after the crisis peak around 2008 - 2009 (Week 280), the simple model can accurately forecast the next 200 weeks (left figure) given the first 351 weeks. However, the model fails to capture the change near the peak if the forecasting start before Week 280 (right figure).</p>
+</div>
+<div class="section" id="dynamic-linear-regression">
+<h2>Dynamic linear regression<a class="headerlink" href="#dynamic-linear-regression" title="Permalink to this headline">¶</a></h2>
+<p>Now we build a more sophiscated model with extra variables in the data
+file. The extra variables are stored in the variable <cite>features</cite> in the
+actual code. To build the dynamic linear regression model, we simply
+add a new component:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Build a dynamic regression model</span>
+<span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dynamic</span>
+<span class="n">regressor10</span> <span class="o">=</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;regressor10&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">drm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span> <span class="o">+</span> <span class="n">linear_trend</span> <span class="o">+</span> <span class="n">seasonal52</span> <span class="o">+</span> <span class="n">regressor10</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">getMSE</span><span class="p">()</span>
+
+<span class="c1"># Plot the fitted results</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;data points&#39;</span><span class="p">)</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="class_ref.html#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a> is the component for modeling dynamically changing predictors, which accepts <code class="xref py py-attr docutils literal"><span class="pre">features</span></code> as its argument. The above code plots the fitted result (top left).</p>
+<a class="reference internal image-reference" href="_images/unemployment_7.png"><img alt="_images/unemployment_7.png" src="_images/unemployment_7.png" style="width: 48%;" /></a>
+<a class="reference internal image-reference" href="_images/unemployment_8-1.png"><img alt="_images/unemployment_8-1.png" src="_images/unemployment_8-1.png" style="width: 48%;" /></a>
+<a class="reference internal image-reference" href="_images/unemployment_9-1.png"><img alt="_images/unemployment_9-1.png" src="_images/unemployment_9-1.png" style="width: 48%;" /></a>
+<a class="reference internal image-reference" href="_images/unemployment_10-1.png"><img alt="_images/unemployment_10-1.png" src="_images/unemployment_10-1.png" style="width: 48%;" /></a>
+<p>The one-day ahead prediction looks much better than the simple model,
+particularly around the crisis peak. The mean prediction error is
+<strong>0.099</strong> which is a 100% improvement over the simple
+model. Similarly, we also decompose the time series into the three
+components:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">drm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;predict plot&#39;</span><span class="p">)</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">turnOff</span><span class="p">(</span><span class="s1">&#39;filtered plot&#39;</span><span class="p">)</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;linear_trend&#39;</span><span class="p">)</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;seasonal52&#39;</span><span class="p">)</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;regressor10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This time, the shape of the time series is mostly attributed to the
+regressor and the linear trend looks more linear. If we do long-term
+forecasting again, i.e., use the previous <strong>301 week</strong> &#8216;s data to
+forecast the next <strong>150 weeks</strong> and the previous <strong>251 week</strong> &#8216;s data
+to forecast the next <strong>200 weeks</strong>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">drm</span><span class="o">.</span><span class="n">plotPredictN</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">drm</span><span class="o">.</span><span class="n">plotPredictN</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/unemployment_11.png"><img alt="_images/unemployment_11.png" src="_images/unemployment_11.png" style="width: 48%;" /></a>
+<a class="reference internal image-reference" href="_images/unemployment_12.png"><img alt="_images/unemployment_12.png" src="_images/unemployment_12.png" style="width: 48%;" /></a>
+<p>The results look much better compared to the simple model</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Xiangyu Wang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
