@@ -32,7 +32,7 @@ of 52. Since the seasonality is generally more stable, we set its
 discount factor to 0.99. For local linear trend, we use 0.95 to allow
 for some flexibility. `w=10` is the prior guess on the variance of
 each component, the larger number the more uncertain. For actual
-meaning of these parameters, please refer to the `user manual <pydlm_user_manual>`_. After the model built, we can fit the model and plot the result (shown above, right figure)::
+meaning of these parameters, please refer to the `user manual <http://pydlm.github.io/pydlm_user_guide.html>`_. After the model built, we can fit the model and plot the result (shown above, right figure)::
 
   # Fit the model
   simple_dlm.fit()
