@@ -179,10 +179,10 @@ the number of days of the dependency::
 
   AR3 = autoReg(degree=3, discount=0.99, name='ar3', w=1e7)
 
-There is once a `data` argument for constructing autoregression
+There is once a `data` argument needed for constructing autoregression
 features but is now deprecated. :class:`autoReg` can now fetch the
 data directly from the main :class:`dlm` class and no need to provide
-when instantiation.
+during instantiation.
 
 In this example, the latent stats for Auto-regression are aligned in a
 way of [today - 3, today - 2, today - 1]. So when fetching the
