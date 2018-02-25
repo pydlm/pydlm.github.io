@@ -1354,14 +1354,25 @@ correctly align the coefficients.</p>
 <li><strong>name</strong> &#8211; the name of the trend component</li>
 <li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
 matrix with 1e7 on the diagonal.</li>
+<li><strong>padding</strong> &#8211; either 0 or None. The number to be padded for the first degree
+days, as no previous data is observed to form the feature
+matrix</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a auto regression component:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">autoReg8</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;autoreg8&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the autoReg8 to have covariance with diagonals are 2 and state 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">autoReg8</span><span class="o">.</span><span class="n">createCovPrior</span><span class="p">(</span><span class="n">cov</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">autoReg8</span><span class="o">.</span><span class="n">createMeanPrior</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="attribute">
-<dt id="pydlm.autoReg.degree">
-<code class="descname">degree</code><a class="headerlink" href="#pydlm.autoReg.degree" title="Permalink to this definition">¶</a></dt>
+<dt id="pydlm.autoReg.d">
+<code class="descname">d</code><a class="headerlink" href="#pydlm.autoReg.d" title="Permalink to this definition">¶</a></dt>
 <dd><p>the degree of autoregressive, i.e., how many days to look back</p>
 </dd></dl>
 
@@ -1389,6 +1400,30 @@ matrix with 1e7 on the diagonal.</li>
 <dd><p>either 0 or None. The number to be padded for the first degree
 days, as no previous data is observed to form the feature
 matrix</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.autoReg.evaluation">
+<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.autoReg.evaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>the evaluation matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.autoReg.transition">
+<code class="descname">transition</code><a class="headerlink" href="#pydlm.autoReg.transition" title="Permalink to this definition">¶</a></dt>
+<dd><p>the transition matrix for this component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.autoReg.covPrior">
+<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.autoReg.covPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the covariance matrix of the latent states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pydlm.autoReg.meanPrior">
+<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.autoReg.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
 <dl class="method">
@@ -1420,7 +1455,7 @@ be used to check if the dimension matches</p>
 <dt id="pydlm.autoReg.createTransition">
 <code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createTransition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the transition matrix.</p>
-<p>For the dynamic component, the transition matrix is just the identity matrix</p>
+<p>For the auto regressor component, the transition matrix is just the identity matrix</p>
 </dd></dl>
 
 </dd></dl>
