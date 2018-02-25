@@ -1343,18 +1343,12 @@ autoReg is generated from the data, and updated according to the data.</p>
 [today - degree, today - degree + 1, ..., today - 2, today - 1]. Thus,
 when fetching the latents from autoReg component, use this order to
 correctly align the coefficients.</p>
-<dl class="docutils">
-<dt>(TODO: change the implementation of autoReg, so that the component uses</dt>
-<dd>filteredObs as the feature instead of the observed data. To do this, we
-might need pass the dlm as a parameter to autoReg, so that autoReg can
-fetch the filtered observation on the fly)</dd>
-</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> &#8211; the time series data</li>
+<li><strong>data</strong> (<em>deprecated</em>) &#8211; Users get a warning if this argument is used.</li>
 <li><strong>degree</strong> &#8211; the order of the autoregressive component</li>
 <li><strong>discount</strong> &#8211; the discount factor</li>
 <li><strong>name</strong> &#8211; the name of the trend component</li>
@@ -1374,7 +1368,7 @@ matrix with 1e7 on the diagonal.</li>
 <dl class="attribute">
 <dt id="pydlm.autoReg.data">
 <code class="descname">data</code><a class="headerlink" href="#pydlm.autoReg.data" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>deprecatd</em> &#8211; You will get a warning if this argument is used.</p>
+<dd><p><em>deprecatd</em> &#8211; Users get a warning if this argument is used.</p>
 </dd></dl>
 
 <dl class="attribute">
