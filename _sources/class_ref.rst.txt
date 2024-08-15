@@ -8,10 +8,7 @@ Class Reference
 
 .. autoclass:: pydlm.dlm
     :members:
-
-.. autoclass:: pydlm.access.dlmAccessMod
-    :members:
-
+    :inherited-members:
 
 :class:`trend`
 --------------
@@ -30,7 +27,6 @@ Class Reference
 
 .. autoclass:: pydlm.dynamic
     :members:
-
 
 :class:`autoReg`
 ----------------
