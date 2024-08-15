@@ -1,160 +1,230 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Class Reference &mdash; PyDLM 0.1.1 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Reference &mdash; PyDLM 0.1.1.13 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
   
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-
-  
-  
-    
-
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-    <link rel="top" title="PyDLM 0.1.1 documentation" href="index.html"/>
-        <link rel="prev" title="The discouting factor" href="discounting.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+        <script src="_static/documentation_options.js?v=34d32be1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="The discouting factor" href="discounting.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
-
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
+        <div class="wy-side-nav-search" >
 
           
-            <a href="index.html" class="icon icon-home"> PyDLM
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            PyDLM
           </a>
-
-          
-            
-            
               <div class="version">
-                0.1.1
+                0.1.1.13
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-                <ul class="current">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models &#8212; user manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pydlm_user_guide.html">Dynamic linear models — user manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discounting.html">The discouting factor</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Class Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dlm"><code class="docutils literal"><span class="pre">dlm</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#trend"><code class="docutils literal"><span class="pre">trend</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seasonality"><code class="docutils literal"><span class="pre">seasonality</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dynamic"><code class="docutils literal"><span class="pre">dynamic</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#autoreg"><code class="docutils literal"><span class="pre">autoReg</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#longseason"><code class="docutils literal"><span class="pre">longSeason</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#modeltuner"><code class="docutils literal"><span class="pre">modelTuner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dlm"><code class="xref py py-class docutils literal notranslate"><span class="pre">dlm</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydlm.dlm"><code class="docutils literal notranslate"><span class="pre">dlm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.data"><code class="docutils literal notranslate"><span class="pre">dlm.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.add"><code class="docutils literal notranslate"><span class="pre">dlm.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.alter"><code class="docutils literal notranslate"><span class="pre">dlm.alter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.append"><code class="docutils literal notranslate"><span class="pre">dlm.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.buildFromModel"><code class="docutils literal notranslate"><span class="pre">dlm.buildFromModel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.delete"><code class="docutils literal notranslate"><span class="pre">dlm.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.evolveMode"><code class="docutils literal notranslate"><span class="pre">dlm.evolveMode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.exportModel"><code class="docutils literal notranslate"><span class="pre">dlm.exportModel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.fit"><code class="docutils literal notranslate"><span class="pre">dlm.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.fitBackwardSmoother"><code class="docutils literal notranslate"><span class="pre">dlm.fitBackwardSmoother()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.fitForwardFilter"><code class="docutils literal notranslate"><span class="pre">dlm.fitForwardFilter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.ignore"><code class="docutils literal notranslate"><span class="pre">dlm.ignore()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.ls"><code class="docutils literal notranslate"><span class="pre">dlm.ls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.noisePrior"><code class="docutils literal notranslate"><span class="pre">dlm.noisePrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.popout"><code class="docutils literal notranslate"><span class="pre">dlm.popout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.showOptions"><code class="docutils literal notranslate"><span class="pre">dlm.showOptions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dlm.stableMode"><code class="docutils literal notranslate"><span class="pre">dlm.stableMode()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#trend"><code class="xref py py-class docutils literal notranslate"><span class="pre">trend</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydlm.trend"><code class="docutils literal notranslate"><span class="pre">trend</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.d"><code class="docutils literal notranslate"><span class="pre">trend.d</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.componentType"><code class="docutils literal notranslate"><span class="pre">trend.componentType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.name"><code class="docutils literal notranslate"><span class="pre">trend.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.discount"><code class="docutils literal notranslate"><span class="pre">trend.discount</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.evaluation"><code class="docutils literal notranslate"><span class="pre">trend.evaluation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.transition"><code class="docutils literal notranslate"><span class="pre">trend.transition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.covPrior"><code class="docutils literal notranslate"><span class="pre">trend.covPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.meanPrior"><code class="docutils literal notranslate"><span class="pre">trend.meanPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.checkDimensions"><code class="docutils literal notranslate"><span class="pre">trend.checkDimensions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.createCovPrior"><code class="docutils literal notranslate"><span class="pre">trend.createCovPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.createEvaluation"><code class="docutils literal notranslate"><span class="pre">trend.createEvaluation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.createMeanPrior"><code class="docutils literal notranslate"><span class="pre">trend.createMeanPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.trend.createTransition"><code class="docutils literal notranslate"><span class="pre">trend.createTransition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#seasonality"><code class="xref py py-class docutils literal notranslate"><span class="pre">seasonality</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydlm.seasonality"><code class="docutils literal notranslate"><span class="pre">seasonality</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.d"><code class="docutils literal notranslate"><span class="pre">seasonality.d</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.componentType"><code class="docutils literal notranslate"><span class="pre">seasonality.componentType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.name"><code class="docutils literal notranslate"><span class="pre">seasonality.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.discount"><code class="docutils literal notranslate"><span class="pre">seasonality.discount</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.evaluation"><code class="docutils literal notranslate"><span class="pre">seasonality.evaluation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.transition"><code class="docutils literal notranslate"><span class="pre">seasonality.transition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.covPrior"><code class="docutils literal notranslate"><span class="pre">seasonality.covPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.meanPrior"><code class="docutils literal notranslate"><span class="pre">seasonality.meanPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.checkDimensions"><code class="docutils literal notranslate"><span class="pre">seasonality.checkDimensions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.createCovPrior"><code class="docutils literal notranslate"><span class="pre">seasonality.createCovPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.createEvaluation"><code class="docutils literal notranslate"><span class="pre">seasonality.createEvaluation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.createMeanPrior"><code class="docutils literal notranslate"><span class="pre">seasonality.createMeanPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.createTransition"><code class="docutils literal notranslate"><span class="pre">seasonality.createTransition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.seasonality.freeForm"><code class="docutils literal notranslate"><span class="pre">seasonality.freeForm()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic"><code class="xref py py-class docutils literal notranslate"><span class="pre">dynamic</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydlm.dynamic"><code class="docutils literal notranslate"><span class="pre">dynamic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.d"><code class="docutils literal notranslate"><span class="pre">dynamic.d</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.n"><code class="docutils literal notranslate"><span class="pre">dynamic.n</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.componentType"><code class="docutils literal notranslate"><span class="pre">dynamic.componentType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.name"><code class="docutils literal notranslate"><span class="pre">dynamic.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.discount"><code class="docutils literal notranslate"><span class="pre">dynamic.discount</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.evaluation"><code class="docutils literal notranslate"><span class="pre">dynamic.evaluation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.transition"><code class="docutils literal notranslate"><span class="pre">dynamic.transition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.covPrior"><code class="docutils literal notranslate"><span class="pre">dynamic.covPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.meanPrior"><code class="docutils literal notranslate"><span class="pre">dynamic.meanPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.alter"><code class="docutils literal notranslate"><span class="pre">dynamic.alter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.appendNewData"><code class="docutils literal notranslate"><span class="pre">dynamic.appendNewData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.checkDimensions"><code class="docutils literal notranslate"><span class="pre">dynamic.checkDimensions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.createCovPrior"><code class="docutils literal notranslate"><span class="pre">dynamic.createCovPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.createEvaluation"><code class="docutils literal notranslate"><span class="pre">dynamic.createEvaluation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.createMeanPrior"><code class="docutils literal notranslate"><span class="pre">dynamic.createMeanPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.createTransition"><code class="docutils literal notranslate"><span class="pre">dynamic.createTransition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.hasMissingData"><code class="docutils literal notranslate"><span class="pre">dynamic.hasMissingData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.popout"><code class="docutils literal notranslate"><span class="pre">dynamic.popout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.dynamic.updateEvaluation"><code class="docutils literal notranslate"><span class="pre">dynamic.updateEvaluation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#autoreg"><code class="xref py py-class docutils literal notranslate"><span class="pre">autoReg</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydlm.autoReg"><code class="docutils literal notranslate"><span class="pre">autoReg</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.d"><code class="docutils literal notranslate"><span class="pre">autoReg.d</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.data"><code class="docutils literal notranslate"><span class="pre">autoReg.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.name"><code class="docutils literal notranslate"><span class="pre">autoReg.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.padding"><code class="docutils literal notranslate"><span class="pre">autoReg.padding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.evaluation"><code class="docutils literal notranslate"><span class="pre">autoReg.evaluation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.transition"><code class="docutils literal notranslate"><span class="pre">autoReg.transition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.covPrior"><code class="docutils literal notranslate"><span class="pre">autoReg.covPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.meanPrior"><code class="docutils literal notranslate"><span class="pre">autoReg.meanPrior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.appendNewData"><code class="docutils literal notranslate"><span class="pre">autoReg.appendNewData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.checkDimensions"><code class="docutils literal notranslate"><span class="pre">autoReg.checkDimensions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.createCovPrior"><code class="docutils literal notranslate"><span class="pre">autoReg.createCovPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.createEvaluation"><code class="docutils literal notranslate"><span class="pre">autoReg.createEvaluation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.createMeanPrior"><code class="docutils literal notranslate"><span class="pre">autoReg.createMeanPrior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.autoReg.createTransition"><code class="docutils literal notranslate"><span class="pre">autoReg.createTransition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#longseason"><code class="xref py py-class docutils literal notranslate"><span class="pre">longSeason</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydlm.longSeason"><code class="docutils literal notranslate"><span class="pre">longSeason</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.period"><code class="docutils literal notranslate"><span class="pre">longSeason.period</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.stay"><code class="docutils literal notranslate"><span class="pre">longSeason.stay</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.name"><code class="docutils literal notranslate"><span class="pre">longSeason.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.alter"><code class="docutils literal notranslate"><span class="pre">longSeason.alter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.appendNewData"><code class="docutils literal notranslate"><span class="pre">longSeason.appendNewData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.checkDataLength"><code class="docutils literal notranslate"><span class="pre">longSeason.checkDataLength()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.createFeatureMatrix"><code class="docutils literal notranslate"><span class="pre">longSeason.createFeatureMatrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.popout"><code class="docutils literal notranslate"><span class="pre">longSeason.popout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.longSeason.updateEvaluation"><code class="docutils literal notranslate"><span class="pre">longSeason.updateEvaluation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modeltuner"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelTuner</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydlm.modelTuner"><code class="docutils literal notranslate"><span class="pre">modelTuner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.modelTuner.method"><code class="docutils literal notranslate"><span class="pre">modelTuner.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.modelTuner.loss"><code class="docutils literal notranslate"><span class="pre">modelTuner.loss</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.modelTuner.getDiscounts"><code class="docutils literal notranslate"><span class="pre">modelTuner.getDiscounts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydlm.modelTuner.tune"><code class="docutils literal notranslate"><span class="pre">modelTuner.tune()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">PyDLM</a>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyDLM</a>
       </nav>
 
-
-      
       <div class="wy-nav-content">
         <div class="rst-content">
-          
-
- 
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Class Reference</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Class Reference</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="_sources/class_ref.txt" rel="nofollow"> View page source</a>
-          
-        
+            <a href="_sources/class_ref.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="class-reference">
-<h1>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="dlm">
-<h2><a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal"><span class="pre">dlm</span></code></a><a class="headerlink" href="#dlm" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pydlm.dlm">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dlm</code><span class="sig-paren">(</span><em>data</em>, <em>**options</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm" title="Permalink to this definition">¶</a></dt>
+             
+  <section id="class-reference">
+<h1>Class Reference<a class="headerlink" href="#class-reference" title="Link to this heading">¶</a></h1>
+<section id="dlm">
+<h2><a class="reference internal" href="#pydlm.dlm" title="pydlm.dlm"><code class="xref py py-class docutils literal notranslate"><span class="pre">dlm</span></code></a><a class="headerlink" href="#dlm" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydlm.dlm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydlm.</span></span><span class="sig-name descname"><span class="pre">dlm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm" title="Link to this definition">¶</a></dt>
 <dd><p>The main class of the dynamic linear model.</p>
 <p>This is the main class of the Bayeisan dynamic linear model.
 It provides the modeling, filtering, forecasting and smoothing
 function of a dlm.
 The dlm use the &#64;builder to construct the &#64;baseModel based on user supplied
 &#64;components and then run &#64;kalmanFilter to filter the result.</p>
-<dl class="docutils">
-<dt>Example 1:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># randomly generate fake data on 1000 days</span>
+<dl>
+<dt>Example 1:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># randomly generate fake data on 1000 days</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># construct the dlm of a linear trend and a 7-day seasonality</span>
@@ -166,8 +236,7 @@ The dlm use the &#64;builder to construct the &#64;baseModel based on user suppl
 </pre></div>
 </div>
 </dd>
-<dt>Example 2 (fit a linear regression):</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="k">import</span> <span class="n">dynamic</span>
+<dt>Example 2 (fit a linear regression):</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pydlm</span> <span class="kn">import</span> <span class="n">dynamic</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mydlm</span> <span class="o">=</span> <span class="n">dlm</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">+</span>
 <span class="go">                dynamic(features=[[i] for i in range(100)], 1, name=&#39;b&#39;)</span>
@@ -178,175 +247,146 @@ The dlm use the &#64;builder to construct the &#64;baseModel based on user suppl
 </div>
 </dd>
 </dl>
-<dl class="attribute">
-<dt id="pydlm.dlm.data">
-<code class="descname">data</code><a class="headerlink" href="#pydlm.dlm.data" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dlm.data">
+<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pydlm.dlm.data" title="Link to this definition">¶</a></dt>
 <dd><p>a list of doubles of the raw time series data.
-It could be either the python&#8217;s built-in list of
+It could be either the python’s built-in list of
 doubles or numpy 1d array.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.add">
-<code class="descname">add</code><span class="sig-paren">(</span><em>component</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.add" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.add" title="Link to this definition">¶</a></dt>
 <dd><p>Add new modeling component to the dlm.</p>
 <p>Currently support: trend, seasonality, autoregression
 and dynamic component.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>component</strong> &#8211; <p>the modeling component, could be either one
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – <p>the modeling component, could be either one
 of the following:</p>
 <p>trend, seasonality, dynamic, autoReg.</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dlm object with added component.</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dlm object with added component.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.alter">
-<code class="descname">alter</code><span class="sig-paren">(</span><em>date</em>, <em>data</em>, <em>component='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.alter" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.alter">
+<span class="sig-name descname"><span class="pre">alter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.alter" title="Link to this definition">¶</a></dt>
 <dd><p>To alter the data for a specific date and a specific component.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>date</strong> &#8211; the date of the altering data</li>
-<li><strong>data</strong> &#8211; the new data. data must be a numeric value for main time
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date</strong> – the date of the altering data</p></li>
+<li><p><strong>data</strong> – the new data. data must be a numeric value for main time
 series and must be a list of numerical values for dynamic
-components.</li>
-<li><strong>component</strong> &#8211; <p>the component for which the new data need to be
+components.</p></li>
+<li><p><strong>component</strong> – <p>the component for which the new data need to be
 supplied to.</p>
-<p>&#8216;main&#8217;: the main time series data</p>
+<p>’main’: the main time series data</p>
 <p>other component name: other component feature data</p>
-</li>
+</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.append">
-<code class="descname">append</code><span class="sig-paren">(</span><em>data</em>, <em>component='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.append" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.append" title="Link to this definition">¶</a></dt>
 <dd><p>Append the new data to the main data or the components (new feature data)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> &#8211; the new data</li>
-<li><strong>component</strong> &#8211; <p>the name of which the new data to be added to.</p>
-<p>&#8216;main&#8217;: the main time series data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – the new data</p></li>
+<li><p><strong>component</strong> – <p>the name of which the new data to be added to.</p>
+<p>’main’: the main time series data</p>
 <p>other omponent name: add new feature data to other
 component.</p>
-</li>
+</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.continuePredict">
-<code class="descname">continuePredict</code><span class="sig-paren">(</span><em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.continuePredict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Continue prediction after the one-day ahead predict.</p>
-<p>If users want to have a multiple day prediction, they can opt to use
-continuePredict after predict with new features contained in
-featureDict. For example,</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># predict 3 days after the last day</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_day1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_day2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">continuePredict</span><span class="p">(</span><span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_day3</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The featureDict acts the same way as in predict().</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>featureDict</strong> &#8211; the feature set for the dynamic components, stored
-in a for of {&#8220;component name&#8221;: vector}. If the set
-was not supplied, then the algo will re-use the old
-feature. For days beyond the data, the featureDict
-for every dynamic component must be provided.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tupe. (predicted observation, variance)</td>
-</tr>
-</tbody>
-</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.buildFromModel">
+<span class="sig-name descname"><span class="pre">buildFromModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.buildFromModel" title="Link to this definition">¶</a></dt>
+<dd><p>Construct the dlm with exported model from other DLM with status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> – The exported model from other dlm. Must be the return from
+dlm.exportModel()</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.delete">
-<code class="descname">delete</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.delete" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.delete" title="Link to this definition">¶</a></dt>
 <dd><p>Delete model component by its name</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the name of the component.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – the name of the component.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.evolveMode">
-<code class="descname">evolveMode</code><span class="sig-paren">(</span><em>evoType='dependent'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.evolveMode" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.evolveMode">
+<span class="sig-name descname"><span class="pre">evolveMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evoType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dependent'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.evolveMode" title="Link to this definition">¶</a></dt>
 <dd><p>Control whether different component evolve indpendently. If true,
 then the innovation will only be added on each component but not the
 correlation between the components, so that for component with discount
 equals to 1, the smoothed results will always be constant.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>evoType</strong> &#8211; If set to &#8216;independent&#8217;, then each component will evolve
-independently. If set to &#8216;dependent&#8217;, then the components
-will proceed jointly. Default to &#8216;independent&#8217;. Switch to
-&#8216;dependent&#8217; if efficiency is a concern.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a dlm object (for chaining purpose)</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>evoType</strong> – If set to ‘independent’, then each component will evolve
+independently. If set to ‘dependent’, then the components
+will proceed jointly. Default to ‘independent’. Switch to
+‘dependent’ if efficiency is a concern.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dlm object (for chaining purpose)</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fit" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.exportModel">
+<span class="sig-name descname"><span class="pre">exportModel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.exportModel" title="Link to this definition">¶</a></dt>
+<dd><p>Export the dlm builder. Currently the method only support dlm without
+dynamic components.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fit" title="Link to this definition">¶</a></dt>
 <dd><p>An easy caller for fitting both the forward filter and backward smoother.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.fitBackwardSmoother">
-<code class="descname">fitBackwardSmoother</code><span class="sig-paren">(</span><em>backLength=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fitBackwardSmoother" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.fitBackwardSmoother">
+<span class="sig-name descname"><span class="pre">fitBackwardSmoother</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backLength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fitBackwardSmoother" title="Link to this definition">¶</a></dt>
 <dd><p>Fit backward smoothing on the data. Starting from the last observed date.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>backLength</strong> &#8211; integer, indicating how many days the backward smoother</li>
-<li><strong>go, starting from the last date.</strong> (<em>should</em>) &#8211; </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>backLength</strong> – integer, indicating how many days the backward smoother</p></li>
+<li><p><strong>go</strong> (<em>should</em>)</p></li>
+<li><p><strong>date.</strong> (<em>starting from the last</em>)</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.fitForwardFilter">
-<code class="descname">fitForwardFilter</code><span class="sig-paren">(</span><em>useRollingWindow=False</em>, <em>windowLength=3</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fitForwardFilter" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.fitForwardFilter">
+<span class="sig-name descname"><span class="pre">fitForwardFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">useRollingWindow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windowLength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.fitForwardFilter" title="Link to this definition">¶</a></dt>
 <dd><p>Fit forward filter on the available data.</p>
 <p>User can choose use rolling windowFront
 or not. If user choose not to use the rolling window,
@@ -354,458 +394,69 @@ then the filtering will be based on all the previous data.
 If rolling window is used, then the filtering for a particular
 date will only consider previous dates that are
 within the rolling window length.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>useRollingWindow</strong> &#8211; indicate whether rolling window should be used.</li>
-<li><strong>windowLength</strong> &#8211; the length of the rolling window if used.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>useRollingWindow</strong> – indicate whether rolling window should be used.</p></li>
+<li><p><strong>windowLength</strong> – the length of the rolling window if used.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.getAll">
-<code class="descname">getAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>get all the _result class which contains all results</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The &#64;result object containing all computed results.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getInterval">
-<code class="descname">getInterval</code><span class="sig-paren">(</span><em>p=0.95</em>, <em>filterType='forwardFilter'</em>, <em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the confidence interval for data or component.</p>
-<p>If the filtered dates are not
-(0, self.n - 1), then a warning will prompt stating the actual
-filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>p</strong> &#8211; The confidence level.</li>
-<li><strong>filterType</strong> &#8211; the type of CI to be returned. Could be
-&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
-Default to &#8216;forwardFilter&#8217;.</li>
-<li><strong>name</strong> &#8211; the component to get CI. When name = &#8216;main&#8217;, then it
-returns the confidence interval for the time series. When
-name = some component&#8217;s name, then it returns the confidence
-interval for that component. Default to &#8216;main&#8217;.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple with the first element being a list of upper bounds
-and the second being a list of the lower bounds.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getLatentCov">
-<code class="descname">getLatentCov</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getLatentCov" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the error covariance for different components and
-filters.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filterType</strong> &#8211; the type of latent covariance to be returned. Could be
-&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
-Default to &#8216;forwardFilter&#8217;.</li>
-<li><strong>name</strong> &#8211; the component to get latent cov. When name = &#8216;all&#8217;, then it
-returns the latent covariance for the time series. When
-name = some component&#8217;s name, then it returns the latent
-covariance for that component. Default to &#8216;all&#8217;.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of numpy matrices, standing for the filtered latent
-covariance.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getLatentState">
-<code class="descname">getLatentState</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getLatentState" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the latent states for different components and filters.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filterType</strong> &#8211; the type of latent states to be returned. Could be
-&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
-Default to &#8216;forwardFilter&#8217;.</li>
-<li><strong>name</strong> &#8211; the component to get latent state. When name = &#8216;all&#8217;, then it
-returns the latent states for the time series. When
-name = some component&#8217;s name, then it returns the latent
-states for that component. Default to &#8216;all&#8217;.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of lists, standing for the latent states given
-the different choices.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getMSE">
-<code class="descname">getMSE</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getMSE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the one-day ahead prediction mean square error. The mse is
-estimated only for days that has been predicted.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An numerical value</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getMean">
-<code class="descname">getMean</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getMean" title="Permalink to this definition">¶</a></dt>
-<dd><p>get mean for data or component.</p>
-<p>If the working dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filterType</strong> &#8211; the type of mean to be returned. Could be
-&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
-Default to &#8216;forwardFilter&#8217;.</li>
-<li><strong>name</strong> &#8211; the component to get mean. When name = &#8216;main&#8217;, then it
-returns the filtered mean for the time series. When
-name = some component&#8217;s name, then it returns the filtered
-mean for that component. Default to &#8216;main&#8217;.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of the time series observations based on the choice</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getResidual">
-<code class="descname">getResidual</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getResidual" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the residuals for data after filtering or smoothing.</p>
-<p>If the working dates are not (0, self.n - 1),
-then a warning will prompt stating the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filterType</strong> &#8211; the type of residuals to be returned. Could be
-&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
-Default to &#8216;forwardFilter&#8217;.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of residuals based on the choice</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.getVar">
-<code class="descname">getVar</code><span class="sig-paren">(</span><em>filterType='forwardFilter'</em>, <em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.getVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the variance for data or component.</p>
-<p>If the filtered dates are not (0, self.n - 1),
-then a warning will prompt stating
-the actual filtered dates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filterType</strong> &#8211; the type of variance to be returned. Could be
-&#8216;forwardFilter&#8217;, &#8216;backwardSmoother&#8217;, and &#8216;predict&#8217;.
-Default to &#8216;forwardFilter&#8217;.</li>
-<li><strong>name</strong> &#8211; the component to get variance. When name = &#8216;main&#8217;, then it
-returns the filtered variance for the time series. When
-name = some component&#8217;s name, then it returns the filtered
-variance for that component. Default to &#8216;main&#8217;.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of the filtered variances based on the choice.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.ignore">
-<code class="descname">ignore</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.ignore" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.ignore">
+<span class="sig-name descname"><span class="pre">ignore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.ignore" title="Link to this definition">¶</a></dt>
 <dd><p>Ignore the data for a specific day. treat it as missing data</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the date to ignore.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date</strong> – the date to ignore.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.ls">
-<code class="descname">ls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.ls" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.ls">
+<span class="sig-name descname"><span class="pre">ls</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.ls" title="Link to this definition">¶</a></dt>
 <dd><p>List out all existing components</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.noisePrior">
-<code class="descname">noisePrior</code><span class="sig-paren">(</span><em>prior=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.noisePrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.noisePrior">
+<span class="sig-name descname"><span class="pre">noisePrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.noisePrior" title="Link to this definition">¶</a></dt>
 <dd><p>To set the prior for the observational noise. Calling with empty
 argument will enable the auto noise intializer (currently, the min of 1
 and the variance of time series).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prior</strong> &#8211; the prior of the observational noise.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dlm object (for chaining purpose)</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prior</strong> – the prior of the observational noise.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dlm object (for chaining purpose)</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><em>name='main'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>The main plot function. The dlmPlot and the matplotlib will only be loaded
-when necessary.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; component to plot. Default to &#8216;main&#8217;, in which we plot the
-filtered time series. If a component name is given
-It plots the mean of the component, i.e., the observed value
-that attributes to that particular component, which equals to
-evaluation * latent states for that particular component.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.plotCoef">
-<code class="descname">plotCoef</code><span class="sig-paren">(</span><em>name</em>, <em>dimensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plotCoef" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot function for the latent states (coefficents of dynamic
-component).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> &#8211; the name of the component to plot.
-It plots the latent states for the component. If dimension of
-the given component is too high, we truncate
-to the first five. Or the user can supply the ideal
-dimensions for plot in the dimensions parameter.</li>
-<li><strong>dimensions</strong> &#8211; dimensions will be used
-as the indexes to plot within that component latent
-states.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.plotPredictN">
-<code class="descname">plotPredictN</code><span class="sig-paren">(</span><em>N=1</em>, <em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.plotPredictN" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to plot the N-day prediction results.</p>
-<p>The input is the same as <cite>dlm.predictN</cite>. For details,
-please refer to that function.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>N</strong> &#8211; The length of days to predict.</li>
-<li><strong>date</strong> &#8211; The index when the prediction based on. Default to the
-last day.</li>
-<li><strong>FeatureDict</strong> &#8211; The feature set for the dynamic Components, in a form
-of {&#8220;component_name&#8221;: feature}, where the feature must have
-N elements of feature vectors. If the featureDict is not
-supplied, then the algo reuses those stored in the dynamic
-components. For dates beyond the last day, featureDict must
-be supplied.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.popout">
-<code class="descname">popout</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.popout" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.popout">
+<span class="sig-name descname"><span class="pre">popout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.popout" title="Link to this definition">¶</a></dt>
 <dd><p>Pop out the data for a given date</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the index indicates which date to be popped out.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date</strong> – the index indicates which date to be popped out.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>One day ahead predict based on the current data.</p>
-<p>The predict result is based on all the data before date and predict the
-observation at date + days.</p>
-<p>The prediction could be on the last day and into the future or in
-the middle of the time series and ignore the rest. For predicting into
-the future, the new features must be supplied to featureDict. For
-prediction in the middle, the user can still supply the features which
-will be used priorily. The old features will be used if featureDict is
-None.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>date</strong> &#8211; the index when the prediction based on. Default to the
-last day.</li>
-<li><strong>featureDict</strong> &#8211; the feature set for the dynamic Components, in a form
-of {&#8220;component_name&#8221;: feature}. If the featureDict is not
-supplied, then the algo reuse those stored in the dynamic
-components. For dates beyond the last day, featureDict must
-be supplied.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple. (Predicted observation, variance of the predicted
-observation)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.predictN">
-<code class="descname">predictN</code><span class="sig-paren">(</span><em>N=1</em>, <em>date=None</em>, <em>featureDict=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.predictN" title="Permalink to this definition">¶</a></dt>
-<dd><p>N day ahead prediction based on the current data.</p>
-<p>This function is a convenient wrapper of predict() and
-continuePredict(). If the prediction is into the future, i.e, &gt; n,
-the featureDict has to contain all feature vectors for multiple days
-for each dynamic component. For example, assume myDLM has a component
-named &#8216;spy&#8217; which posseses two dimensions,</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">featureDict_3day</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;spy&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">myDLM</span><span class="o">.</span><span class="n">predictN</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">featureDict</span><span class="o">=</span><span class="n">featureDict_3day</span><span class="p">)</span>
-</pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>N</strong> &#8211; The length of days to predict.</li>
-<li><strong>date</strong> &#8211; The index when the prediction based on. Default to the
-last day.</li>
-<li><strong>FeatureDict</strong> &#8211; The feature set for the dynamic Components, in a form
-of {&#8220;component_name&#8221;: feature}, where the feature must have
-N elements of feature vectors. If the featureDict is not
-supplied, then the algo reuse those stored in the dynamic
-components. For dates beyond the last day, featureDict must
-be supplied.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple of two lists. (Predicted observation, variance of the predicted
-observation)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.resetPlotOptions">
-<code class="descname">resetPlotOptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.resetPlotOptions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset the plotting option for the dlm class</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.setColor">
-<code class="descname">setColor</code><span class="sig-paren">(</span><em>switch</em>, <em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.setColor" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#8220;set&#8221; Operation for the dlm plotting colors</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>switch</strong> &#8211; key word. Controls over
-filtered/smoothed/predicted results,</li>
-<li><strong>color</strong> &#8211; the color for the corresponding keyword.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.setConfidence">
-<code class="descname">setConfidence</code><span class="sig-paren">(</span><em>p=0.95</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.setConfidence" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the confidence interval for the plot</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.setIntervalType">
-<code class="descname">setIntervalType</code><span class="sig-paren">(</span><em>intervalType</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.setIntervalType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the confidence interval type</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.showOptions">
-<code class="descname">showOptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.showOptions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.showOptions">
+<span class="sig-name descname"><span class="pre">showOptions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.showOptions" title="Link to this definition">¶</a></dt>
 <dd><p>Print out all the option values</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.stableMode">
-<code class="descname">stableMode</code><span class="sig-paren">(</span><em>use=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.stableMode" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dlm.stableMode">
+<span class="sig-name descname"><span class="pre">stableMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.stableMode" title="Link to this definition">¶</a></dt>
 <dd><p>Turn on the stable mode, i.e., using the renewal strategy.</p>
 <p>Indicate whether the renew strategy should be used to add numerical
 stability. When the filter goes over certain steps,
@@ -818,179 +469,114 @@ renewTerm. When discount = 1, there will be no renewTerm,
 since all the information will be passed along.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.tune">
-<code class="descname">tune</code><span class="sig-paren">(</span><em>maxit=100</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.tune" title="Permalink to this definition">¶</a></dt>
-<dd><p>Automatic tuning of the discounting factors.</p>
-<p>The method will call the model tuner class to use the default parameters
-to tune the discounting factors and change the discount factor permenantly.
-User needs to refit the model after tuning.</p>
-<p>If user wants a more refined tuning and not change any property of the
-existing model, they should opt to use the &#64;modelTuner class.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dlm.turnOff">
-<code class="descname">turnOff</code><span class="sig-paren">(</span><em>switch</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.turnOff" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#8220;turn off&#8221; Operation for the dlm plotting options.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>switch</strong> &#8211; <p>The key word to switch off.</p>
-<p>&#8216;filtered plot&#8217;, &#8216;filter&#8217; to not plot filtered results</p>
-<p>&#8216;smoothed plot&#8217;, &#8216;smooth&#8217; to not plot smoothed results</p>
-<p>&#8216;predict plot&#8217;, &#8216;predict&#8217;, to not plot one-step ahead
-results</p>
-<p>&#8216;confidence interval&#8217;, &#8216;confierence&#8217;, &#8216;CI&#8217;
-to not plot CI&#8217;s</p>
-<p>&#8216;data points&#8217;, &#8216;data&#8217;, &#8216;data point&#8217; to not
-plot original data</p>
-<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to not plot results
-in separate figures</p>
-<p>&#8216;fitted dots&#8217;, &#8216;fitted&#8217; to not plot fitted
-results with dots</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pydlm.dlm.turnOn">
-<code class="descname">turnOn</code><span class="sig-paren">(</span><em>switch</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dlm.turnOn" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#8220;turn on&#8221; Operation for the dlm plotting options.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>switch</strong> &#8211; <p>The key word to switch on.</p>
-<p>&#8216;filtered plot&#8217;, &#8216;filter&#8217; to plot filtered results</p>
-<p>&#8216;smoothed plot&#8217;, &#8216;smooth&#8217; to plot smoothed results</p>
-<p>&#8216;predict plot&#8217;, &#8216;predict&#8217;, to plot one-step ahead results</p>
-<p>&#8216;confidence interval&#8217;, &#8216;confierence&#8217;, &#8216;CI&#8217; to plot CI&#8217;s</p>
-<p>&#8216;data points&#8217;, &#8216;data&#8217;, &#8216;data point&#8217; to plot original data</p>
-<p>&#8216;multiple&#8217;, &#8216;separate&#8217; to plot results in separate
-figures</p>
-<p>&#8216;fitted dots&#8217;, &#8216;fitted&#8217; to plot fitted results with dots</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="trend">
-<h2><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal"><span class="pre">trend</span></code></a><a class="headerlink" href="#trend" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pydlm.trend">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">trend</code><span class="sig-paren">(</span><em>degree=0</em>, <em>discount=0.99</em>, <em>name='trend'</em>, <em>w=100</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Permalink to this definition">¶</a></dt>
+</section>
+<section id="trend">
+<h2><a class="reference internal" href="#pydlm.trend" title="pydlm.trend"><code class="xref py py-class docutils literal notranslate"><span class="pre">trend</span></code></a><a class="headerlink" href="#trend" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydlm.trend">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydlm.</span></span><span class="sig-name descname"><span class="pre">trend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'trend'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend" title="Link to this definition">¶</a></dt>
 <dd><p>The trend component that features the polynomial trending,
 providing one building block for the dynamic linear model.
 It decribes a latent polynomial trending in the time series data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>degree</strong> &#8211; the degree of the polynomial. 0: constant; 1: linear...</li>
-<li><strong>discount</strong> &#8211; the discount factor</li>
-<li><strong>name</strong> &#8211; the name of the trend component</li>
-<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
-matrix with 1e7 on the diagonal.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degree</strong> – the degree of the polynomial. 0: constant; 1: linear…</p></li>
+<li><p><strong>discount</strong> – the discount factor</p></li>
+<li><p><strong>name</strong> – the name of the trend component</p></li>
+<li><p><strong>w</strong> – the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a constant trend</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a constant trend</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">trend</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Const&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the ctrend to have covariance with diagonals are 2 and state 1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createCovPrior</span><span class="p">(</span><span class="n">cov</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createMeanPrior</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="attribute">
-<dt id="pydlm.trend.d">
-<code class="descname">d</code><a class="headerlink" href="#pydlm.trend.d" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.d">
+<span class="sig-name descname"><span class="pre">d</span></span><a class="headerlink" href="#pydlm.trend.d" title="Link to this definition">¶</a></dt>
 <dd><p>the dimension of the latent states of the polynomial trend</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.trend.componentType">
-<code class="descname">componentType</code><a class="headerlink" href="#pydlm.trend.componentType" title="Permalink to this definition">¶</a></dt>
-<dd><p>the type of the component, in this case, &#8216;trend&#8217;</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.componentType">
+<span class="sig-name descname"><span class="pre">componentType</span></span><a class="headerlink" href="#pydlm.trend.componentType" title="Link to this definition">¶</a></dt>
+<dd><p>the type of the component, in this case, ‘trend’</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.trend.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.trend.name" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pydlm.trend.name" title="Link to this definition">¶</a></dt>
 <dd><p>the name of the trend component, to be supplied by user
 used in modeling and result extraction</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.trend.discount">
-<code class="descname">discount</code><a class="headerlink" href="#pydlm.trend.discount" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.discount">
+<span class="sig-name descname"><span class="pre">discount</span></span><a class="headerlink" href="#pydlm.trend.discount" title="Link to this definition">¶</a></dt>
 <dd><p>the discount factor for this component. Details please refer
 to the &#64;kalmanFilter</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.trend.evaluation">
-<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.trend.evaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.evaluation">
+<span class="sig-name descname"><span class="pre">evaluation</span></span><a class="headerlink" href="#pydlm.trend.evaluation" title="Link to this definition">¶</a></dt>
 <dd><p>the evaluation matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.trend.transition">
-<code class="descname">transition</code><a class="headerlink" href="#pydlm.trend.transition" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.transition">
+<span class="sig-name descname"><span class="pre">transition</span></span><a class="headerlink" href="#pydlm.trend.transition" title="Link to this definition">¶</a></dt>
 <dd><p>the transition matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.trend.covPrior">
-<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.trend.covPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.covPrior">
+<span class="sig-name descname"><span class="pre">covPrior</span></span><a class="headerlink" href="#pydlm.trend.covPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the covariance matrix of the latent states</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.trend.meanPrior">
-<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.trend.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.trend.meanPrior">
+<span class="sig-name descname"><span class="pre">meanPrior</span></span><a class="headerlink" href="#pydlm.trend.meanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.trend.checkDimensions">
-<code class="descname">checkDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.checkDimensions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.trend.checkDimensions">
+<span class="sig-name descname"><span class="pre">checkDimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.checkDimensions" title="Link to this definition">¶</a></dt>
 <dd><p>if user supplies their own covPrior and meanPrior, this can
 be used to check if the dimension matches</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.trend.createCovPrior">
-<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.trend.createCovPrior">
+<span class="sig-name descname"><span class="pre">createCovPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createCovPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior covariance matrix for the latent states.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.trend.createEvaluation">
-<code class="descname">createEvaluation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createEvaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.trend.createEvaluation">
+<span class="sig-name descname"><span class="pre">createEvaluation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createEvaluation" title="Link to this definition">¶</a></dt>
 <dd><p>Create the evaluation matrix</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.trend.createMeanPrior">
-<code class="descname">createMeanPrior</code><span class="sig-paren">(</span><em>mean=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createMeanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.trend.createMeanPrior">
+<span class="sig-name descname"><span class="pre">createMeanPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createMeanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior latent state</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.trend.createTransition">
-<code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createTransition" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.trend.createTransition">
+<span class="sig-name descname"><span class="pre">createTransition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.trend.createTransition" title="Link to this definition">¶</a></dt>
 <dd><p>Create the transition matrix</p>
 <p>According Hurrison and West (1999), the transition matrix of trend takes
 a form of</p>
@@ -1002,12 +588,12 @@ a form of</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="seasonality">
-<h2><a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pydlm.seasonality">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">seasonality</code><span class="sig-paren">(</span><em>period=7</em>, <em>discount=0.99</em>, <em>name='seasonality'</em>, <em>w=100</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Permalink to this definition">¶</a></dt>
+</section>
+<section id="seasonality">
+<h2><a class="reference internal" href="#pydlm.seasonality" title="pydlm.seasonality"><code class="xref py py-class docutils literal notranslate"><span class="pre">seasonality</span></code></a><a class="headerlink" href="#seasonality" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydlm.seasonality">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydlm.</span></span><span class="sig-name descname"><span class="pre">seasonality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'seasonality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality" title="Link to this definition">¶</a></dt>
 <dd><p>The seasonality component that features the periodicity behavior,
 providing one building block for the dynamic linear model.
 It decribes a latent seasonality trending in the time series data. The user
@@ -1015,23 +601,19 @@ can use this class to construct any periodicy component to the model, for
 instance, the hourly, weekly or monthly behavior. Different from the Fourier
 series, the seasonality components are nonparametric, i.e., there is no sin
 or cos relationship between each state. They can be arbitrarily valued.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>period</strong> &#8211; the period of the</li>
-<li><strong>discount</strong> &#8211; the discount factor</li>
-<li><strong>name</strong> &#8211; the name of the trend component</li>
-<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
-matrix with 100 on the diagonal.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>period</strong> – the period of the</p></li>
+<li><p><strong>discount</strong> – the discount factor</p></li>
+<li><p><strong>name</strong> – the name of the trend component</p></li>
+<li><p><strong>w</strong> – the value to set the prior covariance. Default to a diagonal
+matrix with 100 on the diagonal.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a 7-day seasonality:</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a 7-day seasonality:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">seasonality</span><span class="p">(</span><span class="n">period</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;weekly&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the ctrend to have covariance with diagonals are 2 and state 1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createCovPrior</span><span class="p">(</span><span class="n">cov</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
@@ -1039,84 +621,84 @@ matrix with 100 on the diagonal.</li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">freeForm</span><span class="p">()</span>
 </pre></div>
 </div>
-<dl class="attribute">
-<dt id="pydlm.seasonality.d">
-<code class="descname">d</code><a class="headerlink" href="#pydlm.seasonality.d" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.d">
+<span class="sig-name descname"><span class="pre">d</span></span><a class="headerlink" href="#pydlm.seasonality.d" title="Link to this definition">¶</a></dt>
 <dd><p>the period of the seasonality</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.seasonality.componentType">
-<code class="descname">componentType</code><a class="headerlink" href="#pydlm.seasonality.componentType" title="Permalink to this definition">¶</a></dt>
-<dd><p>the type of the component, in this case, &#8216;seasonality&#8217;</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.componentType">
+<span class="sig-name descname"><span class="pre">componentType</span></span><a class="headerlink" href="#pydlm.seasonality.componentType" title="Link to this definition">¶</a></dt>
+<dd><p>the type of the component, in this case, ‘seasonality’</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.seasonality.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.seasonality.name" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pydlm.seasonality.name" title="Link to this definition">¶</a></dt>
 <dd><p>the name of the seasonality component, to be supplied by user
 used in modeling and result extraction</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.seasonality.discount">
-<code class="descname">discount</code><a class="headerlink" href="#pydlm.seasonality.discount" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.discount">
+<span class="sig-name descname"><span class="pre">discount</span></span><a class="headerlink" href="#pydlm.seasonality.discount" title="Link to this definition">¶</a></dt>
 <dd><p>the discount factor for this component. Details please refer
 to the &#64;kalmanFilter</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.seasonality.evaluation">
-<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.seasonality.evaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.evaluation">
+<span class="sig-name descname"><span class="pre">evaluation</span></span><a class="headerlink" href="#pydlm.seasonality.evaluation" title="Link to this definition">¶</a></dt>
 <dd><p>the evaluation matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.seasonality.transition">
-<code class="descname">transition</code><a class="headerlink" href="#pydlm.seasonality.transition" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.transition">
+<span class="sig-name descname"><span class="pre">transition</span></span><a class="headerlink" href="#pydlm.seasonality.transition" title="Link to this definition">¶</a></dt>
 <dd><p>the transition matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.seasonality.covPrior">
-<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.seasonality.covPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.covPrior">
+<span class="sig-name descname"><span class="pre">covPrior</span></span><a class="headerlink" href="#pydlm.seasonality.covPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the covariance matrix of the latent states</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.seasonality.meanPrior">
-<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.seasonality.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.seasonality.meanPrior">
+<span class="sig-name descname"><span class="pre">meanPrior</span></span><a class="headerlink" href="#pydlm.seasonality.meanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.seasonality.checkDimensions">
-<code class="descname">checkDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.checkDimensions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.seasonality.checkDimensions">
+<span class="sig-name descname"><span class="pre">checkDimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.checkDimensions" title="Link to this definition">¶</a></dt>
 <dd><p>if user supplies their own covPrior and meanPrior, this can
 be used to check if the dimension matches</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.seasonality.createCovPrior">
-<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=10000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.seasonality.createCovPrior">
+<span class="sig-name descname"><span class="pre">createCovPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createCovPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior covariance matrix for the latent states.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.seasonality.createEvaluation">
-<code class="descname">createEvaluation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createEvaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.seasonality.createEvaluation">
+<span class="sig-name descname"><span class="pre">createEvaluation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createEvaluation" title="Link to this definition">¶</a></dt>
 <dd><p>Create the evaluation matrix</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.seasonality.createMeanPrior">
-<code class="descname">createMeanPrior</code><span class="sig-paren">(</span><em>mean=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createMeanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.seasonality.createMeanPrior">
+<span class="sig-name descname"><span class="pre">createMeanPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createMeanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior latent state</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.seasonality.createTransition">
-<code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createTransition" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.seasonality.createTransition">
+<span class="sig-name descname"><span class="pre">createTransition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.createTransition" title="Link to this definition">¶</a></dt>
 <dd><p>Create the transition matrix.</p>
 <p>According to Hurrison and West (1999), the transition matrix of seasonality
 takes a form of</p>
@@ -1126,9 +708,9 @@ takes a form of</p>
 <p>[1 0 0 0]]</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.seasonality.freeForm">
-<code class="descname">freeForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.freeForm" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.seasonality.freeForm">
+<span class="sig-name descname"><span class="pre">freeForm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.seasonality.freeForm" title="Link to this definition">¶</a></dt>
 <dd><p>The technique used in Hurrison and West (1999). After calling this method,
 The latent states sum up to 0 and the covariance matrix is degenerate to have
 rank d - 1, so that the sum of the latent states will never change when the
@@ -1137,35 +719,31 @@ system evolves</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="dynamic">
-<h2><a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal"><span class="pre">dynamic</span></code></a><a class="headerlink" href="#dynamic" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pydlm.dynamic">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">dynamic</code><span class="sig-paren">(</span><em>features=None</em>, <em>discount=0.99</em>, <em>name='dynamic'</em>, <em>w=100</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic" title="Permalink to this definition">¶</a></dt>
+</section>
+<section id="dynamic">
+<h2><a class="reference internal" href="#pydlm.dynamic" title="pydlm.dynamic"><code class="xref py py-class docutils literal notranslate"><span class="pre">dynamic</span></code></a><a class="headerlink" href="#dynamic" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydlm.dynamic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydlm.</span></span><span class="sig-name descname"><span class="pre">dynamic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dynamic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic" title="Link to this definition">¶</a></dt>
 <dd><p>The dynamic component that allows user to add controlled variables,
 providing one building block for the dynamic linear model.
 It decribes a dynamic component in the time series data. It basically allows
 user to supply covariate or controlled variable into the dlm,
 and the coefficients of the features will be trained as the latent states.
 Examples are holiday indicators, other observed variables and so on.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>features</strong> &#8211; the feature matrix of the dynamic component</li>
-<li><strong>discount</strong> &#8211; the discount factor</li>
-<li><strong>name</strong> &#8211; the name of the dynamic component</li>
-<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
-matrix with 1e7 on the diagonal.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>features</strong> – the feature matrix of the dynamic component</p></li>
+<li><p><strong>discount</strong> – the discount factor</p></li>
+<li><p><strong>name</strong> – the name of the dynamic component</p></li>
+<li><p><strong>w</strong> – the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a dynamic component:</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a dynamic component:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span> <span class="o">=</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the ctrend to have covariance with diagonals are 2 and state 1</span>
@@ -1173,155 +751,145 @@ matrix with 1e7 on the diagonal.</li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ctrend</span><span class="o">.</span><span class="n">createMeanPrior</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="attribute">
-<dt id="pydlm.dynamic.d">
-<code class="descname">d</code><a class="headerlink" href="#pydlm.dynamic.d" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.d">
+<span class="sig-name descname"><span class="pre">d</span></span><a class="headerlink" href="#pydlm.dynamic.d" title="Link to this definition">¶</a></dt>
 <dd><p>the dimension of the features (number of latent states)</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.n">
-<code class="descname">n</code><a class="headerlink" href="#pydlm.dynamic.n" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.n">
+<span class="sig-name descname"><span class="pre">n</span></span><a class="headerlink" href="#pydlm.dynamic.n" title="Link to this definition">¶</a></dt>
 <dd><p>the number of observation</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.componentType">
-<code class="descname">componentType</code><a class="headerlink" href="#pydlm.dynamic.componentType" title="Permalink to this definition">¶</a></dt>
-<dd><p>the type of the component, in this case, &#8216;dynamic&#8217;</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.componentType">
+<span class="sig-name descname"><span class="pre">componentType</span></span><a class="headerlink" href="#pydlm.dynamic.componentType" title="Link to this definition">¶</a></dt>
+<dd><p>the type of the component, in this case, ‘dynamic’</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.dynamic.name" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pydlm.dynamic.name" title="Link to this definition">¶</a></dt>
 <dd><p>the name of the trend component, to be supplied by user
 used in modeling and result extraction</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.discount">
-<code class="descname">discount</code><a class="headerlink" href="#pydlm.dynamic.discount" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.discount">
+<span class="sig-name descname"><span class="pre">discount</span></span><a class="headerlink" href="#pydlm.dynamic.discount" title="Link to this definition">¶</a></dt>
 <dd><p>the discount factor for this component. Details please refer
 to the &#64;kalmanFilter</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.evaluation">
-<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.dynamic.evaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.evaluation">
+<span class="sig-name descname"><span class="pre">evaluation</span></span><a class="headerlink" href="#pydlm.dynamic.evaluation" title="Link to this definition">¶</a></dt>
 <dd><p>the evaluation matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.transition">
-<code class="descname">transition</code><a class="headerlink" href="#pydlm.dynamic.transition" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.transition">
+<span class="sig-name descname"><span class="pre">transition</span></span><a class="headerlink" href="#pydlm.dynamic.transition" title="Link to this definition">¶</a></dt>
 <dd><p>the transition matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.covPrior">
-<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.dynamic.covPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.covPrior">
+<span class="sig-name descname"><span class="pre">covPrior</span></span><a class="headerlink" href="#pydlm.dynamic.covPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the covariance matrix of the latent states</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.dynamic.meanPrior">
-<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.dynamic.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.dynamic.meanPrior">
+<span class="sig-name descname"><span class="pre">meanPrior</span></span><a class="headerlink" href="#pydlm.dynamic.meanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.alter">
-<code class="descname">alter</code><span class="sig-paren">(</span><em>date</em>, <em>feature</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.alter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Change the corresponding</dt>
-<dd>feature matrix.</dd>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.alter">
+<span class="sig-name descname"><span class="pre">alter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.alter" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Change the corresponding</dt><dd><p>feature matrix.</p>
+</dd>
 </dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>date</strong> &#8211; The date to be modified.</li>
-<li><strong>dataPoint</strong> &#8211; The new feature to be filled in.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date</strong> – The date to be modified.</p></li>
+<li><p><strong>dataPoint</strong> – The new feature to be filled in.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.appendNewData">
-<code class="descname">appendNewData</code><span class="sig-paren">(</span><em>newData</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.appendNewData" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.appendNewData">
+<span class="sig-name descname"><span class="pre">appendNewData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newData</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.appendNewData" title="Link to this definition">¶</a></dt>
 <dd><p>For updating feature matrix when new data is added.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>newData</strong> &#8211; is a list of list. The inner list is the feature vector. The outer
-list may contain multiple feature vectors.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>newData</strong> – is a list of list. The inner list is the feature vector. The outer
+list may contain multiple feature vectors.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.checkDimensions">
-<code class="descname">checkDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.checkDimensions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.checkDimensions">
+<span class="sig-name descname"><span class="pre">checkDimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.checkDimensions" title="Link to this definition">¶</a></dt>
 <dd><p>if user supplies their own covPrior and meanPrior, this can
 be used to check if the dimension matches</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.createCovPrior">
-<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=None</em>, <em>scale=1000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.createCovPrior">
+<span class="sig-name descname"><span class="pre">createCovPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createCovPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior covariance matrix for the latent states</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.createEvaluation">
-<code class="descname">createEvaluation</code><span class="sig-paren">(</span><em>step</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createEvaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.createEvaluation">
+<span class="sig-name descname"><span class="pre">createEvaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createEvaluation" title="Link to this definition">¶</a></dt>
 <dd><p>The evaluation matrix for the dynamic component change over time.
 It equals to the value of the features or the controlled variables at a
 given date</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.createMeanPrior">
-<code class="descname">createMeanPrior</code><span class="sig-paren">(</span><em>mean=None</em>, <em>scale=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createMeanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.createMeanPrior">
+<span class="sig-name descname"><span class="pre">createMeanPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createMeanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior latent state</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.createTransition">
-<code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createTransition" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.createTransition">
+<span class="sig-name descname"><span class="pre">createTransition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.createTransition" title="Link to this definition">¶</a></dt>
 <dd><p>Create the transition matrix.</p>
 <p>For the dynamic component, the transition matrix is just the identity matrix</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.hasMissingData">
-<code class="descname">hasMissingData</code><span class="sig-paren">(</span><em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.hasMissingData" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.hasMissingData">
+<span class="sig-name descname"><span class="pre">hasMissingData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.hasMissingData" title="Link to this definition">¶</a></dt>
 <dd><p>Check whether the list contains None</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.popout">
-<code class="descname">popout</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.popout" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.popout">
+<span class="sig-name descname"><span class="pre">popout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.popout" title="Link to this definition">¶</a></dt>
 <dd><p>For deleting the feature data of a specific date.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the index of which to be deleted.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date</strong> – the index of which to be deleted.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.dynamic.updateEvaluation">
-<code class="descname">updateEvaluation</code><span class="sig-paren">(</span><em>step</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.updateEvaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.dynamic.updateEvaluation">
+<span class="sig-name descname"><span class="pre">updateEvaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.dynamic.updateEvaluation" title="Link to this definition">¶</a></dt>
 <dd><p>update the evaluation matrix to a specific date
 This function is used when fitting the forward filter and backward smoother
 in need of updating the correct evaluation matrix</p>
@@ -1329,143 +897,151 @@ in need of updating the correct evaluation matrix</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="autoreg">
-<h2><a class="reference internal" href="#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pydlm.autoReg">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">autoReg</code><span class="sig-paren">(</span><em>data=None</em>, <em>degree=2</em>, <em>discount=0.99</em>, <em>name='ar2'</em>, <em>w=100</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Permalink to this definition">¶</a></dt>
+</section>
+<section id="autoreg">
+<h2><a class="reference internal" href="#pydlm.autoReg" title="pydlm.autoReg"><code class="xref py py-class docutils literal notranslate"><span class="pre">autoReg</span></code></a><a class="headerlink" href="#autoreg" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydlm.autoReg">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydlm.</span></span><span class="sig-name descname"><span class="pre">autoReg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ar2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg" title="Link to this definition">¶</a></dt>
 <dd><p>The autoReg class allows user to add an autoregressive component to the dlm.
 This code implements the autoregressive component as a child class of
 component. Different from the dynamic component, the features in the
 autoReg is generated from the data, and updated according to the data.</p>
 <p>The latent states of autoReg are aligned in the order of
-[today - degree, today - degree + 1, ..., today - 2, today - 1]. Thus,
+[today - degree, today - degree + 1, …, today - 2, today - 1]. Thus,
 when fetching the latents from autoReg component, use this order to
 correctly align the coefficients.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<em>deprecated</em>) &#8211; Users get a warning if this argument is used.</li>
-<li><strong>degree</strong> &#8211; the order of the autoregressive component</li>
-<li><strong>discount</strong> &#8211; the discount factor</li>
-<li><strong>name</strong> &#8211; the name of the trend component</li>
-<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
-matrix with 1e7 on the diagonal.</li>
-<li><strong>padding</strong> &#8211; either 0 or None. The number to be padded for the first degree
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>deprecated</em>) – Users get a warning if this argument is used.</p></li>
+<li><p><strong>degree</strong> – the order of the autoregressive component</p></li>
+<li><p><strong>discount</strong> – the discount factor</p></li>
+<li><p><strong>name</strong> – the name of the trend component</p></li>
+<li><p><strong>w</strong> – the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</p></li>
+<li><p><strong>padding</strong> – either 0 or None. The number to be padded for the first degree
 days, as no previous data is observed to form the feature
-matrix</li>
+matrix</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a auto regression component:</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="c1"># create a auto regression component:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">autoReg8</span> <span class="o">=</span> <span class="n">autoReg</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;autoreg8&#39;</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span> <span class="c1"># change the autoReg8 to have covariance with diagonals are 2 and state 1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">autoReg8</span><span class="o">.</span><span class="n">createCovPrior</span><span class="p">(</span><span class="n">cov</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">autoReg8</span><span class="o">.</span><span class="n">createMeanPrior</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="attribute">
-<dt id="pydlm.autoReg.d">
-<code class="descname">d</code><a class="headerlink" href="#pydlm.autoReg.d" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.d">
+<span class="sig-name descname"><span class="pre">d</span></span><a class="headerlink" href="#pydlm.autoReg.d" title="Link to this definition">¶</a></dt>
 <dd><p>the degree of autoregressive, i.e., how many days to look back</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.autoReg.data">
-<code class="descname">data</code><a class="headerlink" href="#pydlm.autoReg.data" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>deprecatd</em> &#8211; Users get a warning if this argument is used.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.data">
+<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pydlm.autoReg.data" title="Link to this definition">¶</a></dt>
+<dd><p>Users get a warning if this argument is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>deprecatd</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="descname">discount factor</code></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">discount</span> <span class="pre">factor</span></span></dt>
 <dd><p>the discounting factor</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.autoReg.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.autoReg.name" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pydlm.autoReg.name" title="Link to this definition">¶</a></dt>
 <dd><p>the name of the component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.autoReg.padding">
-<code class="descname">padding</code><a class="headerlink" href="#pydlm.autoReg.padding" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.padding">
+<span class="sig-name descname"><span class="pre">padding</span></span><a class="headerlink" href="#pydlm.autoReg.padding" title="Link to this definition">¶</a></dt>
 <dd><p>either 0 or None. The number to be padded for the first degree
 days, as no previous data is observed to form the feature
 matrix</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.autoReg.evaluation">
-<code class="descname">evaluation</code><a class="headerlink" href="#pydlm.autoReg.evaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.evaluation">
+<span class="sig-name descname"><span class="pre">evaluation</span></span><a class="headerlink" href="#pydlm.autoReg.evaluation" title="Link to this definition">¶</a></dt>
 <dd><p>the evaluation matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.autoReg.transition">
-<code class="descname">transition</code><a class="headerlink" href="#pydlm.autoReg.transition" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.transition">
+<span class="sig-name descname"><span class="pre">transition</span></span><a class="headerlink" href="#pydlm.autoReg.transition" title="Link to this definition">¶</a></dt>
 <dd><p>the transition matrix for this component</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.autoReg.covPrior">
-<code class="descname">covPrior</code><a class="headerlink" href="#pydlm.autoReg.covPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.covPrior">
+<span class="sig-name descname"><span class="pre">covPrior</span></span><a class="headerlink" href="#pydlm.autoReg.covPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the covariance matrix of the latent states</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.autoReg.meanPrior">
-<code class="descname">meanPrior</code><a class="headerlink" href="#pydlm.autoReg.meanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.autoReg.meanPrior">
+<span class="sig-name descname"><span class="pre">meanPrior</span></span><a class="headerlink" href="#pydlm.autoReg.meanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>the prior guess of the latent states</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.autoReg.checkDimensions">
-<code class="descname">checkDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.checkDimensions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.autoReg.appendNewData">
+<span class="sig-name descname"><span class="pre">appendNewData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.appendNewData" title="Link to this definition">¶</a></dt>
+<dd><p>AutoReg append new data automatically with the main time series. Nothing
+needs to be done here.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.autoReg.checkDimensions">
+<span class="sig-name descname"><span class="pre">checkDimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.checkDimensions" title="Link to this definition">¶</a></dt>
 <dd><p>if user supplies their own covPrior and meanPrior, this can
 be used to check if the dimension matches</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.autoReg.createCovPrior">
-<code class="descname">createCovPrior</code><span class="sig-paren">(</span><em>cov=None</em>, <em>scale=1000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createCovPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.autoReg.createCovPrior">
+<span class="sig-name descname"><span class="pre">createCovPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createCovPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior covariance matrix for the latent states</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.autoReg.createEvaluation">
-<code class="descname">createEvaluation</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createEvaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.autoReg.createEvaluation">
+<span class="sig-name descname"><span class="pre">createEvaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createEvaluation" title="Link to this definition">¶</a></dt>
 <dd><p>The evaluation matrix for auto regressor.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.autoReg.createMeanPrior">
-<code class="descname">createMeanPrior</code><span class="sig-paren">(</span><em>mean=None</em>, <em>scale=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createMeanPrior" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.autoReg.createMeanPrior">
+<span class="sig-name descname"><span class="pre">createMeanPrior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createMeanPrior" title="Link to this definition">¶</a></dt>
 <dd><p>Create the prior latent state</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.autoReg.createTransition">
-<code class="descname">createTransition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createTransition" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.autoReg.createTransition">
+<span class="sig-name descname"><span class="pre">createTransition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.autoReg.createTransition" title="Link to this definition">¶</a></dt>
 <dd><p>Create the transition matrix.</p>
 <p>For the auto regressor component, the transition matrix is just the identity matrix</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="longseason">
-<h2><a class="reference internal" href="#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal"><span class="pre">longSeason</span></code></a><a class="headerlink" href="#longseason" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pydlm.longSeason">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">longSeason</code><span class="sig-paren">(</span><em>data=None</em>, <em>period=4</em>, <em>stay=7</em>, <em>discount=0.99</em>, <em>name='longSeason'</em>, <em>w=100</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason" title="Permalink to this definition">¶</a></dt>
+</section>
+<section id="longseason">
+<h2><a class="reference internal" href="#pydlm.longSeason" title="pydlm.longSeason"><code class="xref py py-class docutils literal notranslate"><span class="pre">longSeason</span></code></a><a class="headerlink" href="#longseason" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydlm.longSeason">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydlm.</span></span><span class="sig-name descname"><span class="pre">longSeason</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'longSeason'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason" title="Link to this definition">¶</a></dt>
 <dd><p>The longSeason class alows user to add a long seasonality component
 to the dlm. The difference between the long seasonality is that
 1) The seasonality component use each date as a unit and change in a given
@@ -1481,111 +1057,97 @@ This code implements the longSeason component as a sub-class of
 dynamic. Different from the dynamic component, the features in the
 autoReg is generated from the data, and updated according to the data.
 All other features are similar to &#64;dynamic.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> &#8211; the time series data</li>
-<li><strong>period</strong> &#8211; the periodicy of the longSeason component</li>
-<li><strong>stay</strong> &#8211; the length of each state lasts</li>
-<li><strong>discount</strong> &#8211; the discount factor</li>
-<li><strong>name</strong> &#8211; the name of the trend component</li>
-<li><strong>w</strong> &#8211; the value to set the prior covariance. Default to a diagonal
-matrix with 1e7 on the diagonal.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – the time series data</p></li>
+<li><p><strong>period</strong> – the periodicy of the longSeason component</p></li>
+<li><p><strong>stay</strong> – the length of each state lasts</p></li>
+<li><p><strong>discount</strong> – the discount factor</p></li>
+<li><p><strong>name</strong> – the name of the trend component</p></li>
+<li><p><strong>w</strong> – the value to set the prior covariance. Default to a diagonal
+matrix with 1e7 on the diagonal.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="pydlm.longSeason.period">
-<code class="descname">period</code><a class="headerlink" href="#pydlm.longSeason.period" title="Permalink to this definition">¶</a></dt>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.longSeason.period">
+<span class="sig-name descname"><span class="pre">period</span></span><a class="headerlink" href="#pydlm.longSeason.period" title="Link to this definition">¶</a></dt>
 <dd><p>the periodicity, i.e., how many different states it has in
 one period</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.longSeason.stay">
-<code class="descname">stay</code><a class="headerlink" href="#pydlm.longSeason.stay" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.longSeason.stay">
+<span class="sig-name descname"><span class="pre">stay</span></span><a class="headerlink" href="#pydlm.longSeason.stay" title="Link to this definition">¶</a></dt>
 <dd><p>the length of a state last.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="descname">discount factor</code></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">discount</span> <span class="pre">factor</span></span></dt>
 <dd><p>the discounting factor</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.longSeason.name">
-<code class="descname">name</code><a class="headerlink" href="#pydlm.longSeason.name" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.longSeason.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pydlm.longSeason.name" title="Link to this definition">¶</a></dt>
 <dd><p>the name of the component</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.longSeason.alter">
-<code class="descname">alter</code><span class="sig-paren">(</span><em>date</em>, <em>dataPoint</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.alter" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.longSeason.alter">
+<span class="sig-name descname"><span class="pre">alter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataPoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.alter" title="Link to this definition">¶</a></dt>
 <dd><p>We do nothing to longSeason, when altering the main data</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.longSeason.appendNewData">
-<code class="descname">appendNewData</code><span class="sig-paren">(</span><em>newData</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.appendNewData" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.longSeason.appendNewData">
+<span class="sig-name descname"><span class="pre">appendNewData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newData</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.appendNewData" title="Link to this definition">¶</a></dt>
 <dd><p>Append new data to the existing features. Overriding the same method in
 &#64;dynamic</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>newData</strong> &#8211; a list of new data</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>newData</strong> – a list of new data</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.longSeason.checkDataLength">
-<code class="descname">checkDataLength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.checkDataLength" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.longSeason.checkDataLength">
+<span class="sig-name descname"><span class="pre">checkDataLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.checkDataLength" title="Link to this definition">¶</a></dt>
 <dd><p>Check whether the degree is less than the time series length</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.longSeason.createFeatureMatrix">
-<code class="descname">createFeatureMatrix</code><span class="sig-paren">(</span><em>period</em>, <em>stay</em>, <em>n</em>, <em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.createFeatureMatrix" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.longSeason.createFeatureMatrix">
+<span class="sig-name descname"><span class="pre">createFeatureMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.createFeatureMatrix" title="Link to this definition">¶</a></dt>
 <dd><p>Create the feature matrix based on the supplied data and the degree.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>period</strong> &#8211; the periodicity of the component</li>
-<li><strong>stay</strong> &#8211; the length of the base unit, i.e, how long before change to
-change to the next state.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>period</strong> – the periodicity of the component</p></li>
+<li><p><strong>stay</strong> – the length of the base unit, i.e, how long before change to
+change to the next state.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.longSeason.popout">
-<code class="descname">popout</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.popout" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.longSeason.popout">
+<span class="sig-name descname"><span class="pre">popout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.popout" title="Link to this definition">¶</a></dt>
 <dd><p>Pop out the data of a specific date and rewrite the correct feature matrix.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>date</strong> &#8211; the index of which to be deleted.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date</strong> – the index of which to be deleted.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.longSeason.updateEvaluation">
-<code class="descname">updateEvaluation</code><span class="sig-paren">(</span><em>step</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.updateEvaluation" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.longSeason.updateEvaluation">
+<span class="sig-name descname"><span class="pre">updateEvaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.longSeason.updateEvaluation" title="Link to this definition">¶</a></dt>
 <dd><p>update the evaluation matrix to a specific date
 This function is used when fitting the forward filter and
 backward smoother
@@ -1594,127 +1156,86 @@ in need of updating the correct evaluation matrix</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="modeltuner">
-<h2><a class="reference internal" href="#pydlm.modelTuner" title="pydlm.modelTuner"><code class="xref py py-class docutils literal"><span class="pre">modelTuner</span></code></a><a class="headerlink" href="#modeltuner" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pydlm.modelTuner">
-<em class="property">class </em><code class="descclassname">pydlm.</code><code class="descname">modelTuner</code><span class="sig-paren">(</span><em>method='gradient_descent'</em>, <em>loss='mse'</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.modelTuner" title="Permalink to this definition">¶</a></dt>
+</section>
+<section id="modeltuner">
+<h2><a class="reference internal" href="#pydlm.modelTuner" title="pydlm.modelTuner"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelTuner</span></code></a><a class="headerlink" href="#modeltuner" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydlm.modelTuner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydlm.</span></span><span class="sig-name descname"><span class="pre">modelTuner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gradient_descent'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.modelTuner" title="Link to this definition">¶</a></dt>
 <dd><p>The main class for modelTuner</p>
-<dl class="attribute">
-<dt id="pydlm.modelTuner.method">
-<code class="descname">method</code><a class="headerlink" href="#pydlm.modelTuner.method" title="Permalink to this definition">¶</a></dt>
-<dd><p>the optimization method. Currently only &#8216;gradient_descent&#8217;
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.modelTuner.method">
+<span class="sig-name descname"><span class="pre">method</span></span><a class="headerlink" href="#pydlm.modelTuner.method" title="Link to this definition">¶</a></dt>
+<dd><p>the optimization method. Currently only ‘gradient_descent’
 is supported.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="pydlm.modelTuner.loss">
-<code class="descname">loss</code><a class="headerlink" href="#pydlm.modelTuner.loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>the optimization loss function. Currently only &#8216;mse&#8217; (one-day
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydlm.modelTuner.loss">
+<span class="sig-name descname"><span class="pre">loss</span></span><a class="headerlink" href="#pydlm.modelTuner.loss" title="Link to this definition">¶</a></dt>
+<dd><p>the optimization loss function. Currently only ‘mse’ (one-day
 ahead prediction) is supported.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.modelTuner.getDiscounts">
-<code class="descname">getDiscounts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.modelTuner.getDiscounts" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.modelTuner.getDiscounts">
+<span class="sig-name descname"><span class="pre">getDiscounts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.modelTuner.getDiscounts" title="Link to this definition">¶</a></dt>
 <dd><p>Get the tuned discounting factors. One for each component (even the
 component being multi-dimensional, only one discounting factor will
 be assigned to one component). Initialized to None.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pydlm.modelTuner.tune">
-<code class="descname">tune</code><span class="sig-paren">(</span><em>untunedDLM</em>, <em>maxit=100</em>, <em>step=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.modelTuner.tune" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydlm.modelTuner.tune">
+<span class="sig-name descname"><span class="pre">tune</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">untunedDLM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydlm.modelTuner.tune" title="Link to this definition">¶</a></dt>
 <dd><p>Main function for tuning the DLM model.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>untunedDLM</strong> &#8211; The DLM object that needs tuning</li>
-<li><strong>maxit</strong> &#8211; The maximum number of iteractions for gradient descent.</li>
-<li><strong>step</strong> &#8211; the moving length at each iteraction.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>untunedDLM</strong> – The DLM object that needs tuning</p></li>
+<li><p><strong>maxit</strong> – The maximum number of iteractions for gradient descent.</p></li>
+<li><p><strong>step</strong> – the moving length at each iteraction.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuned DLM object in unintialized status.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuned DLM object in unintialized status.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="discounting.html" class="btn btn-neutral" title="The discouting factor" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="discounting.html" class="btn btn-neutral float-left" title="The discouting factor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2016, Xiangyu Wang.
-
-    </p>
+    <p>&#169; Copyright 2024, Xiangyu Wang.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
